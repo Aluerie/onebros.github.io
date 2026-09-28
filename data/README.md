@@ -88,10 +88,12 @@ Append an object to the **end** of the `runners` array in `runners.json`:
 2. In `games.json`, set that game's `"page": true`, list its OneBros roles in `roles`
    (e.g. add `elitemaster`), and fill in `roleNames` if the game uses its own names.
 3. Optional images in `games.json` (files go in `assets/games/`):
-   - `"hero": { "src", "width", "height", "alt" }` — banner artwork above the title.
-   - `"logo": { "src", "width", "height", "blend" }` — shown instead of the text title
-     (the text stays available to screen readers). Use `"blend": "screen"` for a logo
-     drawn on a black background.
+   - `"logo": { "src", "width", "height", "blend" }` — the page's cinematic hero: large and
+     centred, it replaces the visible text title (the text stays available to screen readers).
+     Use `"blend": "screen"` for a logo drawn on a black background. With a logo only (as
+     Demon's Souls), the hero is the logo on the site background.
+   - `"hero": { "src", "width", "height", "alt", "position" }` (optional) — background artwork
+     behind the logo, cropped to fill.
 
 No HTML or JavaScript changes are needed. The page is served at `game.html?game=<id>`.
 

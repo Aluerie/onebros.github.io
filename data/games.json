@@ -32,12 +32,6 @@
       "short": "DeS",
       "year": 2009,
       "page": true,
-      "hero": {
-        "src": "assets/games/des.jpg",
-        "width": 5120,
-        "height": 2880,
-        "alt": "Demon's Souls artwork: an armored knight faces undead soldiers in front of a burning castle under a stormy sky."
-      },
       "logo": {
         "src": "assets/games/des-logo.png",
         "width": 1031,

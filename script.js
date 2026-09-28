@@ -83,7 +83,8 @@
     const exceptions = (data.sections || []).filter((s) => s.exception);
     const hash = decodeURIComponent(window.location.hash.slice(1));
 
-    accordion.innerHTML = regular.map((s, i) => rulePanelHtml(s, i === 0 || s.id === hash)).join("");
+    // All panels start collapsed; only a panel targeted by a direct #anchor opens.
+    accordion.innerHTML = regular.map((s) => rulePanelHtml(s, s.id === hash)).join("");
     exception.innerHTML = exceptions.length
       ? `<p class="rules-exception-label">Exception — not covered by the rules above</p>
          ${exceptions.map((s) => rulePanelHtml(s, s.id === hash)).join("")}`
@@ -101,8 +102,6 @@
     });
     panels().forEach((p) => p.addEventListener("toggle", syncToggle));
     syncToggle();
-
-    if (hash && document.getElementById(hash)) document.getElementById(hash).scrollIntoView();
   }
 
   function populateFilters() {
@@ -155,27 +154,36 @@
     }
   }
 
+  // A direct #anchor (e.g. #rules-no-hit) points into content rendered from JSON. Scroll to it
+  // only once every section above it has rendered, so later content can't push it out of view.
+  function scrollToHash() {
+    const hash = decodeURIComponent(window.location.hash.slice(1));
+    const target = hash && document.getElementById(hash);
+    if (target) target.scrollIntoView();
+  }
+
   async function init() {
     initChrome();
-    renderRules();
+    const rulesReady = renderRules();
     bindAvatarFallback($("#runners-grid"));
 
     try {
       catalog = await loadCatalog();
+      renderStats();
+      renderGames();
+      populateFilters();
+      renderRunners();
+
+      $("#filter-search").addEventListener("input", renderRunners);
+      $("#filter-game").addEventListener("change", renderRunners);
+      $("#filter-role").addEventListener("change", renderRunners);
     } catch (err) {
       console.error(err);
       ["#games-grid", "#runners-grid"].forEach((sel) => ($(sel).innerHTML = loadErrorHtml()));
-      return;
     }
 
-    renderStats();
-    renderGames();
-    populateFilters();
-    renderRunners();
-
-    $("#filter-search").addEventListener("input", renderRunners);
-    $("#filter-game").addEventListener("change", renderRunners);
-    $("#filter-role").addEventListener("change", renderRunners);
+    await rulesReady;
+    scrollToHash();
   }
 
   document.addEventListener("DOMContentLoaded", init);

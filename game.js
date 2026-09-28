@@ -228,52 +228,46 @@
     return `<img class="${cls}${blend}" src="${escapeHtml(src)}"${size} alt="" aria-hidden="true" decoding="async">`;
   }
 
-  /* Cinematic cover from games.json:
-   *   "hero": { src, width, height, alt, position? }  artwork, cropped to fill (object-fit: cover)
-   *   "logo": { src, width, height, blend? }          optional, large and centred over the artwork
+  /* Cinematic cover from games.json — artwork, logo, or both:
+   *   "hero": { src, width, height, alt, position? }  optional artwork, cropped to fill (object-fit: cover)
+   *   "logo": { src, width, height, blend? }          optional, large and centred
+   * With a logo but no artwork the cover is logo-only, on the page background (.cover--logo).
    * "position" is an optional CSS object-position (e.g. "center 35%") to keep the key part in view.
-   * Returns whether the logo was placed on the cover. */
+   * Returns whether a logo is shown on the cover (it is then the visible page title). */
   function renderCover(game) {
     const hero = game.hero;
     const src = hero && safeUrl(hero.src);
-    if (!src) return false;
-    const size = hero.width && hero.height ? ` width="${Number(hero.width)}" height="${Number(hero.height)}"` : "";
-    const position = /^[\w\s.%-]+$/.test(hero.position || "") ? ` style="object-position: ${hero.position}"` : "";
     const logo = logoImgHtml(game, "cover-logo");
+    if (!src && !logo) return false;
+    const size = src && hero.width && hero.height ? ` width="${Number(hero.width)}" height="${Number(hero.height)}"` : "";
+    const position = src && /^[\w\s.%-]+$/.test(hero.position || "") ? ` style="object-position: ${hero.position}"` : "";
     const cover = $("#game-cover");
+    cover.classList.toggle("cover--logo", !src);
     cover.innerHTML = `
-      <img class="cover-img" src="${escapeHtml(src)}"${size}${position} alt="${escapeHtml(hero.alt || "")}"
-           fetchpriority="high" decoding="async">
+      ${src ? `<img class="cover-img" src="${escapeHtml(src)}"${size}${position} alt="${escapeHtml(hero.alt || "")}" fetchpriority="high" decoding="async">` : ""}
       ${logo}`;
     cover.hidden = false;
     $("#overview").classList.add("has-cover");
     return Boolean(logo);
   }
 
-  // Page title. The heading text is always in the HTML for screen readers:
-  //   logo on the cover  -> heading is visually hidden (the logo is the visible title)
-  //   logo, no cover     -> logo shown in place of the text title
-  //   no logo            -> plain text title
-  function titleHtml(game, logoOnBanner) {
-    if (logoOnBanner) return `<h1 id="game-title" class="sr-only">${escapeHtml(game.title)}</h1>`;
-    const logo = logoImgHtml(game, "game-logo");
-    if (!logo) return `<h1 id="game-title" class="game-hero-title">${escapeHtml(game.title)}</h1>`;
-    return `
-      <h1 id="game-title" class="game-hero-title has-logo">
-        <span class="sr-only">${escapeHtml(game.title)}</span>
-        ${logo}
-      </h1>`;
+  // Page title. The heading text is always in the HTML for screen readers; when the logo is shown
+  // on the cover it is the visible title and the heading is visually hidden.
+  function titleHtml(game, logoOnCover) {
+    return logoOnCover
+      ? `<h1 id="game-title" class="sr-only">${escapeHtml(game.title)}</h1>`
+      : `<h1 id="game-title" class="game-hero-title">${escapeHtml(game.title)}</h1>`;
   }
 
   // Roles are presented once, as the Challenge Rules cards; the hero only states how many OneBros
   // roles the game has (the No Hit track is separate and not counted).
   function renderHero(game, tierSections, runnerCount) {
     document.title = `${game.title} — OneBros`;
-    const logoOnBanner = renderCover(game);
+    const logoOnCover = renderCover(game);
     $("#game-hero").innerHTML = `
       <p class="breadcrumb"><a href="index.html#games">Games</a> <span aria-hidden="true">/</span> ${escapeHtml(game.short)}</p>
       <p class="eyebrow">Challenge rules &amp; Hall of Fame</p>
-      ${titleHtml(game, logoOnBanner)}
+      ${titleHtml(game, logoOnCover)}
       ${game.subtitle ? `<p class="hero-lead">${escapeHtml(game.subtitle)}</p>` : ""}
       <dl class="hero-stats">
         <div class="stat"><dt>Verified runners</dt><dd>${runnerCount}</dd></div>

@@ -386,7 +386,8 @@ code {
                   on top (game pages: "hero" + "logo" in games.json).
    .cover--whole  artwork with text baked in (the OneBros banner): never cropped at
                   top or bottom; the fade happens in extra room below the image.
-                  --cover-zoom > 1 trims only the sides (used on mobile). */
+                  --cover-zoom > 1 trims only the sides (used on mobile).
+   .cover--logo   logo only, on the page background (game pages with "logo" and no "hero"). */
 
 .cover {
   --cover-shade:
@@ -450,6 +451,35 @@ code {
 .cover-logo.blend-screen {
   mix-blend-mode: screen;
   filter: none; /* a drop-shadow would reintroduce a dark box under "screen" */
+}
+
+/* Logo-only variant. No artwork: the logo sits on the site's own dark background. Its black
+   drops out (blend: screen), its outer edge is feathered so the image never reads as a
+   rectangle, and a faint cool glow plus a bottom fade give the same cinematic depth as the
+   homepage cover. The letters themselves stay fully opaque-ish and sharp. */
+
+.cover.cover--logo {
+  --cover-shade:
+    radial-gradient(ellipse 44% 52% at 50% 44%, rgba(143, 169, 214, 0.09), transparent 72%),
+    radial-gradient(ellipse 70% 80% at 50% 40%, rgba(255, 255, 255, 0.025), transparent 75%),
+    linear-gradient(180deg, transparent 72%, var(--bg) 100%);
+  /* The cover is an isolated group, so "screen" blends the logo with what is inside it: an
+     opaque page-coloured background makes the logo's black resolve to the page colour. */
+  background: var(--bg);
+  min-height: clamp(300px, 24vw + 120px, 860px);
+  padding: 40px 16px 7%;
+}
+
+.cover--logo .cover-logo {
+  --logo-feather:
+    linear-gradient(90deg, transparent 0, #000 7%, #000 97.5%, transparent 100%),
+    linear-gradient(180deg, transparent 0, #000 8%, #000 95%, transparent 100%);
+  width: clamp(260px, 52%, 1040px);
+  opacity: 0.95;
+  -webkit-mask-image: var(--logo-feather);
+  -webkit-mask-composite: source-in;
+  mask-image: var(--logo-feather);
+  mask-composite: intersect;
 }
 
 /* Whole-image variant */
@@ -1261,22 +1291,6 @@ html:has(body.game-page) {
   line-height: 1.05;
 }
 
-.game-hero-title.has-logo {
-  line-height: 0;
-}
-
-.game-logo {
-  display: block;
-  width: 100%;
-  max-width: 440px;
-  height: auto;
-}
-
-/* For logos drawn on a black background: black drops out against the dark page. */
-.game-logo.blend-screen {
-  mix-blend-mode: screen;
-}
-
 .game-hero .hero-lead {
   margin-top: 14px;
 }
@@ -1659,6 +1673,15 @@ html:has(body.game-page) {
 
   .cover-logo {
     width: clamp(200px, 72%, 420px);
+  }
+
+  .cover.cover--logo {
+    min-height: clamp(200px, 50vw, 320px);
+    padding: 24px 12px 8%;
+  }
+
+  .cover--logo .cover-logo {
+    width: clamp(220px, 84%, 460px);
   }
 
   .game-hero.has-cover .game-hero-inner {
