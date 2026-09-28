@@ -1301,8 +1301,23 @@ html:has(body.game-page) {
   margin-top: 14px;
 }
 
-.game-hero .hero-stats {
+/* Stats and the "Submit a run" CTA share one row; the CTA wraps below when space runs out. */
+.game-overview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px 32px;
   margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.game-overview .hero-stats {
+  display: flex;
+  margin: 0;
+  padding-top: 0;
+  border-top: 0;
 }
 
 /* Section navigation */
@@ -1742,7 +1757,8 @@ html:has(body.game-page) {
 }
 
 @media (max-width: 420px) {
-  .hero-actions .btn {
+  .hero-actions .btn,
+  .game-overview .btn {
     flex: 1 1 100%;
   }
 

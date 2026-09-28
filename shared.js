@@ -123,6 +123,7 @@
       roles,
       games,
       runners,
+      submitRunUrl: safeUrl(gameData.submitRunUrl), // Run Submissions Form, shared by every game
       game: (id) => gamesById.get(id),
       role: (id) => rolesById.get(id),
       track: (id) => tracksById.get(id),

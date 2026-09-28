@@ -4,7 +4,7 @@ All site content lives in these JSON files. The HTML pages only render them.
 
 | File | Contents |
 | --- | --- |
-| `games.json` | Role tracks and roles, and every game: id, title, year, per-game role names (`roleNames`), and whether its page is published (`"page": true`). `defaultRoles` and a game's `roles` list are reference data only (not displayed); a game page shows its roles through the tiers in `games/<id>.json`. |
+| `games.json` | `submitRunUrl` (the Run Submissions Form opened by every "Submit a run" button), role tracks and roles, and every game: id, title, year, per-game role names (`roleNames`), and whether its page is published (`"page": true`). `defaultRoles` and a game's `roles` list are reference data only (not displayed); a game page shows its roles through the tiers in `games/<id>.json`. |
 | `games/<id>.json` | Full rules for one game (e.g. `games/des.json`). Only needed when `"page": true`. |
 | `runners.json` | Verified runners and the roles/challenges they completed. |
 | `rules.json` | General / Overarching Rules shown on the homepage. Each section has `content` and/or `subsections`. A content block is a paragraph (string), `{ "list": [...] }`, or `{ "note": "...", "text": "..." }`. A section with `"exception"` (No Hit) is shown apart from the regular rules, and is also shown on every game page's No Hit section. |

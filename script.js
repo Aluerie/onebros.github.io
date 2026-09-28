@@ -33,6 +33,14 @@
     set("games", catalog.games.length);
   }
 
+  // "Submit a run" links to the form in games.json; it stays hidden without one.
+  function renderSubmitLink() {
+    if (!catalog.submitRunUrl) return;
+    const link = $("#submit-run");
+    link.href = catalog.submitRunUrl;
+    link.hidden = false;
+  }
+
   function renderGames() {
     $("#games-grid").innerHTML = catalog.games
       .map((game) => {
@@ -170,6 +178,7 @@
     try {
       catalog = await loadCatalog();
       renderStats();
+      renderSubmitLink();
       renderGames();
       populateFilters();
       renderRunners();

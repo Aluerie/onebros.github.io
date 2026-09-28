@@ -213,7 +213,7 @@
 
     return {
       sections,
-      tierSections,
+      roleCount: tierSections.length + (noHit ? noHit.roles.length : 0),
       runnerCount: new Set(gameEntries.map((e) => e.runner.id)).size,
     };
   }
@@ -259,9 +259,9 @@
       : `<h1 id="game-title" class="game-hero-title">${escapeHtml(game.title)}</h1>`;
   }
 
-  // Roles are presented once, as the Challenge Rules cards; the hero only states how many OneBros
-  // roles the game has (the No Hit track is separate and not counted).
-  function renderHero(game, tierSections, runnerCount) {
+  // Roles are presented once, as the Challenge Rules cards; the hero only states how many challenge
+  // roles the page presents (every OneBros tier plus every No Hit role) and links to the submission form.
+  function renderHero(game, roleCount, runnerCount, submitRunUrl) {
     document.title = `${game.title} — OneBros`;
     const logoOnCover = renderCover(game);
     $("#game-hero").innerHTML = `
@@ -269,10 +269,17 @@
       <p class="eyebrow">Challenge rules &amp; Hall of Fame</p>
       ${titleHtml(game, logoOnCover)}
       ${game.subtitle ? `<p class="hero-lead">${escapeHtml(game.subtitle)}</p>` : ""}
-      <dl class="hero-stats">
-        <div class="stat"><dt>Verified runners</dt><dd>${runnerCount}</dd></div>
-        <div class="stat"><dt>OneBros roles</dt><dd>${tierSections.length}</dd></div>
-      </dl>`;
+      <div class="game-overview">
+        <dl class="hero-stats">
+          <div class="stat"><dt>Verified runners</dt><dd>${runnerCount}</dd></div>
+          <div class="stat"><dt>Challenge roles</dt><dd>${roleCount}</dd></div>
+        </dl>
+        ${
+          submitRunUrl
+            ? `<a class="btn btn-primary" href="${escapeHtml(submitRunUrl)}" target="_blank" rel="noopener noreferrer">Submit a run</a>`
+            : ""
+        }
+      </div>`;
   }
 
   function renderSectionNav(sections) {
@@ -356,8 +363,8 @@
       return;
     }
 
-    const { sections, tierSections, runnerCount } = buildPage(catalog, game, rules);
-    renderHero(game, tierSections, runnerCount);
+    const { sections, roleCount, runnerCount } = buildPage(catalog, game, rules);
+    renderHero(game, roleCount, runnerCount, catalog.submitRunUrl);
     content.innerHTML = sections.map((s, i) => sectionHtml({ ...s, alt: i % 2 === 0 })).join("");
     renderSectionNav([{ id: "overview", nav: "Overview" }, ...sections]);
 
