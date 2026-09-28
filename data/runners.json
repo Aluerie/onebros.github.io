@@ -53,6 +53,26 @@
           ]
         }
       ]
+    },
+    {
+      "id": "forze",
+      "name": "Forze",
+      "avatar": "assets/runners/forze.png",
+      "profile": "https://www.youtube.com/@Forze_wow/playlists",
+      "addedAt": "2026-09-28",
+      "games": [
+        {
+          "game": "ds1",
+          "role": "legend",
+          "challenges": [
+            {
+              "title": "SL1 No Rolling/Blocking/Parrying",
+              "proof": "https://www.youtube.com/playlist?list=PLSOyl0djFew8T-tEJRoEpsZWVL3lK5wo-",
+              "completedAt": "2026-01-04"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
