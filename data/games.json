@@ -57,9 +57,23 @@
     {
       "id": "ds1",
       "title": "Dark Souls",
+      "subtitle": "Dark Souls & Dark Souls Remastered",
       "short": "DS1",
       "year": 2011,
-      "page": false,
+      "page": true,
+      "logo": {
+        "src": "assets/games/ds1-logo.png",
+        "width": 1029,
+        "height": 196,
+        "blend": "screen"
+      },
+      "roles": [
+        "champion",
+        "legend",
+        "master",
+        "elitemaster",
+        "grandmaster"
+      ],
       "roleNames": {}
     },
     {
