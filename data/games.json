@@ -1,0 +1,111 @@
+{
+  "tracks": [
+    {
+      "id": "onebros",
+      "name": "OneBros Challenges"
+    },
+    {
+      "id": "nohit",
+      "name": "No Hit",
+      "ruleset": "Team Hitless ruleset"
+    }
+  ],
+  "roles": [
+    { "id": "champion", "name": "Champion", "track": "onebros", "rank": 1 },
+    { "id": "legend", "name": "Legend", "track": "onebros", "rank": 2 },
+    { "id": "master", "name": "Master", "track": "onebros", "rank": 3 },
+    { "id": "elitemaster", "name": "Elitemaster", "track": "onebros", "rank": 4 },
+    { "id": "grandmaster", "name": "Grandmaster", "track": "onebros", "rank": 5 },
+    { "id": "hitless-scholar", "name": "Hitless Scholar", "track": "nohit", "rank": 1 },
+    { "id": "hitless-sage", "name": "Hitless Sage", "track": "nohit", "rank": 2 }
+  ],
+  "defaultRoles": [
+    "champion",
+    "legend",
+    "master"
+  ],
+  "games": [
+    {
+      "id": "des",
+      "title": "Demon's Souls",
+      "subtitle": "Demon's Souls & Demon's Souls Remake",
+      "short": "DeS",
+      "year": 2009,
+      "page": true,
+      "hero": {
+        "src": "assets/games/des.jpg",
+        "width": 5120,
+        "height": 2880,
+        "alt": "Demon's Souls artwork: an armored knight faces undead soldiers in front of a burning castle under a stormy sky."
+      },
+      "logo": {
+        "src": "assets/games/des-logo.png",
+        "width": 1031,
+        "height": 447,
+        "blend": "screen"
+      },
+      "roles": [
+        "champion",
+        "legend",
+        "master",
+        "elitemaster",
+        "grandmaster"
+      ],
+      "roleNames": {
+        "champion": "Slayer",
+        "legend": "Monumental",
+        "master": "Old One",
+        "elitemaster": "Elite Master",
+        "grandmaster": "Grand Master"
+      }
+    },
+    {
+      "id": "ds1",
+      "title": "Dark Souls",
+      "short": "DS1",
+      "year": 2011,
+      "page": false,
+      "roleNames": {}
+    },
+    {
+      "id": "ds2",
+      "title": "Dark Souls II",
+      "short": "DS2",
+      "year": 2014,
+      "page": false,
+      "roleNames": {}
+    },
+    {
+      "id": "bb",
+      "title": "Bloodborne",
+      "short": "BB",
+      "year": 2015,
+      "page": false,
+      "roleNames": {}
+    },
+    {
+      "id": "ds3",
+      "title": "Dark Souls III",
+      "short": "DS3",
+      "year": 2016,
+      "page": false,
+      "roleNames": {}
+    },
+    {
+      "id": "sekiro",
+      "title": "Sekiro: Shadows Die Twice",
+      "short": "Sekiro",
+      "year": 2019,
+      "page": false,
+      "roleNames": {}
+    },
+    {
+      "id": "er",
+      "title": "Elden Ring",
+      "short": "ER",
+      "year": 2022,
+      "page": false,
+      "roleNames": {}
+    }
+  ]
+}

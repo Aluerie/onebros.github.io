@@ -1,0 +1,58 @@
+{
+  "runners": [
+    {
+      "id": "swagcat",
+      "name": "SwagCat",
+      "avatar": "assets/runners/swagcat.png",
+      "profile": null,
+      "addedAt": "2026-09-28",
+      "games": [
+        {
+          "game": "des",
+          "role": "champion",
+          "challenges": []
+        }
+      ]
+    },
+    {
+      "id": "jonathan",
+      "name": "Jonathan_",
+      "avatar": "assets/runners/jonathan.jpg",
+      "profile": "https://www.youtube.com/@jonathanUnderscore/featured",
+      "addedAt": "2026-09-28",
+      "games": [
+        {
+          "game": "des",
+          "role": "master",
+          "challenges": [
+            {
+              "title": "SL1 NG+5 PBWT No Rolling/Blocking/Parrying",
+              "proof": "https://www.youtube.com/playlist?list=PLlouJzco8-bR3yh25h5T5-8PkLT2RJc73",
+              "completedAt": "2023-10-10"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "roberto",
+      "name": "RobertoBobertoRabordoBatordo",
+      "avatar": "assets/runners/roberto.png",
+      "profile": "https://www.youtube.com/@jonglesnorp/featured",
+      "addedAt": "2026-09-28",
+      "games": [
+        {
+          "game": "des",
+          "role": "master",
+          "challenges": [
+            {
+              "title": "SL1 NG+5 PBWT No Rolling/Blocking/Parrying",
+              "proof": "https://www.youtube.com/playlist?list=PLVSresNA4CEhPd_Fg9lBCDDqZHdoDGQ_o",
+              "completedAt": "2026-03-16"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

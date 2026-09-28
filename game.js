@@ -1,0 +1,378 @@
+/* OneBros — game page script
+ * One renderer for every game. Reads ?game=<id>, then loads
+ * data/games.json, data/runners.json and data/games/<id>.json.
+ * Depends on shared.js.
+ */
+(function () {
+  "use strict";
+
+  const {
+    PATHS,
+    $,
+    escapeHtml,
+    slugify,
+    safeUrl,
+    plainText,
+    listHtml,
+    contentHtml,
+    loadJson,
+    loadCatalog,
+    runnerCard,
+    bindAvatarFallback,
+    initChrome,
+    loadErrorHtml,
+  } = window.OneBros;
+
+  function sectionHtml({ id, eyebrow, title, lead = "", body, alt }) {
+    return `
+      <section class="section${alt ? " section-alt" : ""}"
+               id="${escapeHtml(id)}" aria-labelledby="${escapeHtml(id)}-title">
+        <div class="container">
+          <header class="section-head">
+            ${eyebrow ? `<p class="eyebrow">${escapeHtml(eyebrow)}</p>` : ""}
+            <h2 id="${escapeHtml(id)}-title" class="section-title">${escapeHtml(title)}</h2>
+            ${lead ? `<p class="section-lead">${lead}</p>` : ""}
+          </header>
+          ${body}
+        </div>
+      </section>`;
+  }
+
+  // A tier's challenge variants, listed in full inside its rule card.
+  function cardChallengesHtml(title, challenges) {
+    if (!challenges || !challenges.length) return "";
+    return `
+      <h4 class="subhead">${escapeHtml(title || "Challenges")}</h4>
+      <ul class="card-challenges">
+        ${challenges
+          .map(
+            (c) => `
+          <li>
+            <strong class="card-challenge-title">${escapeHtml(plainText(c.title))}</strong>
+            ${listHtml(c.items)}
+          </li>`
+          )
+          .join("")}
+      </ul>`;
+  }
+
+  // One rule card: every piece of a role's rules, shown once.
+  function ruleCardHtml({ id, cls, label, title, body }) {
+    return `
+      <article class="tier-card rule-card ${cls}" id="${escapeHtml(id)}">
+        <p class="tier-label">${escapeHtml(label)}</p>
+        <h3 class="tier-title">${escapeHtml(title)}</h3>
+        <div class="rule-card-body">${body}</div>
+      </article>`;
+  }
+
+  function hallOfFameGroupHtml(catalog, game, role, entries) {
+    return `
+      <div class="hof-group tier-${escapeHtml(role.id)}">
+        <h3 class="hof-group-title">
+          <span class="tier-dot" aria-hidden="true"></span>
+          ${escapeHtml(catalog.roleName(game.id, role.id))}
+          <span class="hof-count">${entries.length}</span>
+        </h3>
+        <div class="runners-grid">
+          ${entries.map(({ runner, entry }) => runnerCard(catalog, runner, [entry])).join("")}
+        </div>
+      </div>`;
+  }
+
+  const sameName = (a, b) => String(a).replace(/\s+/g, "").toLowerCase() === String(b).replace(/\s+/g, "").toLowerCase();
+
+  /**
+   * @param catalog  result of loadCatalog()
+   * @param game     game object from games.json
+   * @param rules    data/games/<id>.json
+   */
+  function buildPage(catalog, game, rules) {
+    // One entry per OneBros tier the game defines, in progression order.
+    const tierSections = (rules.tiers || []).map((t) => {
+      const role = catalog.role(t.role) || { name: t.role, rank: 0 };
+      const name = catalog.roleName(game.id, t.role);
+      // "Tier 3 · Master" — the default role name is only repeated when the game renames it.
+      const label = sameName(name, role.name) ? `Tier ${role.rank}` : `Tier ${role.rank} · ${role.name}`;
+      return { ...t, name, label, id: slugify(name) };
+    });
+
+    // No Hit is a separate track (Team Hitless ruleset), never ranked against the OneBros tiers.
+    const noHitTrack = catalog.track("nohit") || { name: "No Hit" };
+    const noHit = rules.noHit
+      ? {
+          id: "no-hit",
+          name: noHitTrack.name,
+          label: `Separate track${noHitTrack.ruleset ? ` · ${noHitTrack.ruleset}` : ""}`,
+          content: rules.noHit.content || [],
+          roles: (rules.noHit.roles || []).map((r) => ({ ...r, name: catalog.roleName(game.id, r.role) })),
+        }
+      : null;
+
+    const gameEntries = catalog.entries().filter(({ entry }) => entry.game === game.id);
+    const sections = [];
+
+    /* Challenge Rules — one full-content card per role; the No Hit track keeps its own card */
+    const tierCards = tierSections.map((t) =>
+      ruleCardHtml({
+        id: t.id,
+        cls: `tier-${escapeHtml(t.role)}`,
+        label: t.label,
+        title: t.name,
+        body: `<div class="prose">${contentHtml(t.content)}</div>${cardChallengesHtml(t.challengesTitle, t.challenges)}`,
+      })
+    );
+    const noHitCard = noHit
+      ? ruleCardHtml({
+          id: noHit.id,
+          cls: "tier-nohit is-exception",
+          label: noHit.label,
+          title: noHit.name,
+          body: `
+            <p class="card-note">Not part of the OneBros tier progression. See also the <a href="index.html#rules-no-hit">general No Hit rules</a>.</p>
+            <div class="prose">${contentHtml(noHit.content)}</div>
+            ${noHit.roles
+              .map(
+                (r) => `
+              <div class="card-role tier-${escapeHtml(r.role)}">
+                <h4 class="card-role-title">${escapeHtml(r.name)}</h4>
+                <div class="prose">${contentHtml(r.content)}</div>
+              </div>`
+              )
+              .join("")}`,
+        })
+      : "";
+
+    sections.push({
+      id: "rules",
+      nav: "Challenge Rules",
+      eyebrow: `${game.title} rules`,
+      title: "Challenge Rules",
+      lead: `${escapeHtml(game.title)}-specific rules. See also the <a href="index.html#rules">General Rules</a>.`,
+      body: `<div class="rules-overview">${tierCards.join("")}${noHitCard}</div>`,
+    });
+
+    /* Banned equipment / strategies */
+    if (rules.restrictions) {
+      const r = rules.restrictions;
+      sections.push({
+        id: "restrictions",
+        nav: "Banned Equipment",
+        eyebrow: "Equipment and strategies",
+        title: r.title,
+        body: `
+          <div class="restriction-grid">
+            ${(r.groups || [])
+              .map(
+                (g) => `
+              <div class="restriction-group is-${escapeHtml(g.type)}">
+                <h3 class="subhead">${escapeHtml(g.title)}</h3>
+                ${listHtml(g.items)}
+              </div>`
+              )
+              .join("")}
+          </div>`,
+      });
+    }
+
+    /* Hall of Fame — OneBros roles first (highest first), then the No Hit roles, kept apart */
+    const groupsFor = (trackId) =>
+      [...catalog.rolesInTrack(trackId)]
+        .reverse()
+        .map((role) => ({
+          role,
+          entries: gameEntries
+            .filter(({ entry }) => entry.role === role.id)
+            .sort((a, b) => catalog.compareAdded(a.runner, b.runner)),
+        }))
+        .filter((g) => g.entries.length);
+    const mainGroups = groupsFor("onebros");
+    const noHitGroups = groupsFor("nohit");
+
+    sections.push({
+      id: "hall-of-fame",
+      nav: "Hall of Fame",
+      eyebrow: "Verified runners",
+      title: "Hall of Fame",
+      // General guidance on how the Hall of Fame works — always shown.
+      lead: "Click a runner to visit their channel. Click a challenge to open its proof.",
+      body:
+        mainGroups.length || noHitGroups.length
+          ? `
+          ${mainGroups.map((g) => hallOfFameGroupHtml(catalog, game, g.role, g.entries)).join("")}
+          ${
+            noHitGroups.length
+              ? `<div class="hof-track tier-nohit">
+                   <p class="rules-exception-label">${escapeHtml(noHitTrack.name)}${noHitTrack.ruleset ? ` — ${escapeHtml(noHitTrack.ruleset)}` : ""}</p>
+                   ${noHitGroups.map((g) => hallOfFameGroupHtml(catalog, game, g.role, g.entries)).join("")}
+                 </div>`
+              : ""
+          }`
+          : `<p class="empty">No verified runners have been added for ${escapeHtml(game.title)} yet.</p>`,
+    });
+
+    return {
+      sections,
+      tierSections,
+      runnerCount: new Set(gameEntries.map((e) => e.runner.id)).size,
+    };
+  }
+
+  // Decorative logo image from games.json ("logo": { src, width, height, blend }), or "" if none.
+  function logoImgHtml(game, cls) {
+    const logo = game.logo;
+    const src = logo && safeUrl(logo.src);
+    if (!src) return "";
+    const size = logo.width && logo.height ? ` width="${Number(logo.width)}" height="${Number(logo.height)}"` : "";
+    const blend = logo.blend === "screen" ? " blend-screen" : "";
+    return `<img class="${cls}${blend}" src="${escapeHtml(src)}"${size} alt="" aria-hidden="true" decoding="async">`;
+  }
+
+  /* Cinematic cover from games.json:
+   *   "hero": { src, width, height, alt, position? }  artwork, cropped to fill (object-fit: cover)
+   *   "logo": { src, width, height, blend? }          optional, large and centred over the artwork
+   * "position" is an optional CSS object-position (e.g. "center 35%") to keep the key part in view.
+   * Returns whether the logo was placed on the cover. */
+  function renderCover(game) {
+    const hero = game.hero;
+    const src = hero && safeUrl(hero.src);
+    if (!src) return false;
+    const size = hero.width && hero.height ? ` width="${Number(hero.width)}" height="${Number(hero.height)}"` : "";
+    const position = /^[\w\s.%-]+$/.test(hero.position || "") ? ` style="object-position: ${hero.position}"` : "";
+    const logo = logoImgHtml(game, "cover-logo");
+    const cover = $("#game-cover");
+    cover.innerHTML = `
+      <img class="cover-img" src="${escapeHtml(src)}"${size}${position} alt="${escapeHtml(hero.alt || "")}"
+           fetchpriority="high" decoding="async">
+      ${logo}`;
+    cover.hidden = false;
+    $("#overview").classList.add("has-cover");
+    return Boolean(logo);
+  }
+
+  // Page title. The heading text is always in the HTML for screen readers:
+  //   logo on the cover  -> heading is visually hidden (the logo is the visible title)
+  //   logo, no cover     -> logo shown in place of the text title
+  //   no logo            -> plain text title
+  function titleHtml(game, logoOnBanner) {
+    if (logoOnBanner) return `<h1 id="game-title" class="sr-only">${escapeHtml(game.title)}</h1>`;
+    const logo = logoImgHtml(game, "game-logo");
+    if (!logo) return `<h1 id="game-title" class="game-hero-title">${escapeHtml(game.title)}</h1>`;
+    return `
+      <h1 id="game-title" class="game-hero-title has-logo">
+        <span class="sr-only">${escapeHtml(game.title)}</span>
+        ${logo}
+      </h1>`;
+  }
+
+  // Roles are presented once, as the Challenge Rules cards; the hero only states how many OneBros
+  // roles the game has (the No Hit track is separate and not counted).
+  function renderHero(game, tierSections, runnerCount) {
+    document.title = `${game.title} — OneBros`;
+    const logoOnBanner = renderCover(game);
+    $("#game-hero").innerHTML = `
+      <p class="breadcrumb"><a href="index.html#games">Games</a> <span aria-hidden="true">/</span> ${escapeHtml(game.short)}</p>
+      <p class="eyebrow">Challenge rules &amp; Hall of Fame</p>
+      ${titleHtml(game, logoOnBanner)}
+      ${game.subtitle ? `<p class="hero-lead">${escapeHtml(game.subtitle)}</p>` : ""}
+      <dl class="hero-stats">
+        <div class="stat"><dt>Verified runners</dt><dd>${runnerCount}</dd></div>
+        <div class="stat"><dt>OneBros roles</dt><dd>${tierSections.length}</dd></div>
+      </dl>`;
+  }
+
+  function renderSectionNav(sections) {
+    const nav = $("#section-nav");
+    $("#section-nav-list").innerHTML = sections
+      .map((s) => `<li><a href="#${escapeHtml(s.id)}" data-section="${escapeHtml(s.id)}">${escapeHtml(s.nav)}</a></li>`)
+      .join("");
+    nav.hidden = false;
+
+    // Highlight the section currently in view.
+    const list = $("#section-nav-list");
+    const links = new Map([...nav.querySelectorAll("[data-section]")].map((a) => [a.dataset.section, a]));
+    const setActive = (id) => {
+      links.forEach((a, key) => {
+        if (key === id) {
+          a.setAttribute("aria-current", "true");
+          // Keep the active link visible on narrow screens (horizontal scroll only).
+          const li = a.parentElement;
+          if (li.offsetLeft < list.scrollLeft || li.offsetLeft + li.offsetWidth > list.scrollLeft + list.clientWidth) {
+            list.scrollLeft = li.offsetLeft - 16;
+          }
+        } else {
+          a.removeAttribute("aria-current");
+        }
+      });
+    };
+    const observer = new IntersectionObserver(
+      (items) => {
+        const visible = items.filter((i) => i.isIntersecting);
+        if (visible.length) setActive(visible[0].target.id);
+      },
+      { rootMargin: "-35% 0px -60% 0px" }
+    );
+    sections.forEach((s) => {
+      const el = document.getElementById(s.id);
+      if (el) observer.observe(el);
+    });
+  }
+
+  function renderNotFound(message) {
+    document.title = "Game not found — OneBros";
+    $("#game-hero").innerHTML = `
+      <p class="breadcrumb"><a href="index.html#games">Games</a></p>
+      <h1 id="game-title" class="game-hero-title">Page not available</h1>
+      <p class="hero-lead">${message}</p>
+      <div class="hero-actions"><a class="btn btn-primary" href="index.html#games">Back to all games</a></div>`;
+  }
+
+  async function init() {
+    initChrome();
+    const content = $("#game-content");
+    bindAvatarFallback(content);
+
+    const gameId = new URLSearchParams(window.location.search).get("game") || "";
+
+    let catalog;
+    try {
+      catalog = await loadCatalog();
+    } catch (err) {
+      console.error(err);
+      $("#game-hero").innerHTML = loadErrorHtml();
+      return;
+    }
+
+    const game = catalog.game(gameId);
+    if (!game || !game.page) {
+      renderNotFound(
+        game
+          ? `The ${escapeHtml(game.title)} page hasn't been published yet.`
+          : "We couldn't find that game."
+      );
+      return;
+    }
+
+    let rules;
+    try {
+      rules = await loadJson(PATHS.gameRules(game.id));
+    } catch (err) {
+      console.error(err);
+      $("#game-hero").innerHTML = loadErrorHtml();
+      return;
+    }
+
+    const { sections, tierSections, runnerCount } = buildPage(catalog, game, rules);
+    renderHero(game, tierSections, runnerCount);
+    content.innerHTML = sections.map((s, i) => sectionHtml({ ...s, alt: i % 2 === 0 })).join("");
+    renderSectionNav([{ id: "overview", nav: "Overview" }, ...sections]);
+
+    // Jump to a #hash that only exists after rendering.
+    if (window.location.hash) {
+      const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+      if (target) target.scrollIntoView();
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", init);
+})();

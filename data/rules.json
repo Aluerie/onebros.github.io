@@ -1,0 +1,228 @@
+{
+  "sections": [
+    {
+      "id": "rules-champion",
+      "title": "Champion",
+      "content": [
+        "You must defeat all required bosses, including DLCs, at SL1/BL4/Base Vitality/RL1 (depending on the game) and show proof.",
+        "Either of these options works:",
+        {
+          "list": [
+            {
+              "text": "Make a gallery of full (unedited) screenshots showing stats, inventory screen, and boss drops/empty arenas.",
+              "items": [
+                "For Champion runs, submitting a set of screenshots is recommended over videos for easier & faster run checking."
+              ]
+            },
+            "Record a video showing stats, inventory screen, and boss drops/empty arenas."
+          ]
+        },
+        "If you used any boss souls for items, show them as well for proof. It is strongly recommended not to use boss souls for souls, as you are destroying your own SL1 proof."
+      ]
+    },
+    {
+      "id": "rules-legend-master",
+      "title": "Legend / Master / Elitemaster / Grandmaster",
+      "content": [
+        "Legend/Master/Elitemaster/Grandmaster runs add additional restrictions onto the base Champion runs. The specific restrictions are defined in each game's dedicated rules.",
+        "To prove and verify a run:",
+        {
+          "list": [
+            "Beat and video record/stream all bosses, including DLCs, at SL1/BL4/Base Vitality/RL1 depending on the game.",
+            "All submissions must show stats and equipment after killing the boss.",
+            "It is recommended to start recordings before entering the boss fog.",
+            "A recording starting while the fight is already ongoing and the boss has lost significant health or advanced through phases will not be accepted.",
+            "For full-game runs such as No Hit or Deathless, provide timestamps for individual boss kills."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rules-overarching",
+      "title": "Overarching Rules for All Games",
+      "subsections": [
+        {
+          "title": "Leveling",
+          "content": [
+            "You cannot level.",
+            "You must remain at SL1/BL4/Base Vitality/RL1 for the run to be valid.",
+            "Equipment that increases stats does not count as leveling and is allowed. Example: Knight's Ring giving +5 Strength."
+          ]
+        },
+        {
+          "title": "Summons",
+          "content": [
+            "Summoning phantoms, NPCs, or anything else is not allowed.",
+            "It is the boss versus the player alone.",
+            "This includes summoning through questlines, so NPCs such as Biorr and Siegward are banned under this rule."
+          ]
+        },
+        {
+          "title": "Tanking",
+          "content": [
+            "No significant tanking, especially poise tanking.",
+            "The purpose is to demonstrate that the player has learned to deal with the boss's moveset rather than relying on equipment to survive attacks."
+          ]
+        },
+        {
+          "title": "Passivity",
+          "content": [
+            "Overly passive play is banned.",
+            "Fights do not have to be perfect, but excessively baiting and punishing only one attack or otherwise avoiding active fighting may require the fight/run to be redone.",
+            "Example: poisoning Gael and running around until he dies."
+          ]
+        },
+        {
+          "title": "Cheese / Loops",
+          "content": [
+            "No cheesing or looping bosses.",
+            "Bosses are expected to be fought from full health and under normal conditions.",
+            "As a general rule, the following are banned:",
+            {
+              "list": [
+                "Damaging a boss outside its arena, such as Manus with a crossbow or Freja/Gravetender Greatwolf in earlier areas.",
+                "Disabling boss AI, such as the Kalameet waterfall exploit.",
+                "Trivializing a boss, such as making Iron Golem/Dragonrider fall from their arena, Laurence slam loop, or Orphan of Kos parry loop."
+              ]
+            },
+            "Exceptions:",
+            {
+              "list": [
+                "Cheese may be allowed on a case-by-case basis. Check individual game rules.",
+                "Loops required to make a fight consistent, such as the Gwyn stagger loop, are allowed.",
+                "If uncertain about a cheese/loop, runners should contact an SL1 Advisor or Challenge Run Checker."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Game Modifications",
+          "content": [
+            "Generally, modifications that alter gameplay are not allowed.",
+            "Examples include, but are not limited to:",
+            {
+              "list": [
+                "uncapping frame rate where it affects game animations,",
+                "altering weapon range,",
+                "altering damage,",
+                "altering speed,",
+                "altering hitboxes,",
+                "general character stat editing."
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Spirit of the Run",
+          "content": [
+            "Runners are expected to adhere to the intended spirit of the challenge.",
+            "Finding a technical workaround that allows completion while defeating the purpose of the challenge may invalidate the run.",
+            "Examples:",
+            {
+              "list": [
+                "A +0 Legend run is intended to be a low-damage challenge. Finding another method of doing extremely high damage without upgrading the weapon violates the spirit of the run.",
+                "Quickstep is technically not a roll, but using it violates the spirit of a No Roll run."
+              ]
+            },
+            "Not every workaround can be explicitly listed or banned. Runners are encouraged to ask the community if uncertain."
+          ]
+        },
+        {
+          "title": "Pre-Order Items",
+          "content": [
+            "Pre-order bonus items/weapons, such as those found in Demon's Souls and Dark Souls II, are not allowed in any game."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rules-legend-master-runs",
+      "title": "Legend / Master Runs",
+      "subsections": [
+        {
+          "title": "Deathless",
+          "content": [
+            "Deathless runs use the OneBros ruleset except for the No Healing rule.",
+            "All glitches are banned in Deathless runs."
+          ]
+        },
+        {
+          "title": "No Healing",
+          "content": [
+            "Healing of any kind is banned unless specifically stated otherwise in the game-specific rules.",
+            "Examples include Estus, Lifegems, Heal, Gentle Prayer, etc.",
+            "This only applies to damage taken from attacks inside the boss arena.",
+            "Healing unavoidable damage caused by entering an arena, such as Nito or Micolash, is allowed."
+          ]
+        },
+        {
+          "title": "Segmented Fights",
+          "content": [
+            "Multiple-part fights must be completed in one go, including cases where Phase 2 is technically a new boss.",
+            "Because progress in Bed of Chaos cannot be undone, segmented attempts there are allowed but discouraged."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rules-master-beyond",
+      "title": "Master Runs and Beyond",
+      "subsections": [
+        {
+          "title": "Flawless Fights",
+          "content": [
+            "Flawless means taking no damage and not being staggered.",
+            "All Master or harder runs must be Flawless to be accepted."
+          ]
+        },
+        {
+          "title": "Casting",
+          "content": [
+            "The use of ranged offensive spells for any reason is banned unless the game-specific rules explicitly state otherwise."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rules-no-hit",
+      "title": "No Hit Runs",
+      "exception": "Team Hitless ruleset",
+      "content": [
+        "No Hit runs are different from the normal OneBros challenge rules.",
+        "For SL1 No Hit runs, Team Hitless' ruleset is used.",
+        "None of the General/Overarching OneBros rules apply to these runs.",
+        "There are two obtainable No Hit roles:"
+      ],
+      "subsections": [
+        {
+          "title": "Hitless Scholar",
+          "content": [
+            "Awarded for completing the equivalent of SL1 Any% in the respective game.",
+            "For Sekiro, this means Shura Ending.",
+            {
+              "note": "Special case for Demon's Souls:",
+              "text": "The All Bosses variant also falls under Hitless Scholar because the only difference between Any% and All Bosses is the tutorial boss."
+            }
+          ]
+        },
+        {
+          "title": "Hitless Sage",
+          "content": [
+            "Awarded for completing:",
+            {
+              "list": [
+                "SL1 All Bosses,",
+                "All Base Game Remembrances for Elden Ring,",
+                "All Memories for Sekiro,"
+              ]
+            },
+            "OR a restricted Any% such as:",
+            {
+              "list": ["SL1 Any% No Roll", "SL1 Any% +0"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

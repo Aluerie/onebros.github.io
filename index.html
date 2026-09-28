@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OneBros — Souls Challenge Run Community</title>
+  <meta name="description" content="OneBros is a community for Souls challenge runs: rules, verified runners, completed challenges and proof of every run.">
+  <meta name="theme-color" content="#0c0b0a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- 1. Header / navigation -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="OneBros home">
+        <span class="brand-mark" aria-hidden="true">◆</span>
+        <span class="brand-name">OneBros</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="#games">Games</a></li>
+          <li><a href="#rules">Rules</a></li>
+          <li><a href="#runners">Runners</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 2. Hero: the banner already carries the OneBros branding, so no text is placed over it -->
+    <section class="hero hero-banner" aria-labelledby="hero-title">
+      <div class="cover cover--whole">
+        <h1 id="hero-title" class="cover-frame">
+          <img class="cover-img" src="assets/onebros-banner.png" width="1983" height="793"
+               alt="OneBros — Soul Level One Challenge Runs. One Life. Level One. All the Soul."
+               fetchpriority="high" decoding="async">
+        </h1>
+      </div>
+
+      <div class="container hero-intro">
+        <div class="hero-intro-text">
+          <p class="hero-lead">
+            OneBros collects the challenge rules for each Souls game, the verified
+            runners, and the proof behind every completed challenge.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#runners">View verified runners</a>
+            <a class="btn btn-ghost" href="#rules">Read the rules</a>
+          </div>
+        </div>
+
+        <dl class="hero-stats" aria-label="Community stats">
+          <div class="stat">
+            <dt>Verified runners</dt>
+            <dd data-stat="runners">—</dd>
+          </div>
+          <div class="stat">
+            <dt>Completed challenges</dt>
+            <dd data-stat="runs">—</dd>
+          </div>
+          <div class="stat">
+            <dt>Supported games</dt>
+            <dd data-stat="games">—</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- 3. Games -->
+    <section class="section" id="games" aria-labelledby="games-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Supported games</p>
+          <h2 id="games-title" class="section-title">The Games</h2>
+          <p class="section-lead">
+            Each game has its own challenge tiers and game-specific rules. Open a game
+            to see its full rules and Hall of Fame.
+          </p>
+        </header>
+        <div class="games-grid" id="games-grid" aria-live="polite">
+          <p class="loading">Loading games…</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. General rules (content from data/rules.json) -->
+    <section class="section section-alt" id="rules" aria-labelledby="rules-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Challenge run rules</p>
+          <h2 id="rules-title" class="section-title">General Rules</h2>
+          <p class="section-lead">
+            The OneBros rules that apply across all games. Game-specific rules are on
+            each game&#39;s page.
+          </p>
+        </header>
+
+        <div class="rules-toolbar">
+          <button class="link-btn" type="button" id="rules-toggle-all">Expand all</button>
+        </div>
+        <div class="rules-accordion" id="rules-accordion">
+          <p class="loading">Loading rules…</p>
+        </div>
+        <div class="rules-exception" id="rules-exception"></div>
+      </div>
+    </section>
+
+    <!-- 5. Verified Runners -->
+    <section class="section" id="runners" aria-labelledby="runners-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Hall of Fame</p>
+          <h2 id="runners-title" class="section-title">Verified Runners</h2>
+          <p class="section-lead">
+            Runners with verified challenges across all games. Click a runner to visit
+            their channel. Click a challenge to open its proof.
+          </p>
+        </header>
+
+        <form class="filters" id="runner-filters" role="search" onsubmit="return false;">
+          <label class="field">
+            <span class="field-label">Search</span>
+            <input type="search" id="filter-search" placeholder="Runner name…" autocomplete="off">
+          </label>
+          <label class="field">
+            <span class="field-label">Game</span>
+            <select id="filter-game">
+              <option value="">All games</option>
+            </select>
+          </label>
+          <label class="field">
+            <span class="field-label">Role</span>
+            <select id="filter-role">
+              <option value="">All roles</option>
+            </select>
+          </label>
+        </form>
+
+        <p class="results-count" id="results-count" aria-live="polite"></p>
+        <div class="runners-grid" id="runners-grid">
+          <p class="loading">Loading runners…</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 6. Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="#top">
+          <span class="brand-mark" aria-hidden="true">◆</span>
+          <span class="brand-name">OneBros</span>
+        </a>
+        <p class="muted">A community for Souls challenge runners.</p>
+      </div>
+      <nav aria-label="Footer">
+        <ul class="footer-links">
+          <li><a href="#games">Games</a></li>
+          <li><a href="#rules">Rules</a></li>
+          <li><a href="#runners">Runners</a></li>
+        </ul>
+      </nav>
+      <p class="footer-note muted">
+        OneBros is a fan community and is not affiliated with FromSoftware or any
+        publisher. All game names are trademarks of their respective owners.
+        <br>© <span id="year">2026</span> OneBros
+      </p>
+    </div>
+  </footer>
+
+  <script src="shared.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

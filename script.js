@@ -1,0 +1,182 @@
+/* OneBros — homepage script
+ * Renders the Games, Verified Runners and General Rules sections from
+ * data/games.json, data/runners.json and data/rules.json. Depends on shared.js.
+ */
+(function () {
+  "use strict";
+
+  const {
+    PATHS,
+    $,
+    escapeHtml,
+    loadJson,
+    loadCatalog,
+    rulePanelHtml,
+    runnerCard,
+    bindAvatarFallback,
+    initChrome,
+    loadErrorHtml,
+  } = window.OneBros;
+
+  let catalog;
+
+  function renderStats() {
+    const challengeCount = catalog
+      .entries()
+      .reduce((sum, { entry }) => sum + (entry.challenges ? entry.challenges.length : 0), 0);
+    const set = (key, value) => {
+      const el = document.querySelector(`[data-stat="${key}"]`);
+      if (el) el.textContent = value;
+    };
+    set("runners", catalog.runners.length);
+    set("runs", challengeCount);
+    set("games", catalog.games.length);
+  }
+
+  function renderGames() {
+    $("#games-grid").innerHTML = catalog.games
+      .map((game) => {
+        const runnerCount = new Set(
+          catalog.entries().filter(({ entry }) => entry.game === game.id).map(({ runner }) => runner.id)
+        ).size;
+        const url = catalog.gamePageUrl(game.id);
+
+        const body = `
+          <div class="game-card-top">
+            <span class="game-short">${escapeHtml(game.short)}</span>
+            <span class="game-year">${escapeHtml(game.year)}</span>
+          </div>
+          <h3 class="game-title">${escapeHtml(game.title)}</h3>
+          ${game.subtitle ? `<p class="game-subtitle">${escapeHtml(game.subtitle)}</p>` : ""}
+          <p class="game-meta">
+            ${
+              url
+                ? `<span><strong>${runnerCount}</strong> verified runner${runnerCount === 1 ? "" : "s"}</span>
+                   <span class="game-cta">Rules &amp; Hall of Fame →</span>`
+                : `<span class="soon-tag">Page coming soon</span>`
+            }
+          </p>`;
+
+        return url
+          ? `<a class="game-card is-link" href="${escapeHtml(url)}">${body}</a>`
+          : `<article class="game-card is-soon" aria-disabled="true">${body}</article>`;
+      })
+      .join("");
+  }
+
+  /* ---------- General rules (data/rules.json) ---------- */
+
+  async function renderRules() {
+    const accordion = $("#rules-accordion");
+    const exception = $("#rules-exception");
+    let data;
+    try {
+      data = await loadJson(PATHS.generalRules);
+    } catch (err) {
+      console.error(err);
+      accordion.innerHTML = loadErrorHtml();
+      return;
+    }
+
+    // Exception rulesets (No Hit) are shown apart from the regular OneBros rules.
+    const regular = (data.sections || []).filter((s) => !s.exception);
+    const exceptions = (data.sections || []).filter((s) => s.exception);
+    const hash = decodeURIComponent(window.location.hash.slice(1));
+
+    accordion.innerHTML = regular.map((s, i) => rulePanelHtml(s, i === 0 || s.id === hash)).join("");
+    exception.innerHTML = exceptions.length
+      ? `<p class="rules-exception-label">Exception — not covered by the rules above</p>
+         ${exceptions.map((s) => rulePanelHtml(s, s.id === hash)).join("")}`
+      : "";
+
+    const panels = () => [...document.querySelectorAll("#rules .rule-panel")];
+    const toggle = $("#rules-toggle-all");
+    const syncToggle = () => {
+      toggle.textContent = panels().every((p) => p.open) ? "Collapse all" : "Expand all";
+    };
+    toggle.addEventListener("click", () => {
+      const open = !panels().every((p) => p.open);
+      panels().forEach((p) => (p.open = open));
+      syncToggle();
+    });
+    panels().forEach((p) => p.addEventListener("toggle", syncToggle));
+    syncToggle();
+
+    if (hash && document.getElementById(hash)) document.getElementById(hash).scrollIntoView();
+  }
+
+  function populateFilters() {
+    $("#filter-game").insertAdjacentHTML(
+      "beforeend",
+      catalog.games.map((g) => `<option value="${escapeHtml(g.id)}">${escapeHtml(g.title)}</option>`).join("")
+    );
+    // One option group per track, so No Hit roles stay separate from OneBros roles.
+    $("#filter-role").insertAdjacentHTML(
+      "beforeend",
+      catalog.tracks
+        .map(
+          (track) => `
+        <optgroup label="${escapeHtml(track.name)}">
+          ${catalog
+            .rolesInTrack(track.id)
+            .map((r) => `<option value="${escapeHtml(r.id)}">${escapeHtml(r.name)}</option>`)
+            .join("")}
+        </optgroup>`
+        )
+        .join("")
+    );
+  }
+
+  function renderRunners() {
+    const grid = $("#runners-grid");
+    const query = $("#filter-search").value.trim().toLowerCase();
+    const game = $("#filter-game").value;
+    const role = $("#filter-role").value;
+
+    const matches = (entry) => (!game || entry.game === game) && (!role || entry.role === role);
+    const filtering = Boolean(game || role);
+
+    const list = catalog.runners
+      .filter((r) => !query || String(r.name).toLowerCase().includes(query))
+      .filter((r) => !filtering || (r.games || []).some(matches))
+      .sort(catalog.compareAdded);
+
+    const total = catalog.runners.length;
+    $("#results-count").textContent = total ? `${list.length} of ${total} runner${total === 1 ? "" : "s"}` : "";
+
+    if (!total) {
+      grid.innerHTML = `<p class="empty">No verified runners have been added yet.</p>`;
+    } else if (!list.length) {
+      grid.innerHTML = `<p class="empty">No runners match these filters.</p>`;
+    } else {
+      grid.innerHTML = list
+        .map((r) => runnerCard(catalog, r, r.games, { highlight: filtering ? matches : undefined }))
+        .join("");
+    }
+  }
+
+  async function init() {
+    initChrome();
+    renderRules();
+    bindAvatarFallback($("#runners-grid"));
+
+    try {
+      catalog = await loadCatalog();
+    } catch (err) {
+      console.error(err);
+      ["#games-grid", "#runners-grid"].forEach((sel) => ($(sel).innerHTML = loadErrorHtml()));
+      return;
+    }
+
+    renderStats();
+    renderGames();
+    populateFilters();
+    renderRunners();
+
+    $("#filter-search").addEventListener("input", renderRunners);
+    $("#filter-game").addEventListener("change", renderRunners);
+    $("#filter-role").addEventListener("change", renderRunners);
+  }
+
+  document.addEventListener("DOMContentLoaded", init);
+})();
