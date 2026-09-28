@@ -1,4 +1,4 @@
-/* OneBros — shared helpers and components
+/* OneBros - shared helpers and components
  * Used by both the homepage (script.js) and game pages (game.js).
  * Exposes a single global: window.OneBros
  */

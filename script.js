@@ -1,4 +1,4 @@
-/* OneBros — homepage script
+/* OneBros - homepage script
  * Renders the Games, Verified Runners and General Rules sections from
  * data/games.json, data/runners.json and data/rules.json. Depends on shared.js.
  */

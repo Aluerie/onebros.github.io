@@ -1,4 +1,4 @@
-/* OneBros — game page script
+/* OneBros - game page script
  * One renderer for every game. Reads ?game=<id>, then loads
  * data/games.json, data/runners.json and data/games/<id>.json.
  * Depends on shared.js.
@@ -262,7 +262,7 @@
   // Roles are presented once, as the Challenge Rules cards; the hero only states how many challenge
   // roles the page presents (every OneBros tier plus every No Hit role) and links to the submission form.
   function renderHero(game, roleCount, runnerCount, submitRunUrl) {
-    document.title = `${game.title} — OneBros`;
+    document.title = `OneBros - ${game.title}`;
     const logoOnCover = renderCover(game);
     $("#game-hero").innerHTML = `
       <p class="breadcrumb"><a href="index.html#games">Games</a> <span aria-hidden="true">/</span> ${escapeHtml(game.short)}</p>
@@ -320,7 +320,7 @@
   }
 
   function renderNotFound(message) {
-    document.title = "Game not found — OneBros";
+    document.title = "OneBros - Game not found";
     $("#game-hero").innerHTML = `
       <p class="breadcrumb"><a href="index.html#games">Games</a></p>
       <h1 id="game-title" class="game-hero-title">Page not available</h1>
