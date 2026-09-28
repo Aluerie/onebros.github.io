@@ -102,7 +102,7 @@
   /* ---------- Catalog (games + roles + runners) ---------- */
 
   // Roles come in two separate tracks:
-  //   "onebros" — Champion, Legend, Master, Elitemaster, Grandmaster (OneBros rules)
+  //   "onebros" — Champion, Legend, Master, Elite Master, Grand Master (OneBros rules)
   //   "nohit"   — Hitless Scholar, Hitless Sage (Team Hitless ruleset)
   // Ranks only compare roles within the same track.
   function createCatalog(gameData, runnerData) {
@@ -252,7 +252,9 @@
         const gameLabel = pageUrl
           ? `<a href="${escapeHtml(pageUrl)}">${escapeHtml(gameTitle)}</a>`
           : escapeHtml(gameTitle);
-        const roleLabel = escapeHtml(catalog.roleName(entry.game, entry.role));
+        // Cards name the OneBros tier itself (e.g. "Master"), not the game's own name for it ("Old One").
+        const role = catalog.role(entry.role);
+        const roleLabel = escapeHtml(role ? role.name : entry.role);
         const challenges = entry.challenges || [];
         return `
           <div class="runner-entry tier-${escapeHtml(entry.role)}${highlight(entry) ? " is-match" : ""}">

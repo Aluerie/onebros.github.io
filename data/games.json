@@ -15,8 +15,8 @@
     { "id": "champion", "name": "Champion", "track": "onebros", "rank": 1 },
     { "id": "legend", "name": "Legend", "track": "onebros", "rank": 2 },
     { "id": "master", "name": "Master", "track": "onebros", "rank": 3 },
-    { "id": "elitemaster", "name": "Elitemaster", "track": "onebros", "rank": 4 },
-    { "id": "grandmaster", "name": "Grandmaster", "track": "onebros", "rank": 5 },
+    { "id": "elitemaster", "name": "Elite Master", "track": "onebros", "rank": 4 },
+    { "id": "grandmaster", "name": "Grand Master", "track": "onebros", "rank": 5 },
     { "id": "hitless-scholar", "name": "Hitless Scholar", "track": "nohit", "rank": 1 },
     { "id": "hitless-sage", "name": "Hitless Sage", "track": "nohit", "rank": 2 }
   ],
