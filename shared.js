@@ -205,6 +205,16 @@
       </details>`;
   }
 
+  // Optional card artwork from games.json ("cardBackground": { src, position? }), as a style
+  // attribute setting the CSS variables used by .has-bg; "" when the game has none.
+  function cardBackgroundStyle(game) {
+    const bg = game && game.cardBackground;
+    const src = bg && safeUrl(bg.src);
+    if (!src) return "";
+    const position = /^[\w\s.%-]+$/.test(bg.position || "") ? `; --card-bg-position: ${bg.position}` : "";
+    return ` style="${escapeHtml(`--card-bg: url("${src}")${position}`)}"`;
+  }
+
   /* ---------- Runner component ---------- */
 
   function avatarHtml(runner, profile) {
@@ -233,17 +243,20 @@
    * @param catalog  result of loadCatalog()
    * @param runner   runner object from runners.json
    * @param entries  the runner's role entries to show (defaults to all)
-   * @param opts     { highlight: (entry) => boolean }
+   * @param opts     { highlight: (entry) => boolean, background: boolean }
+   *                 background: use the cardBackground of the game of the runner's top role
+   *                 (the entry that also sets the card's tier colour), if that game has one.
    *
    * Only real data is shown: without a profile URL the picture and name are plain (not links);
    * a role with no recorded challenges shows just "Game — Role", with no empty list or placeholder.
    */
   function runnerCard(catalog, runner, entries = runner.games || [], opts = {}) {
-    const { highlight = () => false } = opts;
+    const { highlight = () => false, background = false } = opts;
     const profile = safeUrl(runner.profile);
     const name = escapeHtml(runner.name);
     const sorted = [...entries].sort((a, b) => catalog.roleSortKey(b.role) - catalog.roleSortKey(a.role));
     const topRole = sorted[0] ? catalog.role(sorted[0].role) : null;
+    const bg = background && sorted[0] ? cardBackgroundStyle(catalog.game(sorted[0].game)) : "";
 
     const entryHtml = sorted
       .map((entry) => {
@@ -270,7 +283,7 @@
       .join("");
 
     return `
-      <article class="runner-card${topRole ? " tier-" + escapeHtml(topRole.id) : ""}">
+      <article class="runner-card${topRole ? " tier-" + escapeHtml(topRole.id) : ""}${bg ? " has-bg" : ""}"${bg}>
         <header class="runner-head">
           ${avatarHtml(runner, profile)}
           <h3 class="runner-name">
@@ -371,6 +384,7 @@
     loadCatalog,
     ruleSectionBodyHtml,
     rulePanelHtml,
+    cardBackgroundStyle,
     runnerCard,
     bindAvatarFallback,
     initChrome,

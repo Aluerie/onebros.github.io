@@ -19,13 +19,15 @@
   --ok: #7fae7a;
   --hitless: #8fa9d6; /* No Hit (Team Hitless ruleset) */
 
-  --tier-champion: #b98552; /* bronze */
-  --tier-legend: #b9c0c8;   /* silver */
-  --tier-master: #e0b34f;   /* gold */
-  --tier-elitemaster: #d9724f;   /* ember */
-  --tier-grandmaster: #c58fe0;   /* violet */
-  --tier-hitless-scholar: #8fa9d6;
-  --tier-hitless-sage: #8fd0d9;
+  /* Onebros tiers: light gold -> progressively deeper orange */
+  --tier-champion: #f5c870;
+  --tier-legend: #eeab55;
+  --tier-master: #e68f3e;
+  --tier-elitemaster: #dc7433;
+  --tier-grandmaster: #d45e2c;
+  /* Hitless tiers: light cyan -> deeper blue */
+  --tier-hitless-scholar: #8fe0f0;
+  --tier-hitless-sage: #4a8ae0;
 
   --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -545,6 +547,14 @@ code {
   margin-top: 48px;
 }
 
+/* Wide screens: the text column is at least as wide as the hero buttons on one row;
+   the stats take the rest. Narrower screens keep the wrapping layout above. */
+@media (min-width: 1360px) {
+  .hero-intro {
+    grid-template-columns: minmax(max-content, 1fr) auto;
+  }
+}
+
 .hero-intro .hero-lead {
   margin-top: 0;
 }
@@ -693,16 +703,19 @@ code {
   transform: translateY(-2px);
 }
 
-/* Optional artwork ("cardBackground" in games.json) under a dark overlay: shaded most behind the
-   title at the top and the stats row at the bottom, lightest through the middle of the art. */
-.game-card.has-bg {
+/* Optional game artwork ("cardBackground" in games.json) under a dark overlay. Shared by game
+   cards and homepage runner cards; each sets its own --card-overlay. */
+:is(.game-card, .runner-card).has-bg {
   background-color: var(--surface);
-  background-image:
-    linear-gradient(180deg, rgba(12, 11, 10, 0.86) 0%, rgba(12, 11, 10, 0.66) 45%, rgba(12, 11, 10, 0.9) 100%),
-    var(--card-bg);
+  background-image: var(--card-overlay), var(--card-bg);
   background-size: cover;
   background-position: center, var(--card-bg-position, center);
   background-repeat: no-repeat;
+}
+
+/* Shaded most behind the title at the top and the stats row at the bottom, lightest mid-card. */
+.game-card.has-bg {
+  --card-overlay: linear-gradient(180deg, rgba(12, 11, 10, 0.86) 0%, rgba(12, 11, 10, 0.66) 45%, rgba(12, 11, 10, 0.9) 100%);
 }
 
 .game-card-top {
@@ -856,6 +869,11 @@ a.game-card {
   overflow: hidden;
 }
 
+/* Darker than game cards: the avatar, name and challenges stay the focus. */
+.runner-card.has-bg {
+  --card-overlay: linear-gradient(180deg, rgba(12, 11, 10, 0.78) 0%, rgba(12, 11, 10, 0.68) 50%, rgba(12, 11, 10, 0.82) 100%);
+}
+
 .runner-head {
   display: flex;
   align-items: center;
@@ -929,6 +947,12 @@ a.runner-avatar:hover {
   background: var(--accent-soft);
 }
 
+/* On game artwork (homepage runner cards), the panel lets the art show through faintly.
+   Filter matches keep their own highlight. */
+.runner-card.has-bg .runner-entry:not(.is-match) {
+  background: rgba(10, 10, 10, 0.65);
+}
+
 .runner-entry-head {
   display: flex;
   flex-wrap: wrap;
@@ -974,12 +998,18 @@ a.runner-avatar:hover {
   gap: 4px;
 }
 
-/* The challenge title is the proof link. */
+/* The challenge title is the proof link, in its entry's tier colour (same --tier as the
+   entry's border, dot and tier label). Hover keeps the colour and firms up the underline. */
+.challenge-link,
+.challenge-link:hover {
+  color: var(--tier, var(--accent));
+}
+
 .challenge-link {
   font-size: 0.95rem;
   font-weight: 600;
   text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
   text-underline-offset: 3px;
 }
 
@@ -988,7 +1018,6 @@ a.runner-avatar:hover {
 }
 
 .challenge-link.is-unlinked {
-  color: var(--text);
   font-weight: 500;
   text-decoration: none;
 }
