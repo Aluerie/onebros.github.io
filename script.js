@@ -33,12 +33,16 @@
     set("games", catalog.games.length);
   }
 
-  // "Submit a run" links to the form in games.json; it stays hidden without one.
-  function renderSubmitLink() {
-    if (!catalog.submitRunUrl) return;
-    const link = $("#submit-run");
-    link.href = catalog.submitRunUrl;
-    link.hidden = false;
+  // "Submit a run" and "Join the Discord" link to the URLs in games.json; each stays hidden without one.
+  function renderHeroLinks() {
+    const show = (sel, url) => {
+      if (!url) return;
+      const link = $(sel);
+      link.href = url;
+      link.hidden = false;
+    };
+    show("#submit-run", catalog.submitRunUrl);
+    show("#discord-link", catalog.discordUrl);
   }
 
   function renderGames() {
@@ -178,7 +182,7 @@
     try {
       catalog = await loadCatalog();
       renderStats();
-      renderSubmitLink();
+      renderHeroLinks();
       renderGames();
       populateFilters();
       renderRunners();

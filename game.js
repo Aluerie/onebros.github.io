@@ -129,7 +129,7 @@
           label: noHit.label,
           title: noHit.name,
           body: `
-            <p class="card-note">Not part of the OneBros tier progression. See also the <a href="index.html#rules-no-hit">general No Hit rules</a>.</p>
+            <p class="card-note">Not part of the Onebros tier progression. See also the <a href="index.html#rules-no-hit">general No Hit rules</a>.</p>
             <div class="prose">${contentHtml(noHit.content)}</div>
             ${noHit.roles
               .map(
@@ -261,8 +261,16 @@
 
   // Roles are presented once, as the Challenge Rules cards; the hero only states how many challenge
   // roles the page presents (every OneBros tier plus every No Hit role) and links to the submission form.
-  function renderHero(game, roleCount, runnerCount, submitRunUrl) {
-    document.title = `OneBros - ${game.title}`;
+  function renderHero(game, roleCount, runnerCount, submitRunUrl, discordUrl) {
+    const actions = [
+      submitRunUrl
+        ? `<a class="btn btn-primary" href="${escapeHtml(submitRunUrl)}" target="_blank" rel="noopener noreferrer">Submit a run</a>`
+        : "",
+      discordUrl
+        ? `<a class="btn btn-ghost" href="${escapeHtml(discordUrl)}" target="_blank" rel="noopener noreferrer">Join the Discord</a>`
+        : "",
+    ].join("");
+    document.title = `Onebros - ${game.title}`;
     const logoOnCover = renderCover(game);
     $("#game-hero").innerHTML = `
       <p class="breadcrumb"><a href="index.html#games">Games</a> <span aria-hidden="true">/</span> ${escapeHtml(game.short)}</p>
@@ -274,11 +282,7 @@
           <div class="stat"><dt>Verified runners</dt><dd>${runnerCount}</dd></div>
           <div class="stat"><dt>Challenge roles</dt><dd>${roleCount}</dd></div>
         </dl>
-        ${
-          submitRunUrl
-            ? `<a class="btn btn-primary" href="${escapeHtml(submitRunUrl)}" target="_blank" rel="noopener noreferrer">Submit a run</a>`
-            : ""
-        }
+        ${actions ? `<div class="game-actions">${actions}</div>` : ""}
       </div>`;
   }
 
@@ -320,7 +324,7 @@
   }
 
   function renderNotFound(message) {
-    document.title = "OneBros - Game not found";
+    document.title = "Onebros - Game not found";
     $("#game-hero").innerHTML = `
       <p class="breadcrumb"><a href="index.html#games">Games</a></p>
       <h1 id="game-title" class="game-hero-title">Page not available</h1>
@@ -364,7 +368,7 @@
     }
 
     const { sections, roleCount, runnerCount } = buildPage(catalog, game, rules);
-    renderHero(game, roleCount, runnerCount, catalog.submitRunUrl);
+    renderHero(game, roleCount, runnerCount, catalog.submitRunUrl, catalog.discordUrl);
     content.innerHTML = sections.map((s, i) => sectionHtml({ ...s, alt: i % 2 === 0 })).join("");
     renderSectionNav([{ id: "overview", nav: "Overview" }, ...sections]);
 

@@ -1,10 +1,10 @@
-# OneBros data
+# Onebros data
 
 All site content lives in these JSON files. The HTML pages only render them.
 
 | File | Contents |
 | --- | --- |
-| `games.json` | `submitRunUrl` (the Run Submissions Form opened by every "Submit a run" button), role tracks and roles, and every game: id, title, year, per-game role names (`roleNames`), and whether its page is published (`"page": true`). `defaultRoles` and a game's `roles` list are reference data only (not displayed); a game page shows its roles through the tiers in `games/<id>.json`. |
+| `games.json` | `submitRunUrl` (the Run Submissions Form opened by every "Submit a run" button), `discordUrl` (the community Discord invite behind every "Join the Discord" button; the buttons stay hidden while it is empty), role tracks and roles, and every game: id, title, year, per-game role names (`roleNames`), and whether its page is published (`"page": true`). `defaultRoles` and a game's `roles` list are reference data only (not displayed); a game page shows its roles through the tiers in `games/<id>.json`. |
 | `games/<id>.json` | Full rules for one game (e.g. `games/des.json`). Only needed when `"page": true`. |
 | `runners.json` | Verified runners and the roles/challenges they completed. |
 | `rules.json` | General / Overarching Rules shown on the homepage. Each section has `content` and/or `subsections`. A content block is a paragraph (string), `{ "list": [...] }`, or `{ "note": "...", "text": "..." }`. A section with `"exception"` (No Hit) is shown apart from the regular rules, and is also shown on every game page's No Hit section. |
@@ -15,11 +15,11 @@ Roles are split into two separate tracks in `games.json`:
 
 | Track | Role ids (lowest → highest) |
 | --- | --- |
-| `onebros` — OneBros challenge rules | `champion`, `legend`, `master`, `elitemaster`, `grandmaster` |
+| `onebros` — Onebros challenge rules | `champion`, `legend`, `master`, `elitemaster`, `grandmaster` |
 | `nohit` — Team Hitless ruleset | `hitless-scholar`, `hitless-sage` |
 
 No Hit roles are never a sub-tier of Legend/Master; they are listed and grouped separately everywhere.
-A game can rename OneBros roles with `roleNames` (Demon's Souls: Slayer / Monumental / Old One).
+A game can rename Onebros roles with `roleNames` (Demon's Souls: Slayer / Monumental / Old One).
 
 ## Adding a runner
 
@@ -58,7 +58,7 @@ Append an object to the **end** of the `runners` array in `runners.json`:
   Use `null` when there is none: picture and name are then shown without a link.
 - `challenges`: may be `[]` when only the role is verified; the card then shows just "Game — Role".
   Never add placeholder titles or URLs.
-- `addedAt` (every new runner): date — or ISO date-time — the entry was **added to the OneBros
+- `addedAt` (every new runner): date — or ISO date-time — the entry was **added to the Onebros
   site**. Used for the default display order on the homepage and in each game's Hall of Fame:
   newest added first. Runners with the same `addedAt` keep their order in this file, the one
   further down (added later) first; runners without `addedAt` come after all dated ones.
@@ -70,7 +70,7 @@ Append an object to the **end** of the `runners` array in `runners.json`:
   be established. A runner may have `addedAt` and no `completedAt`, or several challenges with
   different `completedAt` dates.
 - Neither date is shown on the cards yet.
-- `games[]`: one entry per role a runner holds in a game. A OneBros role and a No Hit role
+- `games[]`: one entry per role a runner holds in a game. A Onebros role and a No Hit role
   in the same game are two separate entries.
 - `games[].game`: a game `id` from `games.json` (`des`, `ds1`, `ds2`, `bb`, `ds3`, `sekiro`, `er`).
 - `games[].role`: a role id from the table above. Pages show the game's own name where it has one.
@@ -80,12 +80,12 @@ Append an object to the **end** of the `runners` array in `runners.json`:
 ## Adding a game page
 
 1. Create `games/<id>.json` with the same structure as `games/des.json`:
-   - `tiers`: one per OneBros role, in progression order, each with `role`, `content`,
+   - `tiers`: one per Onebros role, in progression order, each with `role`, `content`,
      `challengesTitle` and `challenges` (`{ title, items }`).
    - `restrictions` (optional): `{ title, groups: [{ type, title, items }] }`.
    - `noHit` (optional): `{ content, roles: [{ role, content }] }` with roles
      `hitless-scholar` / `hitless-sage`. Shown as a separate track, never as a tier.
-2. In `games.json`, set that game's `"page": true`, list its OneBros roles in `roles`
+2. In `games.json`, set that game's `"page": true`, list its Onebros roles in `roles`
    (e.g. add `elitemaster`), and fill in `roleNames` if the game uses its own names.
 3. Optional images in `games.json` (files go in `assets/games/`):
    - `"logo": { "src", "width", "height", "blend" }` — the page's cinematic hero: large and

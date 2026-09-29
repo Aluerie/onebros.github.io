@@ -549,6 +549,15 @@ code {
   margin-top: 0;
 }
 
+/* Community description: the opening statement, a shade brighter than the lead that follows it. */
+.hero-intro .hero-about {
+  color: var(--text);
+}
+
+.hero-intro .hero-about + .hero-lead {
+  margin-top: 12px;
+}
+
 .hero-intro .hero-actions {
   margin-top: 24px;
 }
@@ -1320,6 +1329,12 @@ html:has(body.game-page) {
   border-top: 0;
 }
 
+.game-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 /* Section navigation */
 
 .subnav {
@@ -1607,6 +1622,47 @@ html:has(body.game-page) {
   margin-top: 48px;
 }
 
+/* ---------- Back to top ---------- */
+
+.back-to-top {
+  position: fixed;
+  right: var(--gutter);
+  bottom: clamp(16px, 2.4vw, 40px);
+  z-index: 45; /* above page content and the subnav, below the header */
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  background: rgba(12, 11, 10, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  line-height: 1;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  visibility: hidden; /* also keeps it out of the tab order while hidden */
+  transform: translateY(8px);
+  transition: opacity 0.2s, transform 0.2s, visibility 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.back-to-top:hover {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
+.back-to-top:focus-visible {
+  border-radius: 50%;
+}
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 960px) {
@@ -1758,7 +1814,8 @@ html:has(body.game-page) {
 
 @media (max-width: 420px) {
   .hero-actions .btn,
-  .game-overview .btn {
+  .game-overview .btn,
+  .game-actions {
     flex: 1 1 100%;
   }
 

@@ -124,6 +124,7 @@
       games,
       runners,
       submitRunUrl: safeUrl(gameData.submitRunUrl), // Run Submissions Form, shared by every game
+      discordUrl: safeUrl(gameData.discordUrl), // Community Discord invite; its buttons stay hidden without one
       game: (id) => gamesById.get(id),
       role: (id) => rolesById.get(id),
       track: (id) => tracksById.get(id),
@@ -323,6 +324,26 @@
     const header = $(".site-header");
     if (header) {
       const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    }
+
+    // #top is the sticky header, which the browser treats as already in view, so #top links
+    // scroll to the page top themselves (smooth via CSS, instant with reduced motion).
+    // Focus returns to the header brand link so keyboard users continue from the top.
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest('a[href="#top"]')) return;
+      e.preventDefault();
+      window.scrollTo({ top: 0 });
+      const brand = $(".site-header .brand");
+      if (brand) brand.focus({ preventScroll: true });
+    });
+
+    // "Back to top" only appears once the page has been scrolled past roughly one screen.
+    const backToTop = $(".back-to-top");
+    if (backToTop) {
+      const onScroll = () =>
+        backToTop.classList.toggle("is-visible", window.scrollY > Math.max(600, window.innerHeight));
       window.addEventListener("scroll", onScroll, { passive: true });
       onScroll();
     }

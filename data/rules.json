@@ -142,7 +142,7 @@
         {
           "title": "Deathless",
           "content": [
-            "Deathless runs use the OneBros ruleset except for the No Healing rule.",
+            "Deathless runs use the Onebros ruleset except for the No Healing rule.",
             "All glitches are banned in Deathless runs."
           ]
         },
@@ -188,9 +188,9 @@
       "title": "No Hit Runs",
       "exception": "Team Hitless ruleset",
       "content": [
-        "No Hit runs are different from the normal OneBros challenge rules.",
+        "No Hit runs are different from the normal Onebros challenge rules.",
         "For SL1 No Hit runs, Team Hitless' ruleset is used.",
-        "None of the General/Overarching OneBros rules apply to these runs.",
+        "None of the General/Overarching Onebros rules apply to these runs.",
         "There are two obtainable No Hit roles:"
       ],
       "subsections": [

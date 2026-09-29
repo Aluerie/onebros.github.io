@@ -1,9 +1,10 @@
 {
   "submitRunUrl": "https://forms.gle/gBiVksbsxjnr8B5h8",
+  "discordUrl": "https://discord.gg/tvSvDP4bs",
   "tracks": [
     {
       "id": "onebros",
-      "name": "OneBros Challenges"
+      "name": "Onebros Challenges"
     },
     {
       "id": "nohit",
