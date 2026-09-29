@@ -9,6 +9,7 @@
     PATHS,
     $,
     escapeHtml,
+    safeUrl,
     loadJson,
     loadCatalog,
     rulePanelHtml,
@@ -45,6 +46,16 @@
     show("#discord-link", catalog.discordUrl);
   }
 
+  // Optional card artwork from games.json ("cardBackground": { src, position? }), as a style
+  // attribute setting the CSS variables used by .game-card.has-bg; "" when the game has none.
+  function cardBackground(game) {
+    const bg = game.cardBackground;
+    const src = bg && safeUrl(bg.src);
+    if (!src) return "";
+    const position = /^[\w\s.%-]+$/.test(bg.position || "") ? `; --card-bg-position: ${bg.position}` : "";
+    return ` style="${escapeHtml(`--card-bg: url("${src}")${position}`)}"`;
+  }
+
   function renderGames() {
     $("#games-grid").innerHTML = catalog.games
       .map((game) => {
@@ -69,9 +80,11 @@
             }
           </p>`;
 
+        const bg = cardBackground(game);
+        const cls = `game-card${bg ? " has-bg" : ""}`;
         return url
-          ? `<a class="game-card is-link" href="${escapeHtml(url)}">${body}</a>`
-          : `<article class="game-card is-soon" aria-disabled="true">${body}</article>`;
+          ? `<a class="${cls} is-link" href="${escapeHtml(url)}"${bg}>${body}</a>`
+          : `<article class="${cls} is-soon" aria-disabled="true"${bg}>${body}</article>`;
       })
       .join("");
   }

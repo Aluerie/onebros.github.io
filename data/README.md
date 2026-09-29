@@ -94,6 +94,10 @@ Append an object to the **end** of the `runners` array in `runners.json`:
      Demon's Souls), the hero is the logo on the site background.
    - `"hero": { "src", "width", "height", "alt", "position" }` (optional) — background artwork
      behind the logo, cropped to fill.
+   - `"cardBackground": { "src", "position" }` (optional) — artwork behind the game's card on
+     the homepage, cropped to fill under a dark overlay. `position` is a CSS
+     `background-position` (default `center`). Aim for about 1600×900 WebP (as
+     `des-background.webp`). Cards without it keep the plain background.
 
 No HTML or JavaScript changes are needed. The page is served at `game.html?game=<id>`.
 

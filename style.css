@@ -693,6 +693,18 @@ code {
   transform: translateY(-2px);
 }
 
+/* Optional artwork ("cardBackground" in games.json) under a dark overlay: shaded most behind the
+   title at the top and the stats row at the bottom, lightest through the middle of the art. */
+.game-card.has-bg {
+  background-color: var(--surface);
+  background-image:
+    linear-gradient(180deg, rgba(12, 11, 10, 0.86) 0%, rgba(12, 11, 10, 0.66) 45%, rgba(12, 11, 10, 0.9) 100%),
+    var(--card-bg);
+  background-size: cover;
+  background-position: center, var(--card-bg-position, center);
+  background-repeat: no-repeat;
+}
+
 .game-card-top {
   display: flex;
   justify-content: space-between;
