@@ -16,6 +16,7 @@
     runnerCard,
     bindAvatarFallback,
     initChrome,
+    initGamesMenu,
     loadErrorHtml,
     discordIcon,
   } = window.OneBros;
@@ -186,6 +187,7 @@
 
     try {
       catalog = await loadCatalog();
+      initGamesMenu(catalog);
       renderStats();
       renderHeroLinks();
       renderGames();

@@ -362,6 +362,60 @@
     }
   }
 
+  /* Games dropdown in the site nav. The "Games" link (.nav-games) becomes a "Games ▾" toggle for
+   * a list of "All Games" (the link's own href) plus every game with a page, in games.json order.
+   * Opens inline inside the mobile menu. Without the hook or any game page, the plain link stays. */
+  function initGamesMenu(catalog, currentId = "") {
+    const item = $(".site-nav .nav-games");
+    const link = item && $("a", item);
+    const games = catalog.games.filter((g) => catalog.gamePageUrl(g.id));
+    if (!link || !games.length) return;
+
+    item.innerHTML = `
+      <button class="nav-games-toggle" type="button" aria-expanded="false" aria-controls="games-menu">
+        ${escapeHtml(link.textContent.trim())}<span class="nav-games-caret" aria-hidden="true">▾</span>
+      </button>
+      <ul class="nav-games-menu" id="games-menu" hidden>
+        <li><a href="${escapeHtml(link.getAttribute("href"))}">All Games</a></li>
+        ${games
+          .map(
+            (g) =>
+              `<li><a href="${escapeHtml(catalog.gamePageUrl(g.id))}"${
+                g.id === currentId ? ' aria-current="page"' : ""
+              }>${escapeHtml(g.title)}</a></li>`
+          )
+          .join("")}
+      </ul>`;
+
+    const toggle = $(".nav-games-toggle", item);
+    const menu = $(".nav-games-menu", item);
+    const setOpen = (open) => {
+      toggle.setAttribute("aria-expanded", String(open));
+      menu.hidden = !open;
+    };
+
+    toggle.addEventListener("click", () => setOpen(menu.hidden));
+    // Following a link closes the dropdown; the nav's own handler also closes the mobile menu.
+    menu.addEventListener("click", (e) => {
+      if (e.target.closest("a")) setOpen(false);
+    });
+    // Clicks outside (including the hamburger toggle) close it.
+    document.addEventListener("click", (e) => {
+      if (!item.contains(e.target)) setOpen(false);
+    });
+    // Tabbing away closes it (focus moving to nothing, e.g. a click on plain text, is left to the click handler).
+    item.addEventListener("focusout", (e) => {
+      if (e.relatedTarget && !item.contains(e.relatedTarget)) setOpen(false);
+    });
+    // Escape closes only the dropdown (not the mobile menu) and returns focus to the toggle.
+    item.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape" || menu.hidden) return;
+      e.stopPropagation();
+      setOpen(false);
+      toggle.focus();
+    });
+  }
+
   function loadErrorHtml() {
     return `
       <p class="error">
@@ -394,6 +448,7 @@
     runnerCard,
     bindAvatarFallback,
     initChrome,
+    initGamesMenu,
     loadErrorHtml,
     discordIcon,
   };

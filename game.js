@@ -20,6 +20,7 @@
     runnerCard,
     bindAvatarFallback,
     initChrome,
+    initGamesMenu,
     loadErrorHtml,
     discordIcon,
   } = window.OneBros;
@@ -348,6 +349,7 @@
       $("#game-hero").innerHTML = loadErrorHtml();
       return;
     }
+    initGamesMenu(catalog, gameId);
 
     const game = catalog.game(gameId);
     if (!game || !game.page) {

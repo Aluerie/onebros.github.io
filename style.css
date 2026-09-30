@@ -300,6 +300,75 @@ code {
   color: var(--text);
 }
 
+/* Games dropdown (built by initGamesMenu). The toggle matches the other nav links; the list
+   drops below it without affecting the header, and opens inline in the mobile menu. */
+.nav-games {
+  position: relative;
+}
+
+.nav-games-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  background: none;
+  border: 0;
+  font: inherit;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.nav-games-toggle:hover,
+.nav-games-toggle[aria-expanded="true"] {
+  color: var(--text);
+}
+
+.nav-games-caret {
+  font-size: 0.75em;
+  transition: transform 0.2s;
+}
+
+.nav-games-toggle[aria-expanded="true"] .nav-games-caret {
+  transform: rotate(180deg);
+}
+
+.site-nav .nav-games-menu {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: -16px;
+  display: block;
+  min-width: 220px;
+  padding: 8px 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.site-nav .nav-games-menu[hidden] {
+  display: none;
+}
+
+.site-nav .nav-games-menu a {
+  display: block;
+  padding: 8px 16px;
+  font-size: 0.95rem;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.site-nav .nav-games-menu a:hover,
+.site-nav .nav-games-menu a[aria-current="page"] {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
 .nav-toggle {
   display: none;
   width: 44px;
@@ -1770,6 +1839,53 @@ html:has(body.game-page) {
 
   .site-nav li:last-child a {
     border-bottom: 0;
+  }
+
+  /* A long game list scrolls inside the mobile menu. */
+  .site-nav {
+    max-height: calc(100vh - var(--header-h));
+    max-height: calc(100dvh - var(--header-h));
+    overflow-y: auto;
+  }
+
+  /* The Games item carries the row divider, so the open list sits above it. */
+  .site-nav .nav-games {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-games-toggle {
+    display: flex;
+    width: 100%;
+    padding: 14px 0;
+    text-align: left;
+  }
+
+  /* Subtle focus for the full-width row: brighter text and an accent underline, not a box. */
+  .nav-games-toggle:focus-visible {
+    outline: none;
+    color: var(--text);
+    box-shadow: inset 0 -2px 0 var(--accent);
+  }
+
+  .site-nav .nav-games-menu {
+    position: static;
+    min-width: 0;
+    padding: 0 0 8px 16px;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .site-nav .nav-games-menu a {
+    padding: 7px 0;
+    border-bottom: 0;
+    white-space: normal;
+  }
+
+  .site-nav .nav-games-menu a:hover,
+  .site-nav .nav-games-menu a[aria-current="page"] {
+    background: none;
   }
 
   .hero {
