@@ -264,11 +264,11 @@
   // roles the page presents (every OneBros tier plus every No Hit role) and links to the submission form.
   function renderHero(game, roleCount, runnerCount, submitRunUrl, discordUrl) {
     const actions = [
-      submitRunUrl
-        ? `<a class="btn btn-primary" href="${escapeHtml(submitRunUrl)}" target="_blank" rel="noopener noreferrer">Submit a run</a>`
-        : "",
       discordUrl
         ? `<a class="btn btn-discord" href="${escapeHtml(discordUrl)}" target="_blank" rel="noopener noreferrer">${discordIcon}Join the Discord</a>`
+        : "",
+      submitRunUrl
+        ? `<a class="btn btn-primary" href="${escapeHtml(submitRunUrl)}" target="_blank" rel="noopener noreferrer">Submit a run</a>`
         : "",
     ].join("");
     document.title = `Onebros - ${game.title}`;
