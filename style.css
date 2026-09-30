@@ -199,6 +199,21 @@ code {
   color: var(--accent-strong);
 }
 
+.btn-discord {
+  gap: 8px;
+  background: #5865f2;
+  color: #fff;
+}
+
+.btn-discord:hover {
+  background: #4752c4;
+  color: #fff;
+}
+
+.btn-icon {
+  flex-shrink: 0;
+}
+
 .link-btn {
   background: none;
   border: 0;

@@ -21,6 +21,7 @@
     bindAvatarFallback,
     initChrome,
     loadErrorHtml,
+    discordIcon,
   } = window.OneBros;
 
   function sectionHtml({ id, eyebrow, title, lead = "", body, alt }) {
@@ -267,7 +268,7 @@
         ? `<a class="btn btn-primary" href="${escapeHtml(submitRunUrl)}" target="_blank" rel="noopener noreferrer">Submit a run</a>`
         : "",
       discordUrl
-        ? `<a class="btn btn-ghost" href="${escapeHtml(discordUrl)}" target="_blank" rel="noopener noreferrer">Join the Discord</a>`
+        ? `<a class="btn btn-discord" href="${escapeHtml(discordUrl)}" target="_blank" rel="noopener noreferrer">${discordIcon}Join the Discord</a>`
         : "",
     ].join("");
     document.title = `Onebros - ${game.title}`;

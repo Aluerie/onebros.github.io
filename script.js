@@ -17,6 +17,7 @@
     bindAvatarFallback,
     initChrome,
     loadErrorHtml,
+    discordIcon,
   } = window.OneBros;
 
   let catalog;
@@ -44,6 +45,7 @@
     };
     show("#submit-run", catalog.submitRunUrl);
     show("#discord-link", catalog.discordUrl);
+    if (catalog.discordUrl) $("#discord-link").insertAdjacentHTML("afterbegin", discordIcon);
   }
 
   function renderGames() {
