@@ -9,6 +9,7 @@
     games: "data/games.json",
     runners: "data/runners.json",
     generalRules: "data/rules.json",
+    staff: "data/staff.json",
     gameRules: (id) => `data/games/${encodeURIComponent(id)}.json`,
   };
 
@@ -446,6 +447,7 @@
     rulePanelHtml,
     cardBackgroundStyle,
     runnerCard,
+    avatarHtml,
     bindAvatarFallback,
     initChrome,
     initGamesMenu,

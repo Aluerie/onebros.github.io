@@ -3,19 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Onebros - Game Rules</title>
-  <meta name="description" content="Challenge rules, tiers and Hall of Fame for a Souls game on Onebros.">
+  <title>Onebros - Staff</title>
+  <meta name="description" content="The Onebros community team: admins and moderators.">
   <meta name="theme-color" content="#0c0b0a">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<!--
-  Shared template for every game page. The game is chosen with ?game=<id>
-  (e.g. game.html?game=des) and its content is loaded from data/games/<id>.json.
--->
-<body class="game-page">
+<body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header" id="top">
@@ -35,29 +31,29 @@
           <li class="nav-games"><a href="index.html#games">Games</a></li>
           <li><a href="index.html#rules">Rules</a></li>
           <li><a href="index.html#runners">Runners</a></li>
-          <li><a href="staff.html">Staff</a></li>
+          <li><a href="staff.html" aria-current="page">Staff</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main id="main">
-    <section class="game-hero" id="overview" aria-labelledby="game-title">
+    <section class="game-hero" id="overview" aria-labelledby="staff-title">
       <div class="hero-glow" aria-hidden="true"></div>
-      <!-- Optional cinematic cover: "hero" artwork + optional "logo" from data/games.json -->
-      <div class="cover" id="game-cover" hidden></div>
-      <div class="container game-hero-inner" id="game-hero">
-        <p class="loading">Loading game…</p>
+      <div class="container game-hero-inner">
+        <p class="breadcrumb"><a href="index.html">Home</a> <span aria-hidden="true">/</span> Staff</p>
+        <p class="eyebrow">Community team</p>
+        <h1 id="staff-title" class="game-hero-title">Staff</h1>
+        <p class="hero-lead">The people behind Onebros.</p>
       </div>
     </section>
 
-    <nav class="subnav" id="section-nav" aria-label="On this page" hidden>
-      <div class="container">
-        <ul class="subnav-list" id="section-nav-list"></ul>
+    <!-- Staff groups, rendered from data/staff.json -->
+    <div id="staff-content">
+      <div class="container section">
+        <p class="loading">Loading staff…</p>
       </div>
-    </nav>
-
-    <div id="game-content"></div>
+    </div>
   </main>
 
   <footer class="site-footer">
@@ -74,7 +70,7 @@
           <li><a href="index.html#games">Games</a></li>
           <li><a href="index.html#rules">Rules</a></li>
           <li><a href="index.html#runners">Runners</a></li>
-          <li><a href="staff.html">Staff</a></li>
+          <li><a href="staff.html" aria-current="page">Staff</a></li>
         </ul>
       </nav>
       <p class="footer-note muted">
@@ -90,6 +86,6 @@
   </a>
 
   <script src="shared.js"></script>
-  <script src="game.js"></script>
+  <script src="staff.js"></script>
 </body>
 </html>

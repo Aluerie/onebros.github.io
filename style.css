@@ -787,7 +787,8 @@ body.game-page.has-page-bg .section-alt {
 /* ---------- Games ---------- */
 
 /* 1 col on phones, 2–4 on laptops, 5 at 1920, 6 at 2560, all 7 in one row at 3840 */
-.games-grid {
+.games-grid,
+.staff-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, clamp(240px, 14vw, 320px)), 1fr));
   gap: var(--grid-gap);
@@ -1030,6 +1031,55 @@ a.runner-avatar:hover {
 
 .runner-name a {
   color: var(--text);
+}
+
+/* Staff page: a runner-card surface with name, @username and one badge per role. */
+.staff-card {
+  gap: 6px;
+  padding: 20px;
+}
+
+/* Avatar (runner-avatar: picture, or the initial when there is none) beside name and @username. */
+.staff-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.staff-card .runner-avatar {
+  --avatar-size: 56px;
+}
+
+.staff-id {
+  min-width: 0;
+}
+
+.staff-username {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.staff-badges {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.staff-badge {
+  padding: 3px 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent);
+  border-radius: 999px;
 }
 
 .runner-name a:hover {
