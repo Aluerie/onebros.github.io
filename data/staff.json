@@ -17,12 +17,11 @@
     { "id": "_geori", "name": "geori_", "username": "_geori", "roles": ["checker"], "avatar": "assets/staff/_geori.jpg" },
     { "id": "lmaus", "name": "L30", "username": "lmaus", "roles": ["moderator", "checker"], "avatar": "assets/staff/lmaus.jpg" },
     { "id": "notn01", "name": "N01", "username": "notn01", "roles": ["moderator", "checker"], "avatar": "assets/staff/notn01.jpg" },
-    { "id": "papaalivemustafa", "name": "PAPA ALIVE {Mustafa} [18/25]", "username": "papaalivemustafa", "roles": ["checker"], "avatar": "assets/staff/papaalivemustafa.jpg" },
-    { "id": "papaalivo", "name": "PAPA ALIVO {18/25]", "username": "papaalivo", "roles": ["checker"], "avatar": "assets/staff/papaalivo.jpg" },
+    { "id": "papaalivemustafa", "name": "PAPA ALIVE {Mustafa}", "username": "papaalivemustafa", "roles": ["checker"], "avatar": "assets/staff/papaalivemustafa.jpg" },
     { "id": "1recyclebin1", "name": "Recycle", "username": "1recyclebin1", "roles": ["admin"], "avatar": "assets/staff/1recyclebin1.jpg" },
     { "id": "ritingaming", "name": "Ritin", "username": "ritingaming", "roles": ["moderator"], "avatar": "assets/staff/ritingaming.jpg" },
     { "id": "johndank", "name": "Savio, Bueno Enthusiast", "username": "johndank", "roles": ["checker"], "avatar": "assets/staff/johndank.jpg" },
-    { "id": "8475", "name": "Soul reaper", "username": "8475", "roles": ["moderator", "checker"], "avatar": "assets/staff/8475.jpg" },
+    { "id": "8475", "name": "Soul reaper", "username": "reaper8475", "roles": ["moderator", "checker"], "avatar": "assets/staff/8475.jpg" },
     { "id": "unholypancake", "name": "UnholyPancake", "username": "unholypancake", "roles": ["moderator", "checker"], "avatar": "assets/staff/unholypancake.jpg" },
     { "id": "zeldasouls", "name": "Zelda", "username": "zeldasouls", "roles": ["checker"], "avatar": "assets/staff/zeldasouls.jpg" }
   ]
