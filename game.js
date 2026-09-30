@@ -253,6 +253,17 @@
     return Boolean(logo);
   }
 
+  // Optional full-page artwork from games.json ("pageBackground": { src, position? }), shown behind
+  // the whole page under a dark overlay (body.has-page-bg). Nothing changes without one.
+  function renderPageBackground(game) {
+    const bg = game.pageBackground;
+    const src = bg && safeUrl(bg.src);
+    if (!src) return;
+    document.body.style.setProperty("--page-bg", `url("${src}")`);
+    if (/^[\w\s.%-]+$/.test(bg.position || "")) document.body.style.setProperty("--page-bg-position", bg.position);
+    document.body.classList.add("has-page-bg");
+  }
+
   // Page title. The heading text is always in the HTML for screen readers; when the logo is shown
   // on the cover it is the visible title and the heading is visually hidden.
   function titleHtml(game, logoOnCover) {
@@ -273,6 +284,7 @@
         : "",
     ].join("");
     document.title = `Onebros - ${game.title}`;
+    renderPageBackground(game);
     const logoOnCover = renderCover(game);
     $("#game-hero").innerHTML = `
       <p class="breadcrumb"><a href="index.html#games">Games</a> <span aria-hidden="true">/</span> ${escapeHtml(game.short)}</p>

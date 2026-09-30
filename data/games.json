@@ -38,6 +38,10 @@
         "src": "assets/games/des-background.webp",
         "position": "center"
       },
+      "pageBackground": {
+        "src": "assets/games/des-background.webp",
+        "position": "center"
+      },
       "logo": {
         "src": "assets/games/des-logo.png",
         "width": 1031,
@@ -67,6 +71,10 @@
       "year": 2011,
       "page": true,
       "cardBackground": {
+        "src": "assets/games/ds1-background.webp",
+        "position": "center"
+      },
+      "pageBackground": {
         "src": "assets/games/ds1-background.webp",
         "position": "center"
       },
