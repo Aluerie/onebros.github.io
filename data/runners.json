@@ -1,20 +1,157 @@
 {
   "runners": [
     {
-      "id": "jonathan",      
-      "name": "Jonathan_",
-      "avatar": "assets/runners/jonathan.jpg",
-      "profile": "https://www.youtube.com/@jonathanUnderscore/featured",
-      "addedAt": "2026-09-28",
+      "id": "guardianshrine",
+      "name": "Guardianshrine",
+      "avatar": "",
+      "profile": null,
+      "addedAt": "2026-04-14",
       "games": [
         {
-          "game": "des",
+          "game": "ds1",
+          "role": "grandmaster",
+          "challenges": [
+            {
+              "title": "SL1 NG+6 +0 Weapon No Rolling/Blocking/Parrying/Auxiliary Effects",
+              "restrictions": "SL1 NG+6 +0 Weapon No Roll/Block/Parry/Auxiliary Effects",
+              "proof": "https://youtube.com/playlist?list=PLC6oP5_CzIGWN_H2qxPzOeDTqWKYLxzz_",
+              "completedAt": "2026-04-14"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "admiraljub",
+      "name": "admiraljub",
+      "avatar": "assets/runners/admiraljub.jpg",
+      "profile": "https://www.teamhitless.com/project/AdmiralJub/",
+      "addedAt": "2026-05-31",
+      "games": [
+        {
+          "game": "ds2",
+          "role": "grandmaster",
+          "challenges": [
+            {
+              "title": "SL1 CoC NG+7 +0 Weapon No Rolling/Blocking/Parrying/Infusions/Buffs",
+              "restrictions": "SL1 NG+7 CoC +0 Weapons No Roll/Block/Parry/Infusions/Buffs",
+              "proof": "https://youtube.com/playlist?list=PLxkF-Q7YZMIL5YPPJy38yBpuRcpDt0U2h&si=rPsXz7H_5aOfop1T",
+              "completedAt": "2026-05-31"
+            }
+          ]
+        },
+        {
+          "game": "ds3",
+          "role": "grandmaster",
+          "challenges": [
+            {
+              "title": "SL1 NG+7 +0 Weapon No Rolling/Blocking/Parrying/Infusions/Auxiliary Effects/Buffs",
+              "restrictions": "SL1 NG+7 +0 Weapons No Roll/Block/Parry/Infusions/Buffs",
+              "proof": "https://youtube.com/playlist?list=PLxkF-Q7YZMIIi388EHWb8WTBQgQoKzrBX&si=0anm3CBvfvMmhtMX",
+              "completedAt": "2026-05-20"
+            }
+          ]
+        },
+        {
+          "game": "bb",
+          "role": "hitless-scholar",
+          "challenges": []
+        },
+        {
+          "game": "bb",
+          "role": "hitless-sage",
+          "challenges": [
+            {
+              "restrictions": "BL4 Any% No Roll/Quickstep Rangeless",
+              "proof": "https://youtu.be/7LlaBVv48bw?is=P9NukjBv60w-JJJx",
+              "completedAt": "2026-07-25"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shnrai",
+      "name": "shnrai",
+      "avatar": "assets/runners/shnrai.jpg",
+      "profile": "https://www.youtube.com/@shnraii",
+      "addedAt": "2026-04-26",
+      "games": [
+        {
+          "game": "ds3",
+          "role": "legend",
+          "challenges": [
+            {
+              "title": "SL1 No Rolling/Blocking/Parrying",
+              "restrictions": "SL1 No Roll/Block/Parry",
+              "proof": "https://www.youtube.com/playlist?list=PLcdc0LGDXV3AG7wICC4sMch4V1OX0KRgE",
+              "completedAt": "2026-04-26"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "papa-alivo",
+      "name": "PAPA ALIVO",
+      "avatar": "",
+      "profile": null,
+      "addedAt": "2026-04-19",
+      "games": [
+        {
+          "game": "er",
+          "role": "champion",
+          "challenges": []
+        }
+      ]
+    },
+    {
+      "id": "joncolteraneoffical777",
+      "name": "joncolteraneoffical777",
+      "avatar": "assets/runners/joncolteraneoffical777.jpg",
+      "profile": "https://www.youtube.com/@johncolteraneoffical",
+      "addedAt": "2026-05-19",
+      "games": [
+        {
+          "game": "bb",
+          "role": "elitemaster",
+          "challenges": [
+            {
+              "title": "BL4 NG+6 No Sprint No Buffs/Aux",
+              "restrictions": "BL4 NG+6 No Sprint/Roll/Buffs/Aux",
+              "proof": "https://youtube.com/playlist?list=PLqeX6hOZVyeMWT5XyAeWccqSkemLUEvkn&si=7PwbfNp-EG45kx2Y",
+              "completedAt": "2026-05-19"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "recycle",
+      "name": "Recycle",
+      "avatar": "assets/runners/recycle.jpg",
+      "profile": "https://www.teamhitless.com/project/recycle/",
+      "addedAt": "2026-05-18",
+      "games": [
+        {
+          "game": "er",
+          "role": "hitless-sage",
+          "challenges": [
+            {
+              "restrictions": "RL1 All Great Runes | No Upgrades/Talismans/Auxiliary Damage/Status Effects/Infusions, No Great Rune/Physick/Aura/Body/Equipment/Stamina Buffs",
+              "proof": "https://www.youtube.com/watch?v=uDFzCZ-86fQ",
+              "completedAt": "2026-05-18"
+            }
+          ]
+        },
+        {
+          "game": "er",
           "role": "master",
           "challenges": [
             {
-              "title": "SL1 NG+5 PBWT No Rolling/Blocking/Parrying",
-              "proof": "https://www.youtube.com/playlist?list=PLlouJzco8-bR3yh25h5T5-8PkLT2RJc73",
-              "completedAt": "2023-10-10"
+              "title": "RL1 NG+7 +0 Weapons No Auxiliary Effects",
+              "proof": "https://www.youtube.com/playlist?list=PLnvby1Zb8IDBg0UYK7sRinE_6piL4TtBa",
+              "completedAt": "2026-05-16"
             }
           ]
         }
@@ -28,13 +165,503 @@
       "addedAt": "2026-09-28",
       "games": [
         {
+          "game": "sekiro",
+          "role": "hitless-scholar",
+          "challenges": []
+        }
+      ]
+    },
+    {
+      "id": "cloudi1234",
+      "name": "cloudi1234",
+      "avatar": "assets/runners/cloudi1234.jpg",
+      "profile": "https://www.teamhitless.com/project/cloudi/",
+      "addedAt": "2026-05-22",
+      "games": [
+        {
+          "game": "ds3",
+          "role": "hitless-sage",
+          "challenges": [
+            {
+              "restrictions": "sl1 no upgrades/infusions any%",
+              "proof": "https://youtu.be/hrZ_kiUM2YU?si=uAwKR2iBGkm9DG75",
+              "completedAt": "2026-05-22"
+            }
+          ]
+        },
+        {
+          "game": "sekiro",
+          "role": "hitless-sage",
+          "challenges": [
+            {
+              "restrictions": "AP1 sword only no deflect shura",
+              "proof": "https://youtu.be/yqecib666Ds?si=xO8TmyyRPq1ygrxy",
+              "completedAt": "2026-04-30"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "johndank",
+      "name": "johndank",
+      "avatar": "assets/runners/johndank.jpg",
+      "profile": "https://www.teamhitless.com/project/savio/",
+      "addedAt": "2026-06-07",
+      "games": [
+        {
+          "game": "sekiro",
+          "role": "hitless-sage",
+          "challenges": [
+            {
+              "restrictions": "All Beads & Memories AP1 NKC + DB Sword Only No Skills Hitless",
+              "proof": "https://youtu.be/CWmqohMpjQ4",
+              "completedAt": "2026-06-07"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nuke-san",
+      "name": "Nuke San",
+      "avatar": "assets/runners/nuke-san.jpg",
+      "profile": "https://www.teamhitless.com/project/nuke-san/",
+      "addedAt": "2026-04-30",
+      "games": [
+        {
+          "game": "sekiro",
+          "role": "hitless-sage",
+          "challenges": [
+            {
+              "restrictions": "Attack Power 1, No Kuro’s Charm, Demon Bell, Sword Only No Skills",
+              "proof": "https://youtu.be/sUwaDxLIcNE?si=QV14CRWco1rCNEGI",
+              "completedAt": "2026-04-30"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vernonroche4174",
+      "name": "vernonroche4174",
+      "avatar": "assets/runners/vernonroche4174.jpg",
+      "profile": "https://www.teamhitless.com/project/zott_/",
+      "addedAt": "2026-05-10",
+      "games": [
+        {
+          "game": "er",
+          "role": "hitless-sage",
+          "challenges": [
+            {
+              "restrictions": "RL1 No Upgrades/Infusions",
+              "proof": "https://youtu.be/SjepkK3uoyY?si=LeIa3F3HFQ7CaPyr",
+              "completedAt": "2026-05-10"
+            }
+          ]
+        },
+        {
+          "game": "ds3",
+          "role": "hitless-sage",
+          "challenges": [
+            {
+              "restrictions": "SL1 No Upgrades/Infusions NG+7 Fresh Start All Bosses",
+              "proof": "https://www.youtube.com/watch?v=n29ZLut-0M4&list=PLZ1Oyxn4GOa5NjpHjOVeldKpplaUUVpdU&index=10",
+              "completedAt": "2026-07-08"
+            }
+          ]
+        },
+        {
+          "game": "sekiro",
+          "role": "hitless-sage",
+          "challenges": [
+            {
+              "restrictions": "Purification Ending USB",
+              "proof": "https://www.youtube.com/watch?v=SbVT9Xu0U0Q&list=PLZ1Oyxn4GOa5NjpHjOVeldKpplaUUVpdU&index=21",
+              "completedAt": "2026-05-01"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dolos6331",
+      "name": "dolos6331",
+      "avatar": "assets/runners/dolos6331.jpg",
+      "profile": "https://www.youtube.com/@dolos2892",
+      "addedAt": "2026-07-08",
+      "games": [
+        {
+          "game": "ds2",
+          "role": "hitless-sage",
+          "challenges": [
+            {
+              "restrictions": "SL1 +0 Any% Hitless",
+              "proof": "https://www.youtube.com/watch?v=i3j0PHj0ri4",
+              "completedAt": "2026-07-08"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ari03a",
+      "name": "ari03a",
+      "avatar": "assets/runners/ari03a.jpg",
+      "profile": "https://www.youtube.com/@ari03a",
+      "addedAt": "2026-05-01",
+      "games": [
+        {
+          "game": "sekiro",
+          "role": "hitless-sage",
+          "challenges": [
+            {
+              "restrictions": "mmortal Severance Ending UDB, Sword only , No Hit/No Damage.",
+              "proof": "https://youtu.be/wE7hnodIcVY?si=14BvondtE0S2lOtU",
+              "completedAt": "2026-05-01"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lecarbonator",
+      "name": "lecarbonator",
+      "avatar": "assets/runners/lecarbonator.jpg",
+      "profile": "https://www.teamhitless.com/project/lecarbonator/",
+      "addedAt": "2026-06-17",
+      "games": [
+        {
+          "game": "ds3",
+          "role": "hitless-sage",
+          "challenges": [
+            {
+              "restrictions": "SL1 All Bosses, +0 Weapons, No Infusions, No Status Effects, No Offensive Magic",
+              "proof": "https://youtu.be/M_6VXQaF5Ks",
+              "completedAt": "2026-06-17"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "metal-username-metal",
+      "name": "Metal , username: metal.__.",
+      "avatar": "",
+      "profile": null,
+      "addedAt": "2026-05-05",
+      "games": [
+        {
+          "game": "er",
+          "role": "champion",
+          "challenges": []
+        },
+        {
+          "game": "ds1",
+          "role": "champion",
+          "challenges": []
+        }
+      ]
+    },
+    {
+      "id": "mmmmmhmhmhmmhm",
+      "name": "mmmmmhmhmhmmhm",
+      "avatar": "assets/runners/mmmmmhmhmhmmhm.jpg",
+      "profile": "https://www.teamhitless.com/project/miroxdx/",
+      "addedAt": "2026-05-19",
+      "games": [
+        {
+          "game": "er",
+          "role": "hitless-sage",
+          "challenges": [
+            {
+              "restrictions": "RL1 No Upgrades/Infusions",
+              "proof": "https://www.youtube.com/watch?v=GnzAbG5HQps",
+              "completedAt": "2026-05-19"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geori",
+      "name": "_geori",
+      "avatar": "assets/runners/geori.jpg",
+      "profile": "https://www.youtube.com/@radman0489",
+      "addedAt": "2026-05-17",
+      "games": [
+        {
+          "game": "ds2",
+          "role": "grandmaster",
+          "challenges": [
+            {
+              "title": "SL1 CoC NG+7 +0 Weapon No Rolling/Blocking/Parrying/Infusions/Buffs",
+              "restrictions": "SL1 NG+7 CoC +0 Weapons No Roll/Block/Parry/Infusions/Buffs",
+              "proof": "https://www.youtube.com/playlist?list=PLwAbGrTTCaCtfsDshgZvlR6FT3HzXPp0D",
+              "completedAt": "2026-05-17"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geod22",
+      "name": "Geod22",
+      "avatar": "assets/runners/geod22.jpg",
+      "profile": "https://www.youtube.com/@Geod_22",
+      "addedAt": "2026-05-09",
+      "games": [
+        {
+          "game": "ds1",
+          "role": "champion",
+          "challenges": []
+        },
+        {
+          "game": "ds1",
+          "role": "legend",
+          "challenges": [
+            {
+              "title": "SL1 No Rolling/Blocking/Parrying",
+              "restrictions": "SL1 No Roll/Block/Parry [Flawless]",
+              "proof": "https://youtube.com/playlist?list=PLPROAdvntAdFVpZ4Q5PfZFa8ZMDailF9J&si=FQKzT1xGR1X2VibV",
+              "completedAt": "2026-05-16"
+            }
+          ]
+        },
+        {
+          "game": "sekiro",
+          "role": "legend",
+          "challenges": [
+            {
+              "restrictions": "Demon Bell/Charmless/No revive(base legend restrictions), No Prosthetic, No Buffs/Items",
+              "proof": "https://youtube.com/playlist?list=PLPROAdvntAdFg1XeJpKMnAZTLYegJagWl&si=REsHKj12_JzT-WrA",
+              "completedAt": "2026-05-15"
+            }
+          ]
+        },
+        {
+          "game": "er",
+          "role": "legend",
+          "challenges": [
+            {
+              "title": "RL1 No Rolling/Blocking/Parrying",
+              "restrictions": "RL1 No Roll/Block/Parry",
+              "proof": "https://youtube.com/playlist?list=PLKovAHI_kUjQ&si=GJ604aNrzKYN6ee6",
+              "completedAt": "2026-08-16"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dopefull",
+      "name": "dopefull",
+      "avatar": "",
+      "profile": null,
+      "addedAt": "2026-05-20",
+      "games": [
+        {
+          "game": "er",
+          "role": "champion",
+          "challenges": []
+        }
+      ]
+    },
+    {
+      "id": "twomind",
+      "name": ".twomind",
+      "avatar": "",
+      "profile": null,
+      "addedAt": "2026-05-21",
+      "games": [
+        {
+          "game": "ds1",
+          "role": "champion",
+          "challenges": []
+        }
+      ]
+    },
+    {
+      "id": "ashr",
+      "name": "AshR",
+      "avatar": "assets/runners/ashr.jpg",
+      "profile": "https://www.teamhitless.com/project/ashr/",
+      "addedAt": "2026-05-24",
+      "games": [
+        {
+          "game": "sekiro",
+          "role": "hitless-sage",
+          "challenges": [
+            {
+              "restrictions": "Ap1, Demon Bell, No Kuro’s Charm, Sword Only, no Skills",
+              "proof": "https://youtu.be/7T5zObdd4Vc?si=4G5aAv7ePB5FO7uo",
+              "completedAt": "2026-05-24"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unholypancake",
+      "name": "UnholyPancake",
+      "avatar": "assets/runners/unholypancake.jpg",
+      "profile": "https://www.youtube.com/@UnholyPancake",
+      "addedAt": "2026-07-10",
+      "games": [
+        {
           "game": "des",
+          "role": "elitemaster",
+          "challenges": [
+            {
+              "title": "SL1 NG+5 PBWT +0 No Rolling/Blocking/Parrying",
+              "restrictions": "SL1 NG+5 PBWT No Sprint/Roll/Block/Parry",
+              "proof": "https://youtube.com/playlist?list=PLHrXTGhrnYvRH0fzILndNyhJbmOSeq-bM",
+              "completedAt": "2026-07-10"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sassasallalla23",
+      "name": "sassasallalla23",
+      "avatar": "assets/runners/sassasallalla23.jpg",
+      "profile": "https://www.youtube.com/@sassasallalla2312",
+      "addedAt": "2026-06-05",
+      "games": [
+        {
+          "game": "sekiro",
+          "role": "elitemaster",
+          "challenges": [
+            {
+              "title": "NG+7 Attack Power 1 Sword Only No Skills",
+              "restrictions": "Attack Power 1 Sword Only No Deflect",
+              "proof": "https://youtu.be/Qyj2uGQE8dY",
+              "completedAt": "2026-06-05"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fragileember",
+      "name": "fragileember",
+      "avatar": "assets/runners/fragileember.jpg",
+      "profile": "https://www.youtube.com/@Im_Fragile777",
+      "addedAt": "2026-06-21",
+      "games": [
+        {
+          "game": "sekiro",
+          "role": "legend",
+          "challenges": [
+            {
+              "title": "No Skills/Combat Arts",
+              "restrictions": "Demon Bell/Charmless/No revive(base legend restrictions), No Buffs/Items, No Skills/Combat Arts",
+              "proof": "https://youtube.com/playlist?list=PL4PPsupDZPRqUTQ3iBEjcVHstgqDjAyxk&si=vikfsyHsoX91MyMR",
+              "completedAt": "2026-06-21"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "eater-of-ants",
+      "name": "Eater of ants",
+      "avatar": "assets/runners/eater-of-ants.jpg",
+      "profile": "https://www.youtube.com/@aguy1077",
+      "addedAt": "2026-06-25",
+      "games": [
+        {
+          "game": "sekiro",
+          "role": "grandmaster",
+          "challenges": [
+            {
+              "title": "NG+7 Attack Power 1",
+              "restrictions": "NG+7 Attack Power 1 No Items/Buffs All Bosses & Minibosses",
+              "proof": "https://www.youtube.com/playlist?list=PLMZuLugr4w_fSnukEFw5mM87wVYReNFCA",
+              "completedAt": "2026-06-25"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hardboiledbug",
+      "name": "hardboiledbug",
+      "avatar": "assets/runners/hardboiledbug.jpg",
+      "profile": "https://www.youtube.com/@hardboiledbug",
+      "addedAt": "2026-07-05",
+      "games": [
+        {
+          "game": "er",
           "role": "master",
           "challenges": [
             {
-              "title": "SL1 NG+5 PBWT No Rolling/Blocking/Parrying",
-              "proof": "https://www.youtube.com/playlist?list=PLVSresNA4CEhPd_Fg9lBCDDqZHdoDGQ_o",
-              "completedAt": "2026-03-16"
+              "title": "RL1 NG+7 +0 Weapons No Auxiliary Effects",
+              "proof": "https://youtube.com/playlist?list=PLixFFOyM3Em7Ba1QgJrH791rVEgj_V8It&si=__3DW6J5IQ1KH00m",
+              "completedAt": "2026-07-05"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ca-waves",
+      "name": "ca_waves",
+      "avatar": "assets/runners/ca-waves.jpg",
+      "profile": "https://www.youtube.com/@CA_WAVE-hm9qy",
+      "addedAt": "2026-06-26",
+      "games": [
+        {
+          "game": "sekiro",
+          "role": "legend",
+          "challenges": [
+            {
+              "title": "No Skills/Combat Arts",
+              "restrictions": "Demon Bell/Charmless/No revive(base legend restrictions), No Prosthetic, No Buffs/Items, No Skills/Combat Arts",
+              "proof": "https://www.youtube.com/playlist?list=PLSxsn9go2mTc",
+              "completedAt": "2026-06-26"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "saigosen",
+      "name": "saigosen.",
+      "avatar": "assets/runners/saigosen.jpg",
+      "profile": "https://www.youtube.com/@Diavolo-6371",
+      "addedAt": "2026-07-12",
+      "games": [
+        {
+          "game": "sekiro",
+          "role": "master",
+          "challenges": [
+            {
+              "title": "Attack Power 1",
+              "restrictions": "Attack power 1, no items, no buffs, no prosthetics, no combat arts (there are skills)",
+              "proof": "https://youtube.com/playlist?list=PLqMlf_GooQLnYKMRPySkaw4DL3Y8MmZqn",
+              "completedAt": "2026-07-12"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "metal",
+      "name": "metal.__.",
+      "avatar": "assets/runners/metal.jpg",
+      "profile": "https://www.youtube.com/@metal.__7v",
+      "addedAt": "2026-07-17",
+      "games": [
+        {
+          "game": "er",
+          "role": "master",
+          "challenges": [
+            {
+              "title": "RL1 NG+7 No Roll/Block/Parry",
+              "proof": "https://youtube.com/playlist?list=PLKNqV2PlcJXBK1x8V6zsu2IAtiQeEcvuc&si=73DNQOwT8H-gt_a8",
+              "completedAt": "2026-07-17"
             }
           ]
         }
@@ -48,15 +675,208 @@
       "addedAt": "2026-09-28",
       "games": [
         {
-          "game": "ds1",
+          "game": "ds3",
           "role": "legend",
           "challenges": [
             {
               "title": "SL1 No Rolling/Blocking/Parrying",
-              "proof": "https://www.youtube.com/playlist?list=PLSOyl0djFew8T-tEJRoEpsZWVL3lK5wo-",
-              "completedAt": "2026-01-04"
+              "restrictions": "SL1 No Roll/Block/Parry",
+              "proof": "https://youtube.com/playlist?list=PLSOyl0djFew-IrEoRjs4mHLwDGqx6Z_2G&si=i6BTu9JmyzRrDwLd",
+              "completedAt": "2026-07-23"
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "voidwalker-011",
+      "name": "voidwalker_011",
+      "avatar": "assets/runners/voidwalker-011.jpg",
+      "profile": "https://www.youtube.com/@LostfromASH",
+      "addedAt": "2026-07-22",
+      "games": [
+        {
+          "game": "ds3",
+          "role": "legend",
+          "challenges": [
+            {
+              "title": "SL1 No Rolling/Blocking/Parrying",
+              "restrictions": "SL1 No Roll/Block/Parry",
+              "proof": "https://youtube.com/playlist?list=PLMREUsX2tiro&si=frlT1oZQBP9bWlcL",
+              "completedAt": "2026-07-22"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "av4ri",
+      "name": "av4ri",
+      "avatar": "assets/runners/av4ri.jpg",
+      "profile": "https://www.youtube.com/@avari1",
+      "addedAt": "2026-07-31",
+      "games": [
+        {
+          "game": "ds1",
+          "role": "master",
+          "challenges": [
+            {
+              "title": "SL1 NG+6 No Rolling/Blocking/Parrying",
+              "restrictions": "SL1 NG+6 No Roll/Block/Parry",
+              "proof": "https://www.youtube.com/playlist?list=PLPQ_u77gMXu0",
+              "completedAt": "2026-07-31"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rv-bladek",
+      "name": "--RV--Bladek",
+      "avatar": "",
+      "profile": null,
+      "addedAt": "2026-08-22",
+      "games": [
+        {
+          "game": "er",
+          "role": "champion",
+          "challenges": []
+        }
+      ]
+    },
+    {
+      "id": "jonathan",
+      "name": "Jonathan_",
+      "avatar": "assets/runners/jonathan.jpg",
+      "profile": "https://www.youtube.com/@jonathanUnderscore/featured",
+      "addedAt": "2026-09-28",
+      "games": [
+        {
+          "game": "er",
+          "role": "master",
+          "challenges": [
+            {
+              "title": "RL1 NG+7 +0 Weapons No Auxiliary Effects",
+              "proof": "https://www.youtube.com/playlist?list=PLlouJzco8-bSQBkK-obmMOeAH6ikoFVIN",
+              "completedAt": "2026-08-22"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "waves",
+      "name": "Waves",
+      "avatar": "assets/runners/waves.jpg",
+      "profile": "https://www.youtube.com/@CA_WAVE-hm9qy",
+      "addedAt": "2026-08-22",
+      "games": [
+        {
+          "game": "er",
+          "role": "master",
+          "challenges": [
+            {
+              "title": "RL1 NG+7 +0 Weapons No Auxiliary Effects",
+              "proof": "https://www.youtube.com/playlist?list=PLCsXXdrNR3JE",
+              "completedAt": "2026-08-22"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "eyadyeah",
+      "name": "eyad.yeah",
+      "avatar": "",
+      "profile": null,
+      "addedAt": "2026-08-28",
+      "games": [
+        {
+          "game": "bb",
+          "role": "champion",
+          "challenges": []
+        }
+      ]
+    },
+    {
+      "id": "kitloin",
+      "name": "kitloin",
+      "avatar": "",
+      "profile": null,
+      "addedAt": "2026-09-16",
+      "games": [
+        {
+          "game": "er",
+          "role": "champion",
+          "challenges": []
+        }
+      ]
+    },
+    {
+      "id": "darkn1ght2440",
+      "name": "DarkN1ght2440",
+      "avatar": "assets/runners/darkn1ght2440.jpg",
+      "profile": "https://www.youtube.com/@DarkN1ght2440s",
+      "addedAt": "2026-09-22",
+      "games": [
+        {
+          "game": "ds1",
+          "role": "master",
+          "challenges": [
+            {
+              "title": "SL1 NG+6 No Rolling/Blocking/Parrying",
+              "restrictions": "SL1 NG+6 No Roll/Block/Parry",
+              "proof": "https://www.youtube.com/playlist?list=PLbZlIv2LqlOdY1Ikt1mMvckCoZNiKRq36",
+              "completedAt": "2026-09-22"
+            }
+          ]
+        },
+        {
+          "game": "ds3",
+          "role": "legend",
+          "challenges": [
+            {
+              "title": "SL1 No Rolling/Blocking/Parrying",
+              "restrictions": "SL1 No Roll/Block/Parry",
+              "proof": "https://www.youtube.com/playlist?list=PLbZlIv2LqlOdCYrAI3LVPYL9iOkGojGnu",
+              "completedAt": "2026-09-22"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "abyssalsnake",
+      "name": "abyssalsnake",
+      "avatar": "assets/runners/abyssalsnake.jpg",
+      "profile": "https://www.youtube.com/@AbyssaISnake",
+      "addedAt": "2026-10-03",
+      "games": [
+        {
+          "game": "sekiro",
+          "role": "master",
+          "challenges": [
+            {
+              "title": "Attack Power 1",
+              "restrictions": "Attack Power 1Demon Bell/Charmless/No revive(base legend restrictions), No Prosthetic, No Buffs/Items, No Skills/Combat Arts",
+              "proof": "https://youtube.com/playlist?list=PLMMLRYzWPyDQ&si=hNZUgo9S13FWmBsK",
+              "completedAt": "2026-10-03"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "squidofentropy",
+      "name": "squidofentropy",
+      "avatar": "",
+      "profile": null,
+      "addedAt": "2026-10-03",
+      "games": [
+        {
+          "game": "sekiro",
+          "role": "champion",
+          "challenges": []
         }
       ]
     }
