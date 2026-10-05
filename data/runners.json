@@ -219,6 +219,18 @@
               "completedAt": "2026-06-07"
             }
           ]
+        },
+        {
+          "game": "sekiro",
+          "role": "grandmaster",
+          "challenges": [
+            {
+              "title": "NG+7 Attack Power 1",
+              "restrictions": "NG+7 Attack Power 1 No Items/Buffs All Bosses & Minibosses",
+              "proof": "https://www.youtube.com/playlist?list=PLb-rxDi294MQ",
+              "completedAt": "2026-10-05"
+            }
+          ]
         }
       ]
     },
@@ -675,6 +687,16 @@
       "addedAt": "2026-09-28",
       "games": [
         {
+          "game": "ds1",
+          "role": "legend",
+          "challenges": []
+        },
+        {
+          "game": "ds2",
+          "role": "legend",
+          "challenges": []
+        },
+        {
           "game": "ds3",
           "role": "legend",
           "challenges": [
@@ -761,6 +783,70 @@
               "completedAt": "2026-08-22"
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "jonithfkennedy",
+      "name": "Jade",
+      "avatar": "",
+      "profile": null,
+      "addedAt": "2026-10-05",
+      "games": [
+        {
+          "game": "des",
+          "role": "master",
+          "challenges": []
+        }
+      ]
+    },
+    {
+      "id": "reaper8475",
+      "name": "Soul",
+      "avatar": "",
+      "profile": "https://www.youtube.com/@Reaper_SR",
+      "addedAt": "2026-10-05",
+      "games": [
+        {
+          "game": "ds1",
+          "role": "legend",
+          "challenges": []
+        },
+        {
+          "game": "sekiro",
+          "role": "legend",
+          "challenges": [
+            {
+              "title": "No Prosthetic/Items/Buffs",
+              "restrictions": "Demon Bell/Charmless/No revive(base legend restrictions), No Prosthetic, No Buffs/Items",
+              "proof": "https://www.youtube.com/playlist?list=PLPsrBikLjqYLiwVBi4BNOhjPc9CyYvdyj",
+              "completedAt": "2026-10-05"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "xylifinty",
+      "name": "xylifinty",
+      "avatar": "",
+      "profile": null,
+      "addedAt": "2026-10-05",
+      "games": [
+        {
+          "game": "ds1",
+          "role": "champion",
+          "challenges": []
+        },
+        {
+          "game": "ds3",
+          "role": "champion",
+          "challenges": []
+        },
+        {
+          "game": "er",
+          "role": "champion",
+          "challenges": []
         }
       ]
     },
