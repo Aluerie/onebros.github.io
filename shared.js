@@ -161,6 +161,23 @@
         return runners.flatMap((runner) => (runner.games || []).map((entry) => ({ runner, entry })));
       },
 
+      /** Best date for when this game/role entry was verified (challenge completedAt). */
+      entryVerifiedAt(entry, runner) {
+        let best = "";
+        for (const c of entry.challenges || []) {
+          const d = String(c.completedAt || "").trim();
+          if (d && (!best || d > best)) best = d;
+        }
+        return best || runner.addedAt || "";
+      },
+
+      compareVerifiedEntry(a, b) {
+        const da = catalog.entryVerifiedAt(a.entry, a.runner);
+        const db = catalog.entryVerifiedAt(b.entry, b.runner);
+        if (da !== db) return da < db ? 1 : -1;
+        return runnerIndex.get(b.runner) - runnerIndex.get(a.runner);
+      },
+
       /* Default display order: newest added to the site first.
        *   1. addedAt, descending (ISO date or datetime strings compare correctly as text)
        *   2. same or missing addedAt: later position in runners.json first (entries are appended)
@@ -234,9 +251,18 @@
       : `<span class="${cls}" aria-hidden="true">${inner}</span>`;
   }
 
-  function challengeHtml(challenge) {
+  function challengeLinkLabel(challenge, mode = "short") {
+    const canonical = String(challenge.title || "").trim();
+    const full = String(challenge.restrictions || challenge.title || "").trim();
+    if (mode === "full") return full;
+    return canonical;
+  }
+
+  function challengeHtml(challenge, mode = "short") {
     const proof = safeUrl(challenge.proof);
-    const title = escapeHtml(challenge.title);
+    const label = challengeLinkLabel(challenge, mode);
+    if (!label) return "";
+    const title = escapeHtml(label);
     // The challenge title itself is the proof link.
     return proof
       ? `<li><a class="challenge-link" href="${escapeHtml(proof)}" target="_blank" rel="noopener noreferrer">${title}</a></li>`
@@ -248,15 +274,15 @@
    * @param catalog  result of loadCatalog()
    * @param runner   runner object from runners.json
    * @param entries  the runner's role entries to show (defaults to all)
-   * @param opts     { highlight: (entry) => boolean, background: boolean }
+   * @param opts     { highlight, background, challengeMode }
    *                 background: use the cardBackground of the game of the runner's top role
-   *                 (the entry that also sets the card's tier colour), if that game has one.
+   *                 challengeMode: "short" (homepage — canonical titles) or "full" (game HoF)
    *
    * Only real data is shown: without a profile URL the picture and name are plain (not links);
    * a role with no recorded challenges shows just "Game — Role", with no empty list or placeholder.
    */
   function runnerCard(catalog, runner, entries = runner.games || [], opts = {}) {
-    const { highlight = () => false, background = false } = opts;
+    const { highlight = () => false, background = false, challengeMode = "short" } = opts;
     const profile = safeUrl(runner.profile);
     const name = escapeHtml(runner.name);
     const sorted = [...entries].sort((a, b) => catalog.roleSortKey(b.role) - catalog.roleSortKey(a.role));
@@ -274,7 +300,9 @@
         // Cards name the OneBros tier itself (e.g. "Master"), not the game's own name for it ("Old One").
         const role = catalog.role(entry.role);
         const roleLabel = escapeHtml(role ? role.name : entry.role);
-        const challenges = entry.challenges || [];
+        const challenges = (entry.challenges || [])
+          .map((c) => challengeHtml(c, challengeMode))
+          .filter(Boolean);
         return `
           <div class="runner-entry tier-${escapeHtml(entry.role)}${highlight(entry) ? " is-match" : ""}">
             <p class="runner-entry-head">
@@ -282,7 +310,7 @@
               <span class="runner-entry-game">${gameLabel}</span><span class="sep" aria-hidden="true">—</span>
               <span class="runner-entry-tier">${roleLabel}</span>
             </p>
-            ${challenges.length ? `<ul class="challenge-list">${challenges.map(challengeHtml).join("")}</ul>` : ""}
+            ${challenges.length ? `<ul class="challenge-list">${challenges.join("")}</ul>` : ""}
           </div>`;
       })
       .join("");
