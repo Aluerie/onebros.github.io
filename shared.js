@@ -251,16 +251,17 @@
       : `<span class="${cls}" aria-hidden="true">${inner}</span>`;
   }
 
-  function challengeLinkLabel(challenge, mode = "short") {
-    const canonical = String(challenge.title || "").trim();
+  // shortFallback: the short label for a challenge with no canonical title (only used for proof links).
+  function challengeLinkLabel(challenge, mode = "short", shortFallback = "") {
+    const canonical = String(challenge.title || "").trim() || shortFallback;
     const full = String(challenge.restrictions || challenge.title || "").trim();
     if (mode === "full") return full;
     return canonical;
   }
 
-  function challengeHtml(challenge, mode = "short") {
+  function challengeHtml(challenge, mode = "short", shortFallback = "") {
     const proof = safeUrl(challenge.proof);
-    const label = challengeLinkLabel(challenge, mode);
+    const label = challengeLinkLabel(challenge, mode, proof ? shortFallback : "");
     if (!label) return "";
     const title = escapeHtml(label);
     // The challenge title itself is the proof link.
@@ -300,8 +301,11 @@
         // Cards name the OneBros tier itself (e.g. "Master"), not the game's own name for it ("Old One").
         const role = catalog.role(entry.role);
         const roleLabel = escapeHtml(role ? role.name : entry.role);
+        // No Hit runs have no canonical challenge title: in short mode their proof link is named
+        // after the role (e.g. "Hitless Sage") instead of listing the full restrictions.
+        const shortFallback = role && role.track === "nohit" ? role.name : "";
         const challenges = (entry.challenges || [])
-          .map((c) => challengeHtml(c, challengeMode))
+          .map((c) => challengeHtml(c, challengeMode, shortFallback))
           .filter(Boolean);
         return `
           <div class="runner-entry tier-${escapeHtml(entry.role)}${highlight(entry) ? " is-match" : ""}">
