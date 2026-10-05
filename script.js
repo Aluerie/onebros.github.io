@@ -23,6 +23,8 @@
 
   let catalog;
 
+  const HOMEPAGE_RECENT_RUNS = 10;
+
   function renderStats() {
     const challengeCount = catalog
       .entries()
@@ -150,26 +152,49 @@
     const game = $("#filter-game").value;
     const role = $("#filter-role").value;
 
-    const matches = (entry) => (!game || entry.game === game) && (!role || entry.role === role);
-    const filtering = Boolean(game || role);
+    const matchesEntry = (entry) => (!game || entry.game === game) && (!role || entry.role === role);
+    const filtering = Boolean(query || game || role);
 
-    const list = catalog.runners
-      .filter((r) => !query || String(r.name).toLowerCase().includes(query))
-      .filter((r) => !filtering || (r.games || []).some(matches))
-      .sort(catalog.compareAdded);
+    const totalRunners = catalog.runners.length;
+    const totalRuns = catalog.entries().length;
 
-    const total = catalog.runners.length;
-    $("#results-count").textContent = total ? `${list.length} of ${total} runner${total === 1 ? "" : "s"}` : "";
+    let pairs = catalog
+      .entries()
+      .filter(({ runner, entry }) => {
+        if (query && !String(runner.name).toLowerCase().includes(query)) return false;
+        return matchesEntry(entry);
+      })
+      .sort(catalog.compareVerifiedEntry);
 
-    if (!total) {
+    const countEl = $("#results-count");
+    if (!totalRunners) {
+      countEl.textContent = "";
       grid.innerHTML = `<p class="empty">No verified runners have been added yet.</p>`;
-    } else if (!list.length) {
-      grid.innerHTML = `<p class="empty">No runners match these filters.</p>`;
-    } else {
-      grid.innerHTML = list
-        .map((r) => runnerCard(catalog, r, r.games, { highlight: filtering ? matches : undefined, background: true }))
-        .join("");
+      return;
     }
+    if (!pairs.length) {
+      countEl.textContent = filtering
+        ? `0 of ${totalRuns} verified run${totalRuns === 1 ? "" : "s"}`
+        : "";
+      grid.innerHTML = `<p class="empty">No runs match these filters.</p>`;
+      return;
+    }
+
+    if (!filtering) {
+      pairs = pairs.slice(0, HOMEPAGE_RECENT_RUNS);
+      countEl.textContent = `Showing ${pairs.length} most recent of ${totalRuns} verified run${totalRuns === 1 ? "" : "s"} · ${totalRunners} runner${totalRunners === 1 ? "" : "s"}`;
+    } else {
+      countEl.textContent = `${pairs.length} of ${totalRuns} verified run${totalRuns === 1 ? "" : "s"}`;
+    }
+
+    grid.innerHTML = pairs
+      .map(({ runner, entry }) =>
+        runnerCard(catalog, runner, [entry], {
+          highlight: filtering ? matchesEntry : undefined,
+          background: true,
+        })
+      )
+      .join("");
   }
 
   // A direct #anchor (e.g. #rules-no-hit) points into content rendered from JSON. Scroll to it

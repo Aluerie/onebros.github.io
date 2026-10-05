@@ -77,7 +77,7 @@
           <span class="hof-count">${entries.length}</span>
         </h3>
         <div class="runners-grid">
-          ${entries.map(({ runner, entry }) => runnerCard(catalog, runner, [entry])).join("")}
+          ${entries.map(({ runner, entry }) => runnerCard(catalog, runner, [entry], { challengeMode: "full" })).join("")}
         </div>
       </div>`;
   }
