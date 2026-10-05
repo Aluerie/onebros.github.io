@@ -1094,6 +1094,129 @@ a.runner-avatar:hover {
   color: var(--accent-strong);
 }
 
+.runner-card.is-entries .runner-entries {
+  padding-top: 18px;
+}
+
+/* Runner page: the picture and name sit in the hero; the runs list stays a readable width. */
+.profile-hero .runner-head {
+  padding: 0;
+}
+
+.profile-hero .runner-avatar {
+  --avatar-size: clamp(96px, 12vw, 128px);
+}
+
+.profile-hero .runner-name {
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1.05;
+}
+
+.profile-id-text .staff-badges {
+  justify-content: flex-start;
+  margin-top: 12px;
+}
+
+.profile-runs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr));
+  gap: clamp(18px, 2vw, 28px);
+  align-items: stretch;
+}
+
+.profile-game {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.profile-game-banner {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 7;
+  max-height: clamp(168px, 28vw, 320px);
+  height: auto;
+  margin: 0;
+  padding: 18px 22px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-bottom: 0;
+  border-radius: var(--radius) var(--radius) 0 0;
+  background: var(--surface);
+}
+
+.profile-game .runner-card {
+  flex: 1;
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+
+.profile-game-banner.is-plain {
+  aspect-ratio: auto;
+  max-height: none;
+  height: auto;
+  justify-content: start;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0 0 12px;
+}
+
+.profile-game-art {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.35s ease;
+}
+
+.profile-game-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 75% 90% at 50% 50%, rgba(0, 0, 0, 0.42), transparent 72%),
+    linear-gradient(180deg, rgba(12, 11, 10, 0.15) 0%, rgba(12, 11, 10, 0.55) 100%);
+  pointer-events: none;
+}
+
+.profile-game-banner.is-plain::after {
+  content: none;
+}
+
+.profile-game-logo {
+  width: min(90%, 680px);
+  max-height: 68%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 16px rgba(0, 0, 0, 0.75));
+}
+
+.profile-game-logo.blend-screen {
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.45));
+}
+
+.profile-game-banner:hover .profile-game-art {
+  transform: scale(1.04);
+}
+
+.profile-game-title {
+  margin: 0;
+  font-size: clamp(1.7rem, 3vw, 2.15rem);
+  line-height: 1.1;
+}
+
+.profile-game-banner:not(.is-plain) .profile-game-title {
+  color: var(--text);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.8);
+}
+
 .runner-entries {
   display: grid;
   gap: 10px;

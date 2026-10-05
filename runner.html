@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onebros - Runner</title>
+  <meta name="description" content="Verified runs for a Onebros runner.">
+  <meta name="theme-color" content="#0c0b0a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Onebros home">
+        <span class="brand-mark" aria-hidden="true">◆</span>
+        <span class="brand-name">Onebros</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul>
+          <li class="nav-games"><a href="index.html#games">Games</a></li>
+          <li><a href="index.html#rules">Rules</a></li>
+          <li><a href="index.html#runners">Runners</a></li>
+          <li><a href="staff.html">Staff</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="game-hero profile-hero" id="overview" aria-labelledby="runner-title">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="container game-hero-inner" id="runner-hero">
+        <p class="loading">Loading runner…</p>
+      </div>
+    </section>
+
+    <div id="runner-content"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <span class="brand-mark" aria-hidden="true">◆</span>
+          <span class="brand-name">Onebros</span>
+        </a>
+        <p class="muted">A community for Souls challenge runners.</p>
+      </div>
+      <nav aria-label="Footer">
+        <ul class="footer-links">
+          <li><a href="index.html#games">Games</a></li>
+          <li><a href="index.html#rules">Rules</a></li>
+          <li><a href="index.html#runners">Runners</a></li>
+          <li><a href="staff.html">Staff</a></li>
+        </ul>
+      </nav>
+      <p class="footer-note muted">
+        Onebros is a fan community and is not affiliated with FromSoftware or any
+        publisher. All game names are trademarks of their respective owners.
+        <br>© <span id="year">2026</span> Onebros
+      </p>
+    </div>
+  </footer>
+
+  <a class="back-to-top" href="#top" aria-label="Back to top">
+    <span aria-hidden="true">↑</span>
+  </a>
+
+  <script src="shared.js"></script>
+  <script src="runner.js"></script>
+</body>
+</html>

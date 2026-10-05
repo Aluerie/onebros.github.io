@@ -3,7 +3,8 @@
  * Each person is listed once, in the first shown group (in file order, i.e. by priority) matching
  * any of their roles, with a badge for every role they hold. Within a group, people
  * are ordered by the group's role order, then file order. Groups marked "hidden": true stay in the
- * data but are not shown. A person with a "profile" URL gets their avatar and name linked to it (new tab).
+ * data but are not shown. A staff member who is also a verified runner links to their runner
+ * page. Otherwise a profile URL opens their picture and name in a new tab.
  * Depends on shared.js.
  */
 (function () {
@@ -17,6 +18,7 @@
     loadJson,
     loadCatalog,
     avatarHtml,
+    runnerPageUrl,
     bindAvatarFallback,
     initChrome,
     initGamesMenu,
@@ -24,20 +26,28 @@
   } = window.OneBros;
 
   // One badge for every role the person holds, in the order roles are listed in staff.json.
-  function staffCardHtml(person, rolesById) {
-    const profile = safeUrl(person.profile);
+  function staffCardHtml(person, rolesById, runnerIds) {
+    const external = safeUrl(person.profile);
+    const runnerId = runnerIds.has(person.username) ? person.username : runnerIds.has(person.id) ? person.id : "";
+    const page = runnerId ? runnerPageUrl(runnerId) : "";
+    const href = page || external;
     const name = escapeHtml(person.name);
     const badges = [...rolesById.values()]
       .filter((role) => (person.roles || []).includes(role.id))
       .map((role) => `<li class="staff-badge">${escapeHtml(role.name)}</li>`)
       .join("");
+    const nameHtml = href
+      ? page
+        ? `<a href="${escapeHtml(page)}">${name}</a>`
+        : `<a href="${escapeHtml(external)}" target="_blank" rel="noopener noreferrer">${name}</a>`
+      : name;
     return `
       <article class="runner-card staff-card">
         <header class="staff-head">
-          ${avatarHtml(person, profile)}
+          ${avatarHtml(person, href)}
           <div class="staff-id">
             <h3 class="runner-name">
-              ${profile ? `<a href="${escapeHtml(profile)}" target="_blank" rel="noopener noreferrer">${name}</a>` : name}
+              ${nameHtml}
             </h3>
             ${person.username ? `<p class="staff-username">@${escapeHtml(person.username)}</p>` : ""}
           </div>
@@ -46,7 +56,7 @@
       </article>`;
   }
 
-  function renderStaff(data) {
+  function renderStaff(data, runnerIds) {
     const rolesById = new Map((data.roles || []).map((r) => [r.id, r]));
     const placed = new Set();
 
@@ -80,7 +90,7 @@
           <section class="section${i % 2 ? " section-alt" : ""}" id="${id}" ${label}>
             <div class="container">
               ${head}
-              <div class="staff-grid">${members.map((p) => staffCardHtml(p, rolesById)).join("")}</div>
+              <div class="staff-grid">${members.map((p) => staffCardHtml(p, rolesById, runnerIds)).join("")}</div>
             </div>
           </section>`;
       })
@@ -93,13 +103,17 @@
     initChrome();
     bindAvatarFallback($("#staff-content"));
 
-    // The catalog only feeds the Games dropdown; the page works without it.
-    loadCatalog()
-      .then((catalog) => initGamesMenu(catalog))
-      .catch((err) => console.error(err));
+    let runnerIds = new Set();
+    try {
+      const catalog = await loadCatalog();
+      initGamesMenu(catalog);
+      runnerIds = new Set((catalog.runners || []).map((r) => r.id));
+    } catch (err) {
+      console.error(err);
+    }
 
     try {
-      renderStaff(await loadJson(PATHS.staff));
+      renderStaff(await loadJson(PATHS.staff), runnerIds);
     } catch (err) {
       console.error(err);
       $("#staff-content").innerHTML = `<div class="container section">${loadErrorHtml()}</div>`;
