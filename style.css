@@ -622,25 +622,19 @@ code {
   margin-top: 0;
 }
 
+/* One centered column: the intro (left-aligned text), the stats, then the buttons on one row. */
 .hero-intro {
   position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: end;
-  gap: 32px 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
   margin-top: 48px;
-}
-
-/* Wide screens: the text column is at least as wide as the hero buttons on one row;
-   the stats take the rest. Narrower screens keep the wrapping layout above. */
-@media (min-width: 1360px) {
-  .hero-intro {
-    grid-template-columns: minmax(max-content, 1fr) auto;
-  }
 }
 
 .hero-intro .hero-lead {
   margin-top: 0;
+  max-width: 760px;
 }
 
 /* Community description: the opening statement, a shade brighter than the lead that follows it. */
@@ -653,13 +647,24 @@ code {
 }
 
 .hero-intro .hero-actions {
-  margin-top: 24px;
+  justify-content: center;
+  margin-top: 0;
 }
 
 .hero-intro .hero-stats {
   margin: 0;
   padding-top: 0;
   border-top: 0;
+}
+
+/* The label takes any spare height, so the numbers line up whether a label wraps to one line or two. */
+.hero-intro .stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-intro .stat dt {
+  flex: 1;
 }
 
 .hero-lead {
@@ -1972,11 +1977,11 @@ html:has(body.game-page) {
   }
 
   .hero-intro {
-    grid-template-columns: 1fr;
     margin-top: 28px;
   }
 
   .hero-intro .hero-stats {
+    align-self: stretch;
     padding-top: 20px;
     border-top: 1px solid var(--border);
   }
