@@ -796,7 +796,13 @@
         {
           "game": "des",
           "role": "master",
-          "challenges": []
+          "challenges": [
+            {
+              "title": "SL1 NG+5 PBWT No Rolling/Blocking/Parrying",
+              "restrictions": "SL1 NG+5 PBWT No Roll/Block/Parry/Rings/Buffs",
+              "proof": "https://youtube.com/playlist?list=PLIY-0aNGUI7zBRQPrzSrecw3Ab00Lu4FB&si=S9SiWWjrIff13h55"
+            }
+          ]
         }
       ]
     },
@@ -810,7 +816,12 @@
         {
           "game": "ds1",
           "role": "legend",
-          "challenges": []
+          "challenges": [
+            {
+              "title": "SL1 No Rolling/Blocking/Parrying",
+              "restrictions": "SL1 No Roll"
+            }
+          ]
         },
         {
           "game": "sekiro",
