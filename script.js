@@ -1,5 +1,5 @@
 /* OneBros - homepage script
- * Renders the Games, Verified Runners and General Rules sections from
+ * Renders the Games, Verified Runs and General Rules sections from
  * data/games.json, data/runners.json and data/rules.json. Depends on shared.js.
  */
 (function () {
@@ -170,7 +170,7 @@
     const countEl = $("#results-count");
     if (!totalRunners) {
       countEl.textContent = "";
-      grid.innerHTML = `<p class="empty">No verified runners have been added yet.</p>`;
+      grid.innerHTML = `<p class="empty">No verified runs have been added yet.</p>`;
       return;
     }
     if (!pairs.length) {
