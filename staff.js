@@ -3,7 +3,7 @@
  * Each person is listed once, in the first shown group (in file order, i.e. by priority) matching
  * any of their roles, with a badge for every role they hold. Within a group, people
  * are ordered by the group's role order, then file order. Groups marked "hidden": true stay in the
- * data but are not shown.
+ * data but are not shown. A person with a "profile" URL gets their avatar and name linked to it (new tab).
  * Depends on shared.js.
  */
 (function () {
@@ -13,6 +13,7 @@
     PATHS,
     $,
     escapeHtml,
+    safeUrl,
     loadJson,
     loadCatalog,
     avatarHtml,
@@ -24,6 +25,8 @@
 
   // One badge for every role the person holds, in the order roles are listed in staff.json.
   function staffCardHtml(person, rolesById) {
+    const profile = safeUrl(person.profile);
+    const name = escapeHtml(person.name);
     const badges = [...rolesById.values()]
       .filter((role) => (person.roles || []).includes(role.id))
       .map((role) => `<li class="staff-badge">${escapeHtml(role.name)}</li>`)
@@ -31,9 +34,11 @@
     return `
       <article class="runner-card staff-card">
         <header class="staff-head">
-          ${avatarHtml(person)}
+          ${avatarHtml(person, profile)}
           <div class="staff-id">
-            <h3 class="runner-name">${escapeHtml(person.name)}</h3>
+            <h3 class="runner-name">
+              ${profile ? `<a href="${escapeHtml(profile)}" target="_blank" rel="noopener noreferrer">${name}</a>` : name}
+            </h3>
             ${person.username ? `<p class="staff-username">@${escapeHtml(person.username)}</p>` : ""}
           </div>
         </header>

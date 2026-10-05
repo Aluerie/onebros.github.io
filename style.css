@@ -1039,12 +1039,15 @@ a.runner-avatar:hover {
   padding: 20px;
 }
 
-/* Avatar (runner-avatar: picture, or the initial when there is none) beside name and @username. */
+/* Avatar (runner-avatar: picture, or the initial when there is none) above name and @username,
+   stacked and text-centered so the block stays centered however long or wrapped the name is. */
 .staff-head {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  gap: 10px;
+  text-align: center;
 }
 
 .staff-card .runner-avatar {
