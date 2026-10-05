@@ -28,6 +28,78 @@
     );
   }
 
+  function isYoutubeUrl(url) {
+    try {
+      return /^(?:www\.)?(youtube\.com|youtu\.be|m\.youtube\.com)$/i.test(new URL(url).hostname);
+    } catch {
+      return false;
+    }
+  }
+
+  function explicitChannel(url) {
+    try {
+      const u = new URL(url);
+      if (!/youtube\.com/i.test(u.hostname)) return "";
+      const parts = u.pathname.split("/").filter(Boolean);
+      if (parts[0]?.startsWith("@")) return `${u.origin}/${parts[0]}`;
+      if ((parts[0] === "channel" || parts[0] === "c") && parts[1]) return `${u.origin}/${parts[0]}/${parts[1]}`;
+    } catch {
+      /* not a channel url */
+    }
+    return "";
+  }
+
+  function youtubeUrls(runner, person) {
+    const urls = [];
+    if (runner.profile) urls.push(runner.profile);
+    if (person && person.profile) urls.push(person.profile);
+    for (const entry of runner.games || []) {
+      for (const challenge of entry.challenges || []) {
+        if (challenge.proof) urls.push(challenge.proof);
+      }
+    }
+    return urls.map((url) => safeUrl(url)).filter((url) => url && isYoutubeUrl(url));
+  }
+
+  function knownChannel(runner, person) {
+    for (const url of youtubeUrls(runner, person)) {
+      const channel = explicitChannel(url);
+      if (channel) return channel;
+    }
+    return "";
+  }
+
+  async function channelFromProofs(runner, person) {
+    for (const url of youtubeUrls(runner, person)) {
+      if (explicitChannel(url)) continue;
+      try {
+        const res = await fetch(
+          `https://www.youtube.com/oembed?url=${encodeURIComponent(url)}&format=json`
+        );
+        if (!res.ok) continue;
+        const data = await res.json();
+        const channel = data.author_url && safeUrl(data.author_url);
+        if (channel && isYoutubeUrl(channel)) return channel;
+      } catch {
+        /* try the next proof */
+      }
+    }
+    return "";
+  }
+
+  function linkButton(url, label) {
+    return `<a class="btn btn-ghost" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`;
+  }
+
+  function profileActionsHtml(profileUrl, channelUrl) {
+    const links = [];
+    const profileIsYoutube = profileUrl && isYoutubeUrl(profileUrl);
+    if (profileUrl && !profileIsYoutube) links.push(linkButton(profileUrl, profileLinkLabel(profileUrl)));
+    const youtube = channelUrl || (profileIsYoutube ? explicitChannel(profileUrl) || profileUrl : "");
+    if (youtube) links.push(linkButton(youtube, "YouTube"));
+    return links.length ? `<div class="hero-actions" id="profile-links">${links.join("")}</div>` : "";
+  }
+
   function profileLinkLabel(url) {
     try {
       const host = new URL(url).hostname.replace(/^www\./, "");
@@ -67,12 +139,26 @@
     const external = safeUrl(runner.profile);
     const person = staffForRunner(staffData, runner);
     const badges = staffBadgesHtml(staffData, person);
-    const action = external
-      ? `<div class="hero-actions"><a class="btn btn-ghost" href="${escapeHtml(external)}" target="_blank" rel="noopener noreferrer">${escapeHtml(profileLinkLabel(external))}</a></div>`
-      : "";
+    const channel = knownChannel(runner, person);
     document.title = `Onebros - ${runner.name}`;
     const desc = document.querySelector('meta[name="description"]');
     if (desc) desc.setAttribute("content", `Verified runs by ${runner.name} on Onebros.`);
+
+    const avatarSrc = safeUrl(runner.avatar);
+    const hero = $("#overview");
+    if (avatarSrc && hero) {
+      hero.classList.add("has-avatar-bg");
+      const bg = document.createElement("img");
+      bg.className = "profile-hero-bg";
+      bg.src = avatarSrc;
+      bg.alt = "";
+      bg.setAttribute("aria-hidden", "true");
+      bg.addEventListener("error", () => {
+        hero.classList.remove("has-avatar-bg");
+        bg.remove();
+      });
+      hero.insertBefore(bg, hero.firstChild);
+    }
 
     $("#runner-hero").innerHTML = `
       <p class="breadcrumb"><a href="index.html#runners">Runners</a> <span aria-hidden="true">/</span> ${escapeHtml(runner.name)}</p>
@@ -84,7 +170,22 @@
         </div>
       </header>
       <p class="hero-lead">${escapeHtml(runsLead(runner))}</p>
-      ${action}`;
+      ${profileActionsHtml(external, channel)}`;
+
+    if (!channel) {
+      channelFromProofs(runner, person).then((found) => {
+        if (!found) return;
+        let box = $("#profile-links");
+        if (box && box.querySelector('a[href*="youtube.com"], a[href*="youtu.be"]')) return;
+        if (!box) {
+          const lead = $("#runner-hero .hero-lead");
+          if (!lead) return;
+          lead.insertAdjacentHTML("afterend", `<div class="hero-actions" id="profile-links"></div>`);
+          box = $("#profile-links");
+        }
+        box.insertAdjacentHTML("beforeend", linkButton(found, "YouTube"));
+      });
+    }
   }
 
   function gameArt(game) {
