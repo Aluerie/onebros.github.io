@@ -1,5 +1,5 @@
 /* OneBros - shared helpers and components
- * Used by both the homepage (script.js) and game pages (game.js).
+ * Used by the homepage (script.js), game pages (game.js), and runner pages (runner.js).
  * Exposes a single global: window.OneBros
  */
 (function () {
@@ -102,6 +102,13 @@
 
   /* ---------- Catalog (games + roles + runners) ---------- */
 
+  // ?runner= is the GitHub Pages link; the hash keeps the id when a local
+  // static server rewrites the URL and drops the query.
+  function runnerPageUrl(runnerId) {
+    const id = encodeURIComponent(runnerId);
+    return `runner.html?runner=${id}#runner=${id}`;
+  }
+
   // Roles come in two separate tracks:
   //   "onebros" — Champion, Legend, Master, Elite Master, Grand Master (OneBros rules)
   //   "nohit"   — Hitless Scholar, Hitless Sage (Team Hitless ruleset)
@@ -155,6 +162,8 @@
         const id = encodeURIComponent(game.id);
         return `game.html?game=${id}#game=${id}`;
       },
+
+      runnerPageUrl,
 
       // Every { runner, entry } pair, where entry = one role a runner holds in one game.
       entries() {
@@ -246,9 +255,11 @@
       ? `<img src="${escapeHtml(src)}" alt="" loading="lazy" referrerpolicy="no-referrer" data-fallback="${initial}">`
       : initial;
     const cls = "runner-avatar";
-    return profile
-      ? `<a class="${cls}" href="${escapeHtml(profile)}" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">${inner}</a>`
-      : `<span class="${cls}" aria-hidden="true">${inner}</span>`;
+    if (!profile) return `<span class="${cls}" aria-hidden="true">${inner}</span>`;
+    // http(s) leaves the site (YouTube, Team Hitless). A runner page link stays in this tab.
+    const external = /^https?:/i.test(profile);
+    const attrs = external ? ' target="_blank" rel="noopener noreferrer"' : "";
+    return `<a class="${cls}" href="${escapeHtml(profile)}"${attrs} tabindex="-1" aria-hidden="true">${inner}</a>`;
   }
 
   // shortFallback: the short label for a challenge with no canonical title (only used for proof links).
@@ -279,12 +290,14 @@
    *                 background: use the cardBackground of the game of the runner's top role
    *                 challengeMode: "short" (homepage — canonical titles) or "full" (game HoF)
    *
-   * Only real data is shown: without a profile URL the picture and name are plain (not links);
-   * a role with no recorded challenges shows just "Game — Role", with no empty list or placeholder.
+   * The picture and name open the runner's page. A role with no recorded challenges
+   * shows just "Game — Role", with no empty list or placeholder.
+   * opts.head: false omits the picture and name (the runner page already shows them).
+   * opts.showGame: false omits the game name on each row (the runner page titles the game once).
    */
   function runnerCard(catalog, runner, entries = runner.games || [], opts = {}) {
-    const { highlight = () => false, background = false, challengeMode = "short" } = opts;
-    const profile = safeUrl(runner.profile);
+    const { highlight = () => false, background = false, challengeMode = "short", head = true, showGame = true } = opts;
+    const pageUrl = catalog.runnerPageUrl(runner.id);
     const name = escapeHtml(runner.name);
     const sorted = [...entries].sort((a, b) => catalog.roleSortKey(b.role) - catalog.roleSortKey(a.role));
     const topRole = sorted[0] ? catalog.role(sorted[0].role) : null;
@@ -311,7 +324,7 @@
           <div class="runner-entry tier-${escapeHtml(entry.role)}${highlight(entry) ? " is-match" : ""}">
             <p class="runner-entry-head">
               <span class="tier-dot" aria-hidden="true"></span>
-              <span class="runner-entry-game">${gameLabel}</span><span class="sep" aria-hidden="true">—</span>
+              ${showGame ? `<span class="runner-entry-game">${gameLabel}</span><span class="sep" aria-hidden="true">—</span>` : ""}
               <span class="runner-entry-tier">${roleLabel}</span>
             </p>
             ${challenges.length ? `<ul class="challenge-list">${challenges.join("")}</ul>` : ""}
@@ -320,13 +333,13 @@
       .join("");
 
     return `
-      <article class="runner-card${topRole ? " tier-" + escapeHtml(topRole.id) : ""}${bg ? " has-bg" : ""}"${bg}>
-        <header class="runner-head">
-          ${avatarHtml(runner, profile)}
+      <article class="runner-card${head ? "" : " is-entries"}${topRole ? " tier-" + escapeHtml(topRole.id) : ""}${bg ? " has-bg" : ""}"${bg}>
+        ${head ? `<header class="runner-head">
+          ${avatarHtml(runner, pageUrl)}
           <h3 class="runner-name">
-            ${profile ? `<a href="${escapeHtml(profile)}" target="_blank" rel="noopener noreferrer">${name}</a>` : name}
+            <a href="${escapeHtml(pageUrl)}">${name}</a>
           </h3>
-        </header>
+        </header>` : ""}
         <div class="runner-entries">${entryHtml}</div>
       </article>`;
   }
@@ -483,6 +496,7 @@
     rulePanelHtml,
     cardBackgroundStyle,
     runnerCard,
+    runnerPageUrl,
     avatarHtml,
     bindAvatarFallback,
     initChrome,

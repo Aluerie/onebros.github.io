@@ -54,8 +54,9 @@ Append an object to the **end** of the `runners` array in `runners.json`:
 - `id`: unique, lowercase, no spaces.
 - `avatar`: profile picture path or URL (local files go in `assets/runners/`). Shown as a circle
   (cropped by CSS only). If it is empty or fails to load, the runner's initial is shown.
-- `profile`: the link opened by the runner's picture and name (normally YouTube).
-  Use `null` when there is none: picture and name are then shown without a link.
+- `profile`: an external page for this runner (normally YouTube, or a Team Hitless profile).
+  Shown as a link on their runner page (`runner.html?runner=<id>`). Use `null` when there is none.
+  The picture and name on runner cards open that runner page, not this URL.
 - `challenges`: may be `[]` when only the role is verified; the card then shows just "Game — Role".
   Never add placeholder titles or URLs.
 - `addedAt` (every new runner): date — or ISO date-time — the entry was **added to the Onebros
