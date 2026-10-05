@@ -1,0 +1,163 @@
+{
+  "game": "bb",
+  "tiers": [
+    {
+      "role": "champion",
+      "content": [
+        "BB BL4 Champion runs require all 22 bosses to be defeated with screenshots/videos showing **stats, inventory screen, and boss drops/empty arenas/Lamps**, and proof of **Moon Presence kill / your player character waking up in the Clinic (NG+) with 230k Blood Echoes**.",
+        "It is recommended to start the final fight with 0 Blood Echoes (preventing problems in the case you are able to one-shot it all).",
+        "**Proof example:** SL1 Good Hunter of Bloodborne proof example, by acaciavix."
+      ],
+      "challengesTitle": "",
+      "challenges": []
+    },
+    {
+      "role": "legend",
+      "content": [
+        "BB BL4 Legend runs require adding **one** of the extra restrictions below onto the base BB BL4 Champion run.",
+        "For proof, submissions need video of all fights showing **stats and equipment** after killing the boss. It is recommended to also show souls/echoes obtained, especially for higher NG kills."
+      ],
+      "challengesTitle": "Challenges",
+      "challenges": [
+        {
+          "title": "BL4 No Rolling/Quickstepping",
+          "items": []
+        },
+        {
+          "title": "BL4 NG+6",
+          "items": []
+        },
+        {
+          "title": "BL4 Deathless All Bosses",
+          "items": ["Record the full run, includes DLC bosses"]
+        }
+      ]
+    },
+    {
+      "role": "master",
+      "content": [
+        "BB BL4 Master runs are equivalent to adding **two** of the extra restrictions onto the base BL4 Champion run.",
+        "For proof, submissions need video of all fights showing **stats and equipment** after killing the boss."
+      ],
+      "challengesTitle": "Challenges",
+      "challenges": [
+        {
+          "title": "BL4 NG+6 No Rolling/Quickstepping",
+          "items": []
+        },
+        {
+          "title": "BL4 +0 Weapons No Buffs",
+          "items": ["Fire/Bolt Papers are allowed for DLC bosses"]
+        },
+        {
+          "title": "BL4 Hunter's Torch Only",
+          "items": ["Use the standard torch for Gascoigne, then use Hunter's Torch for everything else"]
+        }
+      ]
+    },
+    {
+      "role": "elitemaster",
+      "content": [
+        "BB BL4 Elite Master runs is a step up in the challenge provided by Master, the required bosses remains the same. For proof, submissions need video of all fights showing **stats and equipment** after killing the boss."
+      ],
+      "challengesTitle": "Challenges",
+      "challenges": [
+        {
+          "title": "BL4 NG+6 No Roll/Gems/Buffs",
+          "items": ["All Runes are allowed"]
+        },
+        {
+          "title": "BL4 NG+6 No Sprint No Buffs/Aux",
+          "items": ["Only Preset Gems are allowed for this run"]
+        },
+        {
+          "title": "BL4 +0 No Rolling/Buffs",
+          "items": ["All Runes are allowed"]
+        },
+        {
+          "title": "BL4 NG+6 +0",
+          "items": [
+            "All Buffs/Runes are allowed",
+            "Pellets are allowed"
+          ]
+        }
+      ]
+    },
+    {
+      "role": "grandmaster",
+      "content": [
+        "BB BL4 Grand Master runs is the highest recognised challenge in Onebros, it is by no means the hardest challenge however after discussion we've decided to pull the brakes here and leave it to the runners to push it even further. The required bosses remains the same. For proof, submissions need video of all fights showing **stats and equipment** after killing the boss."
+      ],
+      "challengesTitle": "Challenge",
+      "challenges": [
+        {
+          "title": "BL4 NG+6 +0 No Roll",
+          "items": [
+            "All Buffs/Runes are allowed",
+            "Pellets are allowed"
+          ]
+        }
+      ]
+    }
+  ],
+  "restrictions": {
+    "title": "Legend And Above Banned Equipment and Strategies",
+    "groups": [
+      {
+        "type": "allowed",
+        "title": "Allowed",
+        "items": [
+          "**Rally** is allowed as a source of healing to prevent passive play. Blood Vials are still banned. (Moon Presence’s unavoidable attack requires Rally as vials are banned).",
+          "**Healing vs. Ebrietas** is allowed for her aura damage (which cannot be Rallied back).",
+          {
+            "text": "**Elite Master and Grand Master only:**",
+            "items": [
+              "Using vials to heal damage taken by blood bullet refill is allowed.",
+              "Using vials to heal fall damage in the Celestial Emissary boss fight is allowed."
+            ]
+          }
+        ]
+      },
+      {
+        "type": "banned",
+        "title": "Banned",
+        "items": [
+          {
+            "text": "**Chalice Dungeon Gems/Runes** are banned unless specified otherwise.",
+            "items": [
+              "Chalice Dungeons are not required for any run.",
+              "Using Upgrade Materials from Chalice Dungeons to get high-level weapons early is banned."
+            ]
+          },
+          "**Beast Blood Pellets** are banned unless specified otherwise.",
+          "**Tiny Music Box** vs. Gascoigne is banned.",
+          "**Pungent Blood Cocktails** vs. Blood-starved Beast are banned."
+        ]
+      }
+    ]
+  },
+  "noHit": {
+    "content": [
+      "For BL4 No Hit runs, we use **Team Hitless’ ruleset**.",
+      {
+        "label": "Link:",
+        "text": "Team Hitless — Bloodborne rules",
+        "url": "https://www.teamhitless.com/games/fromsoftware-games/bloodborne/"
+      }
+    ],
+    "roles": [
+      {
+        "role": "hitless-scholar",
+        "content": [
+          "This is a role that will be awarded to anyone who completes **BL4 Any% No Hit**."
+        ]
+      },
+      {
+        "role": "hitless-sage",
+        "content": [
+          "This is a role that will be awarded to anyone who completes **BL4 All Bosses** or a restricted Any% such as **BL4 Any% No Roll** or **BL4 Any% +0**."
+        ]
+      }
+    ]
+  }
+}

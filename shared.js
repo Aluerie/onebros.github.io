@@ -149,7 +149,11 @@
 
       gamePageUrl(gameId) {
         const game = gamesById.get(gameId);
-        return game && game.page ? `game.html?game=${encodeURIComponent(game.id)}` : "";
+        if (!game || !game.page) return "";
+        // Keep ?game= for GitHub Pages. Also put the id in the hash so local
+        // static servers that rewrite game.html → /game (and drop the query) still work.
+        const id = encodeURIComponent(game.id);
+        return `game.html?game=${id}#game=${id}`;
       },
 
       // Every { runner, entry } pair, where entry = one role a runner holds in one game.

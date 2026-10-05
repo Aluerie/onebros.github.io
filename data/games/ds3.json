@@ -1,0 +1,146 @@
+{
+  "game": "ds3",
+  "tiers": [
+    {
+      "role": "champion",
+      "content": [
+        "DS3 SL1 Champion runs require all **25 bosses** to be defeated with screenshots/videos showing **stats, inventory screen, and boss drops/empty arenas.**",
+        "If you used any boss souls for items, show them as well for proof. It is strongly recommended to not use boss souls just for souls, as you are effectively destroying your own proof.",
+        "**Proof example:** SL1 Champion of Dark Souls III proof example, by Jordie."
+      ],
+      "challengesTitle": "",
+      "challenges": []
+    },
+    {
+      "role": "legend",
+      "content": [
+        "DS3 SL1 Legend runs require adding **one** of the extra restrictions below onto the base DS3 SL1 Champion run.",
+        "For proof, submissions need video of all fights showing **stats and equipment** after killing the boss. It is recommended to also show souls obtained, especially for higher NG kills."
+      ],
+      "challengesTitle": "Challenges",
+      "challenges": [
+        {
+          "title": "SL1 No Rolling/Blocking/Parrying",
+          "items": []
+        },
+        {
+          "title": "SL1 +0 Weapons No Infusions/No Auxiliary Effects",
+          "items": [
+            "Auxiliary Effects refers to Bleed/Frost/Poison/Toxic",
+            "No Offensive Spells allowed"
+          ]
+        },
+        {
+          "title": "SL1 NG+7 No Auxiliary Effects",
+          "items": ["Auxiliary Effects refers to Bleed/Frost/Poison/Toxic"]
+        },
+        {
+          "title": "SL1 NG+ Broken Weapons No Auxiliary Effects",
+          "items": [
+            "Auxiliary Effects refers to Bleed/Frost/Poison/Toxic",
+            "Shields and off-hand tools must also be broken — parry frames/stamina loss on block are affected, so it matters for gameplay"
+          ]
+        },
+        {
+          "title": "SL1 Deathless All Bosses",
+          "items": ["Record the full run, includes DLC bosses"]
+        }
+      ]
+    },
+    {
+      "role": "master",
+      "content": [
+        "DS3 SL1 Master runs are equivalent to adding **two** of the extra restrictions from the Legend list onto the base DS3 SL1 Champion run.",
+        "For proof, submissions need video of all fights showing **stats and equipment** after killing the boss. It is recommended to also show souls obtained, especially for higher NG kills."
+      ],
+      "challengesTitle": "Challenges",
+      "challenges": [
+        {
+          "title": "SL1 +0 Weapon No Rolling/Blocking/Parrying/Infusions/Auxiliary Effects",
+          "items": ["Auxiliary Effects refers to Bleed/Frost/Poison/Toxic"]
+        },
+        {
+          "title": "SL1 NG+7 No Rolling/Blocking/Parrying",
+          "items": []
+        },
+        {
+          "title": "SL1 NG+7 +0 Weapon No Buffs/Infusions/Auxiliary Effects",
+          "items": ["Auxiliary Effects refers to Bleed/Frost/Poison/Toxic"]
+        }
+      ]
+    },
+    {
+      "role": "elitemaster",
+      "content": [
+        "DS3 SL1 Elite Master runs is a step up in the challenge provided by Master, the required bosses remains the same. For proof, submissions need video of all fights showing **stats and equipment** after killing the boss. It is recommended to also show souls obtained."
+      ],
+      "challengesTitle": "Challenges",
+      "challenges": [
+        {
+          "title": "SL1 NG+7 No Sprinting/Rolling/Blocking/Parrying",
+          "items": []
+        },
+        {
+          "title": "SL1 NG+7 No Rolling/Blocking/Parrying/Rings/Buffs",
+          "items": ["Perseverance is considered a buff and is banned in this run"]
+        }
+      ]
+    },
+    {
+      "role": "grandmaster",
+      "content": [
+        "DS3 SL1 Grand Master runs is the highest recognised challenge in Onebros, it is by no means the hardest challenge however after discussion we've decided to pull the brakes here and leave it to the runners to push it even further. The required bosses remains the same. For proof, submissions need video of all fights showing **stats and equipment** after killing the boss. It is recommended to also show souls obtained."
+      ],
+      "challengesTitle": "Challenge",
+      "challenges": [
+        {
+          "title": "SL1 NG+7 +0 Weapon No Rolling/Blocking/Parrying/Infusions/Auxiliary Effects/Buffs",
+          "items": [
+            "Auxiliary Effects refers to Bleed/Frost/Poison/Toxic",
+            "Perseverance is considered a buff and is banned in this run"
+          ]
+        }
+      ]
+    }
+  ],
+  "restrictions": {
+    "title": "Legend And Above Banned Equipment and Strategies",
+    "groups": [
+      {
+        "type": "banned",
+        "title": "Banned",
+        "items": [
+          "**Storm Ruler's Weapon Art vs. Yhorm** is banned. It’s too strong.",
+          "**Using Prisoner's Chain and Lloyd's Shield Ring together** is banned. They promote error-prone and passive play.",
+          "**Tears of Denial** is banned. It promotes error-prone and passive play.",
+          "**Morion Blade/Dark Hand** are banned. Obtaining them requires progressing Yoel's quest, which is not possible while staying at SL1.",
+          "**Power Within** is banned. It’s too strong."
+        ]
+      }
+    ]
+  },
+  "noHit": {
+    "content": [
+      "For SL1 No Hit runs, we use **Team Hitless’ ruleset**.",
+      {
+        "label": "Link:",
+        "text": "Team Hitless — Dark Souls III rules",
+        "url": "https://www.teamhitless.com/games/fromsoftware-games/dark-souls-iii/"
+      }
+    ],
+    "roles": [
+      {
+        "role": "hitless-scholar",
+        "content": [
+          "This is a role that will be awarded to anyone who completes **SL1 Any% No Hit**."
+        ]
+      },
+      {
+        "role": "hitless-sage",
+        "content": [
+          "This is a role that will be awarded to anyone who completes **SL1 All Bosses** or a restricted Any% such as **SL1 Any% No Roll** or **SL1 Any% +0**."
+        ]
+      }
+    ]
+  }
+}

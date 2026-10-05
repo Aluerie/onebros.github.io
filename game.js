@@ -337,13 +337,24 @@
     });
   }
 
-  function renderNotFound(message) {
+  function renderNotFound(message, catalog) {
     document.title = "Onebros - Game not found";
+    const published = catalog
+      ? catalog.games.filter((g) => catalog.gamePageUrl(g.id))
+      : [];
+    const picker = published.length
+      ? `<div class="hero-actions">${published
+          .map(
+            (g) =>
+              `<a class="btn btn-ghost" href="${escapeHtml(catalog.gamePageUrl(g.id))}">${escapeHtml(g.title)}</a>`
+          )
+          .join("")}</div>`
+      : `<div class="hero-actions"><a class="btn btn-primary" href="index.html#games">Back to all games</a></div>`;
     $("#game-hero").innerHTML = `
       <p class="breadcrumb"><a href="index.html#games">Games</a></p>
       <h1 id="game-title" class="game-hero-title">Page not available</h1>
       <p class="hero-lead">${message}</p>
-      <div class="hero-actions"><a class="btn btn-primary" href="index.html#games">Back to all games</a></div>`;
+      ${picker}`;
   }
 
   async function init() {
@@ -351,7 +362,10 @@
     const content = $("#game-content");
     bindAvatarFallback(content);
 
-    const gameId = new URLSearchParams(window.location.search).get("game") || "";
+    const gameId =
+      new URLSearchParams(window.location.search).get("game") ||
+      new URLSearchParams(window.location.hash.replace(/^#/, "")).get("game") ||
+      "";
 
     let catalog;
     try {
@@ -368,7 +382,10 @@
       renderNotFound(
         game
           ? `The ${escapeHtml(game.title)} page hasn't been published yet.`
-          : "We couldn't find that game."
+          : gameId
+            ? "We couldn't find that game."
+            : "Choose a game to view its rules and Hall of Fame.",
+        catalog
       );
       return;
     }
@@ -387,9 +404,10 @@
     content.innerHTML = sections.map((s, i) => sectionHtml({ ...s, alt: i % 2 === 0 })).join("");
     renderSectionNav([{ id: "overview", nav: "Overview" }, ...sections]);
 
-    // Jump to a #hash that only exists after rendering.
-    if (window.location.hash) {
-      const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+    // Jump to a section #hash after rendering. Ignore the #game=<id> routing hash.
+    const hash = decodeURIComponent(window.location.hash.slice(1));
+    if (hash && !hash.startsWith("game=")) {
+      const target = document.getElementById(hash);
       if (target) target.scrollIntoView();
     }
   }

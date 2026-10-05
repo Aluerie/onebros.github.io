@@ -1,0 +1,190 @@
+{
+  "game": "er",
+  "tiers": [
+    {
+      "role": "champion",
+      "content": [
+        "ER RL1 Champion runs require all **28 bosses** on the list below to be defeated with screenshots/videos showing **stats, inventory screen, and boss drops/empty arenas.**",
+        "If you used any boss remembrances for items, show them as well for proof. It is strongly recommended to not use boss remembrances just for runes, as you are effectively destroying your own proof.",
+        "This list aims to be as faithful to a regular Hitless All Base Game Remembrances Route as possible. Due to the open-world nature of Elden Ring, you will need to decide whether you'll be fighting Valiant Gargoyles or Mohg, The Omen (sewers) to reach Deeproot Depths.",
+        "Required bosses:",
+        {
+          "list": [
+            "Margit, the Fell Omen",
+            "Godrick the Grafted",
+            "Starscourge Radahn",
+            "Red Wolf of Radagon",
+            "Rennala, Queen of the Full Moon",
+            "Draconic Tree Sentinel",
+            "Godfrey, First Elden Lord (Golden Shade)",
+            "Morgott, the Omen King",
+            "Godskin Noble (Volcano Manor)",
+            "Rykard, Lord of Blasphemy",
+            "Fire Giant",
+            "Godskin Duo",
+            "Dragonlord Placidusax",
+            "Beast Clergyman/Maliketh, the Black Blade",
+            "Sir Gideon Ofnir, the All-Knowing",
+            "Godfrey, First Elden Lord/Hoarah Loux, Warrior",
+            "Radagon of the Golden Order/Elden Beast",
+            "Commander Niall",
+            "Mohg, Lord of Blood",
+            "Loretta, Knight of the Haligtree",
+            "Malenia, Blade of Miquella/Malenia, Goddess of Rot",
+            "Mimic Tear",
+            "Regal Ancestor Spirit",
+            "Valiant Gargoyles / Mohg, The Omen (Pick One)",
+            "Astel, Naturalborn of the Void",
+            "Fia's Champions",
+            "Royal Knight Loretta",
+            "Lichdragon Fortissax"
+          ]
+        },
+        "**Proof example:** RL1 Shardbearer of Elden Ring proof example, by recyclebin."
+      ],
+      "challengesTitle": "",
+      "challenges": []
+    },
+    {
+      "role": "legend",
+      "content": [
+        "ER RL1 Legend runs require adding **one** of the extra restrictions below onto the base ER RL1 Champion run.",
+        "For proof, submissions need video of all fights showing **stats and equipment** after killing the boss. It is recommended to also show runes obtained, especially for higher NG kills."
+      ],
+      "challengesTitle": "Challenges",
+      "challenges": [
+        {
+          "title": "RL1 No Rolling/Blocking/Parrying",
+          "items": ["Torrent is banned for dodging/iframes; using Torrent for gap closure is fine"]
+        },
+        {
+          "title": "RL1 +0 Weapons No Auxiliary Effects",
+          "items": [
+            "Auxiliary Effects refers to Poison, Rot, Blood, Frost, Sleep, Madness, Blight, Black Flame, and Destined Death"
+          ]
+        },
+        {
+          "title": "RL1 NG+7 No Auxiliary Effects",
+          "items": [
+            "Auxiliary Effects refers to Poison, Rot, Blood, Frost, Sleep, Madness, Blight, Black Flame, and Destined Death"
+          ]
+        },
+        {
+          "title": "RL1 NG+7 Torch Weapons Only Fresh Start No Auxiliary Effects",
+          "items": [
+            "Torch Weapons Only: You can use any of the torches from the Torch class (aside from those with Aux)",
+            "Fresh Start: Start the run with only gear from a new character, but on the required NG+. Discard all equipment except for the Wretch starting kit upon entering NG+ to start the run. Play as if it’s a new character (don't use equipment before you could obtain it, e.g., Bell Bearings or Talisman Slots before the bosses that drop them)",
+            "Serpent Hunter vs. Rykard is allowed"
+          ]
+        }
+      ]
+    },
+    {
+      "role": "master",
+      "content": [
+        "ER RL1 Master runs are equivalent to adding **two** of the extra restrictions from the Legend list onto the base ER RL1 Champion run.",
+        "For proof, submissions need video of all fights showing **stats and equipment** after killing the boss. It is recommended to also show runes obtained."
+      ],
+      "challengesTitle": "Recognised combinations",
+      "challenges": [
+        {
+          "title": "RL1 +0 No Roll/Block/Parry/Auxiliary Effects",
+          "items": ["Torrent dodging banned"]
+        },
+        {
+          "title": "RL1 NG+7 No Roll/Block/Parry",
+          "items": ["Torrent dodging banned"]
+        },
+        {
+          "title": "RL1 NG+7 +0 Weapons No Auxiliary Effects",
+          "items": []
+        }
+      ]
+    },
+    {
+      "role": "elitemaster",
+      "content": [
+        "ER RL1 Elite Master runs is a step up in the challenge provided by Master, the required bosses remains the same. For proof, submissions need video of all fights showing **stats and equipment**. Show runes obtained."
+      ],
+      "challengesTitle": "Challenges",
+      "challenges": [
+        {
+          "title": "RL1 NG+7 +0 No Talismans/Auxiliary Effects/Affinities/Buffs",
+          "items": [
+            "Stat boosting and equipment buffs are not allowed",
+            "Auxiliary Effects refers to Blood, Frost, Poison, and Toxic"
+          ]
+        },
+        {
+          "title": "RL1 NG+7 No Rolling/Blocking/Parrying/Talismans/Buffs",
+          "items": ["Stat boosting and equipment buffs are not allowed"]
+        }
+      ]
+    },
+    {
+      "role": "grandmaster",
+      "content": [
+        "ER RL1 Grand Master runs is the highest recognised challenge in Onebros, it is by no means the hardest challenge however after discussion we've decided to pull the brakes here and leave it to the runners to push it even further. The required bosses remains the same. For proof, submissions need video of all fights showing **stats and equipment**. Show runes obtained."
+      ],
+      "challengesTitle": "Challenge",
+      "challenges": [
+        {
+          "title": "RL1 NG+7 +0 Weapon No Rolling/Blocking/Parrying/Infusions/Auxiliary Effects/Buffs",
+          "items": ["Auxiliary Effects refers to Blood, Frost, Poison, and Toxic"]
+        }
+      ]
+    }
+  ],
+  "restrictions": {
+    "title": "Legend And Above Banned Equipment and Strategies",
+    "groups": [
+      {
+        "type": "allowed",
+        "title": "Allowed",
+        "items": [
+          "**Flask of Wondrous Physick, Greases, and Great Runes** are allowed.",
+          "**Talismans and Player Equipment** (e.g. Rakshasa's Set, Twinbird Kite Shield) are always allowed.",
+          "**Endure** is allowed specifically to handle roar attacks (like Maliketh or Hoarah Loux).",
+          "**Healing vs. Mohg's Bloodboon Ritual (Nihil)** is allowed.",
+          "**Ranged damage and offensive spells** are allowed against **Fia's Champions**."
+        ]
+      },
+      {
+        "type": "banned",
+        "title": "Banned",
+        "items": [
+          "**Ashes of War:** refer to the DSD Elden Ring Skills List to see what is allowed.",
+          "**Stonebarb Cracked Tear** is banned. It makes poise breaking most bosses incredibly easy.",
+          "**Timed Buffs** including Body (e.g. Flame, Grant me Strength), Aura (e.g. Golden Vow), Stamina Regen (e.g. Pickled Turtle Neck), Unique (e.g. Oath of Vengeance), Shield (e.g. Barricade Shield), and Health Regen (e.g. Bestial Vitality) are banned.",
+          "**All ranged offensive Spells** are banned as they promote passive play.",
+          "**Margit's Shackle, Mohg's Shackle, and the Blasphemous Claw** are banned.",
+          "**Rot** and **Sleep** are banned."
+        ]
+      }
+    ]
+  },
+  "noHit": {
+    "content": [
+      "For RL1 No Hit runs, we use **Team Hitless’ ruleset**.",
+      {
+        "label": "Link:",
+        "text": "Team Hitless — Elden Ring rules",
+        "url": "https://www.teamhitless.com/games/fromsoftware-games/elden-ring/"
+      }
+    ],
+    "roles": [
+      {
+        "role": "hitless-scholar",
+        "content": [
+          "This is a role that will be awarded to anyone who completes **RL1 Any% No Hit**."
+        ]
+      },
+      {
+        "role": "hitless-sage",
+        "content": [
+          "This is a role that will be awarded to anyone who completes **All Base Game Remembrances** or a restricted Any% such as **RL1 Any% No Roll** or **RL1 Any% +0**."
+        ]
+      }
+    ]
+  }
+}
