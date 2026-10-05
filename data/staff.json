@@ -23,7 +23,7 @@
     { "id": "1recyclebin1", "name": "Recycle", "username": "1recyclebin1", "roles": ["admin"], "avatar": "assets/staff/1recyclebin1.jpg", "profile": "https://www.youtube.com/channel/UCotlzoNU0DtqlbpBw5m-6Fg" },
     { "id": "ritingaming", "name": "Ritin", "username": "ritingaming", "roles": ["moderator"], "avatar": "assets/staff/ritingaming.jpg", "profile": "https://www.youtube.com/@Ritin_Games/videos" },
     { "id": "johndank", "name": "Savio, Bueno Enthusiast", "username": "johndank", "roles": ["checker"], "avatar": "assets/staff/johndank.jpg", "profile": "https://www.youtube.com/channel/UCV7ABObVqPtAgM-qBARCWhg" },
-    { "id": "8475", "name": "Soul reaper", "username": "reaper8475", "roles": ["moderator", "checker"], "avatar": "assets/staff/8475.jpg", "profile": "https://www.youtube.com/@Reaper_SR" },
+    { "id": "8475", "name": "Soul", "username": "reaper8475", "roles": ["moderator", "checker"], "avatar": "assets/staff/8475.jpg", "profile": "https://www.youtube.com/@Reaper_SR" },
     { "id": "unholypancake", "name": "UnholyPancake", "username": "unholypancake", "roles": ["moderator", "checker"], "avatar": "assets/staff/unholypancake.jpg", "profile": "https://www.youtube.com/channel/UC2-BIQ9jHZmCjL-dw-aRu0A" },
     { "id": "zeldasouls", "name": "Zelda", "username": "zeldasouls", "roles": ["checker"], "avatar": "assets/staff/zeldasouls.jpg", "profile": "https://www.youtube.com/channel/UCQ19Tqp7U6VzxC4V4m2gR9g" },
     { "id": "tomkokkas", "name": "TomKokkas", "username": "tomkokkas", "roles": ["website-dev"], "avatar": "assets/staff/tomkokkas.jpg", "profile": "https://www.youtube.com/@TomKokkas-Souls" },
