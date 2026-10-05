@@ -1,0 +1,7 @@
+{
+  "name": "onebros.github.io",
+  "private": true,
+  "scripts": {
+    "start": "npx --yes http-server -p 4173 -c-1 ."
+  }
+}

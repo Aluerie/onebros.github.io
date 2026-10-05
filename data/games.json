@@ -96,9 +96,31 @@
     {
       "id": "ds2",
       "title": "Dark Souls II",
+      "subtitle": "Dark Souls II & Scholar of the First Sin",
       "short": "DS2",
       "year": 2014,
-      "page": false,
+      "page": true,
+      "cardBackground": {
+        "src": "assets/games/ds2-background.jpg",
+        "position": "center"
+      },
+      "pageBackground": {
+        "src": "assets/games/ds2-background.jpg",
+        "position": "center"
+      },
+      "logo": {
+        "src": "assets/games/ds2-logo.png",
+        "width": 589,
+        "height": 98,
+        "blend": "screen"
+      },
+      "roles": [
+        "champion",
+        "legend",
+        "master",
+        "elitemaster",
+        "grandmaster"
+      ],
       "roleNames": {}
     },
     {
@@ -106,15 +128,63 @@
       "title": "Bloodborne",
       "short": "BB",
       "year": 2015,
-      "page": false,
-      "roleNames": {}
+      "page": true,
+      "cardBackground": {
+        "src": "assets/games/bb-background.jpg",
+        "position": "center"
+      },
+      "pageBackground": {
+        "src": "assets/games/bb-background.jpg",
+        "position": "center"
+      },
+      "logo": {
+        "src": "assets/games/bb-logo.jpg",
+        "width": 1280,
+        "height": 720,
+        "blend": "screen"
+      },
+      "roles": [
+        "champion",
+        "legend",
+        "master",
+        "elitemaster",
+        "grandmaster"
+      ],
+      "roleNames": {
+        "champion": "Good Hunter",
+        "legend": "Great One",
+        "master": "Nightmare",
+        "elitemaster": "Elite Master",
+        "grandmaster": "Grand Master"
+      }
     },
     {
       "id": "ds3",
       "title": "Dark Souls III",
       "short": "DS3",
       "year": 2016,
-      "page": false,
+      "page": true,
+      "cardBackground": {
+        "src": "assets/games/ds3-background.jpg",
+        "position": "center"
+      },
+      "pageBackground": {
+        "src": "assets/games/ds3-background.jpg",
+        "position": "center"
+      },
+      "logo": {
+        "src": "assets/games/ds3-logo.png",
+        "width": 579,
+        "height": 58,
+        "blend": "screen"
+      },
+      "roles": [
+        "champion",
+        "legend",
+        "master",
+        "elitemaster",
+        "grandmaster"
+      ],
       "roleNames": {}
     },
     {
@@ -122,16 +192,70 @@
       "title": "Sekiro: Shadows Die Twice",
       "short": "Sekiro",
       "year": 2019,
-      "page": false,
-      "roleNames": {}
+      "page": true,
+      "cardBackground": {
+        "src": "assets/games/sekiro-background.jpg",
+        "position": "center"
+      },
+      "pageBackground": {
+        "src": "assets/games/sekiro-background.jpg",
+        "position": "center"
+      },
+      "logo": {
+        "src": "assets/games/sekiro-logo.png",
+        "width": 640,
+        "height": 168,
+        "blend": "screen"
+      },
+      "roles": [
+        "champion",
+        "legend",
+        "master",
+        "elitemaster",
+        "grandmaster"
+      ],
+      "roleNames": {
+        "champion": "Shadow",
+        "legend": "Sword Saint",
+        "master": "Severer",
+        "elitemaster": "Elite Master",
+        "grandmaster": "Grand Master"
+      }
     },
     {
       "id": "er",
       "title": "Elden Ring",
       "short": "ER",
       "year": 2022,
-      "page": false,
-      "roleNames": {}
+      "page": true,
+      "cardBackground": {
+        "src": "assets/games/er-background.jpg",
+        "position": "center"
+      },
+      "pageBackground": {
+        "src": "assets/games/er-background.jpg",
+        "position": "center"
+      },
+      "logo": {
+        "src": "assets/games/er-logo.png",
+        "width": 640,
+        "height": 98,
+        "blend": "screen"
+      },
+      "roles": [
+        "champion",
+        "legend",
+        "master",
+        "elitemaster",
+        "grandmaster"
+      ],
+      "roleNames": {
+        "champion": "Shardbearer",
+        "legend": "Godslayer",
+        "master": "Empyrean",
+        "elitemaster": "Elite Master",
+        "grandmaster": "Grand Master"
+      }
     }
   ]
 }

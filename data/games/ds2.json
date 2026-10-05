@@ -1,0 +1,176 @@
+{
+  "game": "ds2",
+  "tiers": [
+    {
+      "role": "champion",
+      "content": [
+        "DS2 SL1 Champion runs require all 41 bosses to be defeated with screenshots/videos showing **stats, inventory screen, and boss drops/empty arenas.**",
+        "If you used any boss souls for items, show them as well for proof. It is strongly recommended to not use boss souls just for souls, as you are effectively destroying your own proof.",
+        "**Proof example:** SL1 Champion of Dark Souls II proof example, by stepnfree."
+      ],
+      "challengesTitle": "",
+      "challenges": []
+    },
+    {
+      "role": "legend",
+      "content": [
+        "DS2 SL1 Legend runs require adding **one** of the extra restrictions below onto the base DS2 SL1 Champion run.",
+        "For proof, submissions need video of all fights showing **stats and equipment** after killing the boss. It is recommended to also show souls obtained, especially for higher NG kills.",
+        "**CoC** = Company of Champions covenant, required for most Legend runs. Note that fighting Darklurker will require you to join Pilgrims of Dark covenant, so rejoin CoC afterwards (or use Cheat Engine to fight Darklurker in CoC if you’re on PC and you’re cool)."
+      ],
+      "challengesTitle": "Challenges",
+      "challenges": [
+        {
+          "title": "SL1 CoC No Rolling/Blocking/Parrying",
+          "items": []
+        },
+        {
+          "title": "SL1 CoC +0 Weapons/+0 Armour No Infusions/Toxic/Poison",
+          "items": [
+            "Bleed is allowed",
+            "Flynn's Ring is banned",
+            "Ice Rapier’s R2 is banned"
+          ]
+        },
+        {
+          "title": "SL1 CoC NG+7",
+          "items": ["Red Tearstone Ring and Brightbugs are allowed"]
+        },
+        {
+          "title": "SL1 CoC Broken Thief Sword only",
+          "items": [
+            "Flynn's Ring is banned",
+            "Powerstancing is banned"
+          ]
+        },
+        {
+          "title": "SL1 CoC Broken Straight Sword only",
+          "items": [
+            "Flynn's Ring is banned",
+            "Powerstancing is banned"
+          ]
+        },
+        {
+          "title": "SL1 Deathless All Bosses",
+          "items": ["Record the full run, includes DLC bosses"]
+        }
+      ]
+    },
+    {
+      "role": "master",
+      "content": [
+        "DS2 SL1 Master runs are equivalent to adding **two** of the extra restrictions from the Legend list onto the base DS2 SL1 Champion run.",
+        "For proof, submissions need video of all fights showing **stats and equipment** after killing the boss. It is recommended to also show souls obtained, especially for higher NG kills."
+      ],
+      "challengesTitle": "Challenges",
+      "challenges": [
+        {
+          "title": "SL1 CoC NG+7 No Roll/Block/Parry",
+          "items": [
+            "Flame Weapon is not allowed for this run",
+            "Red Tearstone is allowed for this run",
+            "Brightbugs are allowed for this run"
+          ]
+        },
+        {
+          "title": "SL1 CoC NG+7 +0 Weapons No Infusions/Buffs/Poison/Toxic",
+          "items": [
+            "Flynn's Ring is allowed",
+            "Bleed is allowed",
+            "Ice Rapier's R2 is allowed",
+            "Small Orange/Blue Burrs are allowed for the Smelter Demons"
+          ]
+        },
+        {
+          "title": "SL1 CoC Fist Only",
+          "items": [
+            "Brightbugs are allowed",
+            "Vanquisher's Seal is banned"
+          ]
+        }
+      ]
+    },
+    {
+      "role": "elitemaster",
+      "content": [
+        "DS2 SL1 Elite Master runs is a step up in the challenge provided by Master, the required bosses remains the same. For proof, submissions need video of all fights showing **stats and equipment** after killing the boss. It is recommended to also show souls obtained."
+      ],
+      "challengesTitle": "Challenge",
+      "challenges": [
+        {
+          "title": "SL1 CoC Base Agility Fists Only, No Vanquisher's Seal",
+          "items": [
+            "Red Tearstone is allowed for this run",
+            "Brightbugs are allowed for this run"
+          ]
+        }
+      ]
+    },
+    {
+      "role": "grandmaster",
+      "content": [
+        "DS2 SL1 Grand Master runs is the highest recognised challenge in Onebros, it is by no means the hardest challenge however after discussion we've decided to pull the brakes here and leave it to the runners to push it even further. The required bosses remains the same. For proof, submissions need video of all fights showing **stats and equipment** after killing the boss. It is recommended to also show souls obtained."
+      ],
+      "challengesTitle": "Challenge",
+      "challenges": [
+        {
+          "title": "SL1 CoC NG+7 +0 Weapon No Rolling/Blocking/Parrying/Infusions/Buffs",
+          "items": ["Engraved Gauntlets are banned for this run"]
+        }
+      ]
+    }
+  ],
+  "restrictions": {
+    "title": "Legend And Above Banned Equipment and Strategies",
+    "groups": [
+      {
+        "type": "allowed",
+        "title": "Allowed",
+        "items": [
+          "Cheesing **Gank Squad/Royal Rat Authority** via stalagmite/Lingering Flame is allowed.",
+          "**Lifegems and Mushrooms** vs. both Smelter Demons are allowed as sources of healing for their aura damage.",
+          {
+            "text": "**Burnt Ivory King’s gauntlet** is not considered part of his boss fight, so using Loyce Knights, healing, or whatever else you may want to complete it is allowed. Using Cheat Engine to cut out the gauntlet altogether is also allowed (but make sure you are using the modengine component so the ice spawns, otherwise you may have to redo the kill).",
+            "items": [
+              "If you do use Loyce Knights, you must wait for Burnt Ivory King to kill the last Loyce Knight before engaging with him.",
+              "You do not have to include the gauntlet in recordings, but make sure to start the recording before Ivory King spawns."
+            ]
+          }
+        ]
+      },
+      {
+        "type": "banned",
+        "title": "Banned",
+        "items": [
+          "**Brightbugs** are banned in runs unless specified otherwise. They’re too strong.",
+          "**Red Tearstone Ring** is only banned in Legend runs.",
+          "Skipping **Fume Knight's Phase 1** with Velstadt's Helm is banned. Runs need to show that players can deal with all parts of a boss' moveset, cutting out a part of that moveset via item is not valid."
+        ]
+      }
+    ]
+  },
+  "noHit": {
+    "content": [
+      "For SL1 No Hit runs, we use **Team Hitless’ ruleset**.",
+      {
+        "label": "Link:",
+        "text": "Team Hitless — Dark Souls II rules",
+        "url": "https://www.teamhitless.com/games/fromsoftware-games/dark-souls-ii/"
+      }
+    ],
+    "roles": [
+      {
+        "role": "hitless-scholar",
+        "content": [
+          "This is a role that will be awarded to anyone who completes **SL1 Any% No Hit**."
+        ]
+      },
+      {
+        "role": "hitless-sage",
+        "content": [
+          "This is a role that will be awarded to anyone who completes **SL1 All Bosses** or a restricted Any% such as **SL1 Any% No Roll** or **SL1 Any% +0**."
+        ]
+      }
+    ]
+  }
+}

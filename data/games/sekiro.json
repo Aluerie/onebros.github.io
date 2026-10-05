@@ -1,0 +1,149 @@
+{
+  "game": "sekiro",
+  "tiers": [
+    {
+      "role": "champion",
+      "content": [
+        "Sekiro Champion runs require all **13 bosses** that drop **Memories** to be defeated (excluding Isshin Ashina and “Inner” bosses), with screenshots/videos showing **Base Vitality/Posture**, **Demon Bell** status, and boss drops/empty arenas.",
+        "Attack Power is not restricted for this tier.",
+        "The **Demon Bell** must be active."
+      ],
+      "challengesTitle": "",
+      "challenges": []
+    },
+    {
+      "role": "legend",
+      "content": [
+        "Sekiro Legend runs require a Champion run plus **two** additional restrictions from the list below.",
+        "**Demon Bell** must be active, and **Kuro's Charm** must be given away at the start (No Kuro's Charm).",
+        "For proof, submissions need video of all fights showing **Attack Power** and unlocked Skills."
+      ],
+      "challengesTitle": "Challenges",
+      "challenges": [
+        {
+          "title": "Attack Power 1",
+          "items": ["Counts as 2 restrictions"]
+        },
+        {
+          "title": "NG+7 Attack Power 14",
+          "items": ["Counts as 2 restrictions"]
+        },
+        {
+          "title": "No Block/Deflect",
+          "items": []
+        },
+        {
+          "title": "No Prosthetic Tools",
+          "items": []
+        },
+        {
+          "title": "No Skills/Combat Arts",
+          "items": []
+        },
+        {
+          "title": "No Items/Buffs",
+          "items": []
+        },
+        {
+          "title": "Deathless All Bosses",
+          "items": ["Genichiro's first encounter must be defeated"]
+        }
+      ]
+    },
+    {
+      "role": "master",
+      "content": [
+        "Sekiro Master runs require a Champion run plus **two Legend restrictions** and **one Master restriction**.",
+        "**Demon Bell** must be active, and **No Kuro's Charm** is required.",
+        "For proof, submissions need video of all fights showing **Attack Power** and unlocked Skills."
+      ],
+      "challengesTitle": "Master restrictions",
+      "challenges": [
+        {
+          "title": "Attack Power 1",
+          "items": []
+        },
+        {
+          "title": "Sword Only Deathless All Bosses",
+          "items": ["Sword Only means no Combat Arts, Items, Buffs, or Prosthetic Tools"]
+        }
+      ]
+    },
+    {
+      "role": "elitemaster",
+      "content": [
+        "Sekiro Elite Master runs is a step up in the challenge provided by Master, the required bosses remains the same.",
+        "**Demon Bell** and **No Kuro's Charm** are required. For proof, submissions need video of all fights showing **stats and equipment** after killing the boss."
+      ],
+      "challengesTitle": "Challenge",
+      "challenges": [
+        {
+          "title": "NG+7 Attack Power 1 Sword Only No Skills",
+          "items": []
+        }
+      ]
+    },
+    {
+      "role": "grandmaster",
+      "content": [
+        "Sekiro Grand Master runs is the highest recognised challenge in Onebros. **Demon Bell** and **No Kuro's Charm** are required.",
+        "Requires all bosses and minibosses (**All 51 bosses**; Inner and Shura bosses are not included).",
+        "For proof, submissions need video of all fights showing **stats and equipment** after killing the boss."
+      ],
+      "challengesTitle": "Challenge",
+      "challenges": [
+        {
+          "title": "NG+7 Attack Power 1",
+          "items": [
+            "Items and buffs are allowed",
+            "Puppeteer Ninjutsu is banned",
+            "Healing specifically for the Ceremonial Tanto is allowed"
+          ]
+        }
+      ]
+    }
+  ],
+  "restrictions": {
+    "title": "Legend And Above Banned Equipment and Strategies",
+    "groups": [
+      {
+        "type": "banned",
+        "title": "Banned",
+        "items": [
+          "**Shura Ending** is banned (except for NoHit Any%). Emma and Isshin Ashina are not required.",
+          "**Reflections/Gauntlets** are banned as alternatives to normal fights due to boss scaling issues. “Inner” bosses are not required.",
+          "**Resurrection** is banned.",
+          "**Dancing Dragon Mask** is banned.",
+          "**Malcontent Whistle, Firecrackers, Fistful of Ash**, and **Snap Seeds** (specifically vs. Corrupted Monk) are banned.",
+          "**Mortal Draw** and **Empowered Mortal Draw** are banned.",
+          "**Lightning Reversal** is banned (except for the Divine Dragon fight).",
+          "**Falling off the boss arena** is banned. This can be used to avoid damage and “respawn” (mainly relevant to DoH but also applies to Gyoubu, SSI, True Monk, and FSM)."
+        ]
+      }
+    ]
+  },
+  "noHit": {
+    "content": [
+      "For No Hit runs, we use **Team Hitless’ ruleset**.",
+      {
+        "label": "Link:",
+        "text": "Team Hitless — Sekiro rules",
+        "url": "https://www.teamhitless.com/games/fromsoftware-games/sekiro-shadows-die-twice/"
+      }
+    ],
+    "roles": [
+      {
+        "role": "hitless-scholar",
+        "content": [
+          "This is a role that will be awarded to anyone who completes **Shura Ending No Hit**."
+        ]
+      },
+      {
+        "role": "hitless-sage",
+        "content": [
+          "This is a role that will be awarded to anyone who completes **All Memories** or a restricted Any% such as **Shura Ending No Prosthetic** or **Shura Ending Attack Power 1**."
+        ]
+      }
+    ]
+  }
+}
