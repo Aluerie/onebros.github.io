@@ -208,14 +208,10 @@
         return runners.flatMap((runner) => (runner.games || []).map((entry) => ({ runner, entry })));
       },
 
-      /** Best date for when this game/role entry was verified (challenge completedAt). */
+      /** When this game/role entry was added to the site: the entry's own addedAt, else the runner's.
+       * completedAt is never used here, so verified historical runs still show as recent additions. */
       entryVerifiedAt(entry, runner) {
-        let best = "";
-        for (const c of entry.challenges || []) {
-          const d = String(c.completedAt || "").trim();
-          if (d && (!best || d > best)) best = d;
-        }
-        return best || runner.addedAt || "";
+        return entry.addedAt || runner.addedAt || "";
       },
 
       compareVerifiedEntry(a, b) {
@@ -354,18 +350,21 @@
         // Cards name the OneBros tier itself (e.g. "Master"), not the game's own name for it ("Old One").
         const role = catalog.role(entry.role);
         const roleName = escapeHtml(role ? role.name : entry.role);
-        // A role-only run (e.g. a Champion run, which has no challenge title) can carry its own
-        // proof link on the entry; the role label is then that link.
-        const entryProof = safeUrl(entry.proof);
-        const roleLabel = entryProof
-          ? `<a href="${escapeHtml(entryProof)}" target="_blank" rel="noopener noreferrer">${roleName}</a>`
-          : roleName;
         // No Hit runs have no canonical challenge title: in short mode their proof link is named
         // after the role (e.g. "Hitless Sage") instead of listing the full restrictions.
         const shortFallback = role && role.track === "nohit" ? role.name : "";
         const challenges = (entry.challenges || [])
           .map((c) => challengeHtml(c, challengeMode, shortFallback))
           .filter(Boolean);
+        // A role-only run (e.g. a Champion run, which has no challenge title) puts its proof on the
+        // role label itself, never on a line of its own: the entry's proof, or else the proof of an
+        // untitled challenge when no challenge line is shown.
+        const entryProof =
+          safeUrl(entry.proof) ||
+          (challenges.length ? "" : (entry.challenges || []).map((c) => safeUrl(c.proof)).find(Boolean) || "");
+        const roleLabel = entryProof
+          ? `<a href="${escapeHtml(entryProof)}" target="_blank" rel="noopener noreferrer">${roleName}</a>`
+          : roleName;
         return `
           <div class="runner-entry tier-${escapeHtml(entry.role)}${highlight(entry) ? " is-match" : ""}">
             <p class="runner-entry-head">

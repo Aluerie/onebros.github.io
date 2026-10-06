@@ -68,6 +68,10 @@ Append an object to the **end** of the `runners` array in `runners.json`:
   newest added first. Runners with the same `addedAt` keep their order in this file, the one
   further down (added later) first; runners without `addedAt` come after all dated ones.
   It is about the site listing, not the achievement.
+- `games[].addedAt` (optional): date — or ISO date-time — this one game/role entry was added to the
+  site, when it was added later than the runner (e.g. a new role for an existing runner). The
+  homepage "Verified Runs" list (the ten most recent) orders entries by this, falling back to the
+  runner's `addedAt`, newest first. Do not change the runner's `addedAt` for a new entry.
 - `challenges[].completedAt` (optional): **when the achievement was completed**, `YYYY-MM-DD` —
   historical metadata only, never used for ordering. If the run was never dated explicitly,
   use the documented proxy: the publish date of the last required video of the proof (e.g. the
