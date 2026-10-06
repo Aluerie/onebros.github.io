@@ -124,6 +124,35 @@
       "roleNames": {}
     },
     {
+      "id": "ds3",
+      "title": "Dark Souls III",
+      "short": "DS3",
+      "year": 2016,
+      "page": true,
+      "cardBackground": {
+        "src": "assets/games/ds3-background.jpg",
+        "position": "center"
+      },
+      "pageBackground": {
+        "src": "assets/games/ds3-background.jpg",
+        "position": "center"
+      },
+      "logo": {
+        "src": "assets/games/ds3-logo.png",
+        "width": 579,
+        "height": 58,
+        "blend": "screen"
+      },
+      "roles": [
+        "champion",
+        "legend",
+        "master",
+        "elitemaster",
+        "grandmaster"
+      ],
+      "roleNames": {}
+    },
+    {
       "id": "bb",
       "title": "Bloodborne",
       "short": "BB",
@@ -157,35 +186,6 @@
         "elitemaster": "Elite Master",
         "grandmaster": "Grand Master"
       }
-    },
-    {
-      "id": "ds3",
-      "title": "Dark Souls III",
-      "short": "DS3",
-      "year": 2016,
-      "page": true,
-      "cardBackground": {
-        "src": "assets/games/ds3-background.jpg",
-        "position": "center"
-      },
-      "pageBackground": {
-        "src": "assets/games/ds3-background.jpg",
-        "position": "center"
-      },
-      "logo": {
-        "src": "assets/games/ds3-logo.png",
-        "width": 579,
-        "height": 58,
-        "blend": "screen"
-      },
-      "roles": [
-        "champion",
-        "legend",
-        "master",
-        "elitemaster",
-        "grandmaster"
-      ],
-      "roleNames": {}
     },
     {
       "id": "sekiro",

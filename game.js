@@ -23,6 +23,7 @@
     bindAvatarFallback,
     initChrome,
     initGamesMenu,
+    initPanelToggle,
     loadErrorHtml,
     discordIcon,
   } = window.OneBros;
@@ -62,14 +63,20 @@
       </ul>`;
   }
 
-  // One rule card: every piece of a role's rules, shown once.
-  function ruleCardHtml({ id, cls, label, title, body }) {
+  // One rule card: every piece of a role's rules, shown once. A collapsible panel like the
+  // General Rules: collapsed unless a direct #anchor targets it.
+  function ruleCardHtml({ id, cls, label, title, body, open }) {
     return `
-      <article class="tier-card rule-card ${cls}" id="${escapeHtml(id)}">
-        <p class="tier-label">${escapeHtml(label)}</p>
-        <h3 class="tier-title">${escapeHtml(title)}</h3>
-        <div class="rule-card-body">${body}</div>
-      </article>`;
+      <details class="rule-panel rule-card is-tier ${cls}" id="${escapeHtml(id)}"${open ? " open" : ""}>
+        <summary>
+          <span class="rule-panel-heading">
+            <span class="tier-label">${escapeHtml(label)}</span>
+            <span class="rule-panel-title">${escapeHtml(title)}</span>
+          </span>
+          <span class="rule-panel-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="rule-panel-body"><div class="rule-card-body">${body}</div></div>
+      </details>`;
   }
 
   function hallOfFameGroupHtml(catalog, game, role, entries) {
@@ -125,12 +132,14 @@
     const sections = [];
 
     /* Challenge Rules — one full-content card per role; the No Hit track keeps its own card */
+    const hash = decodeURIComponent(window.location.hash.slice(1));
     const tierCards = tierSections.map((t) =>
       ruleCardHtml({
         id: t.id,
         cls: `tier-${escapeHtml(t.role)}`,
         label: t.label,
         title: t.name,
+        open: t.id === hash,
         body: `<div class="prose">${contentHtml(t.content)}</div>${cardChallengesHtml(t.challengesTitle, t.challenges)}`,
       })
     );
@@ -140,6 +149,7 @@
           cls: "tier-nohit is-exception",
           label: noHit.label,
           title: noHit.name,
+          open: noHit.id === hash,
           body: `
             <p class="card-note">Not part of the Onebros tier progression. See also the <a href="index.html#rules-no-hit">general No Hit rules</a>.</p>
             <div class="prose">${contentHtml(noHit.content)}</div>
@@ -161,7 +171,11 @@
       eyebrow: `${game.title} rules`,
       title: "Challenge Rules",
       lead: `${escapeHtml(game.title)}-specific rules. See also the <a href="index.html#rules">General Rules</a>.`,
-      body: `<div class="rules-overview">${tierCards.join("")}${noHitCard}</div>`,
+      body: `
+        <div class="rules-toolbar">
+          <button class="link-btn" type="button" id="challenge-rules-toggle-all">Expand all</button>
+        </div>
+        <div class="rules-accordion">${tierCards.join("")}${noHitCard}</div>`,
     });
 
     /* Banned equipment / strategies */
@@ -413,6 +427,7 @@
     const { sections, roleCount, runnerCount } = buildPage(catalog, game, rules);
     renderHero(game, roleCount, runnerCount, catalog.submitRunUrl, catalog.discordUrl);
     content.innerHTML = sections.map((s, i) => sectionHtml({ ...s, alt: i % 2 === 0 })).join("");
+    initPanelToggle($("#challenge-rules-toggle-all"), () => [...document.querySelectorAll("#rules .rule-panel")]);
     renderSectionNav([{ id: "overview", nav: "Overview" }, ...sections]);
 
     // Jump to a section #hash after rendering. Ignore the #game=<id> routing hash.
