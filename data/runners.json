@@ -1040,7 +1040,7 @@
     {
       "id": "notn01",
       "name": "N01",
-      "avatar": "",
+      "avatar": "assets/staff/notn01.jpg",
       "profile": "https://www.youtube.com/channel/UCWIo9WuheZrutZf_C_o7Vmg",
       "addedAt": "2026-10-06",
       "games": [
@@ -1080,7 +1080,7 @@
     {
       "id": "face-man",
       "name": "FACE MAN",
-      "avatar": "",
+      "avatar": "assets/runners/face-man.jpg",
       "profile": "https://www.youtube.com/@FACE-MAN",
       "addedAt": "2026-10-06",
       "games": [
