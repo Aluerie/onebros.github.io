@@ -1100,6 +1100,80 @@
           ]
         }
       ]
+    },
+    {
+      "id": "adonutirl",
+      "name": "Donut",
+      "avatar": "assets/runners/adonutirl.jpg",
+      "profile": "https://www.youtube.com/@adonutirl",
+      "addedAt": "2026-10-06",
+      "games": [
+        {
+          "game": "bb",
+          "role": "hitless-sage",
+          "challenges": [
+            {
+              "restrictions": "All Bosses BL4 No Buffs/Gems",
+              "proof": "https://www.youtube.com/watch?v=2UlY1QpSt3s",
+              "completedAt": "2025-12-27"
+            }
+          ]
+        },
+        {
+          "game": "ds2",
+          "role": "hitless-sage",
+          "challenges": [
+            {
+              "restrictions": "Any% SL1 +0 Company of Champions No Buffs/Peasants Armor",
+              "proof": "https://www.youtube.com/watch?v=hIqJTJYleMY",
+              "completedAt": "2025-04-27"
+            }
+          ]
+        },
+        {
+          "game": "ds1",
+          "role": "hitless-sage",
+          "challenges": [
+            {
+              "restrictions": "All Bosses SL1 No Souls Used",
+              "proof": "https://www.youtube.com/watch?v=oD8I6cvF83M",
+              "completedAt": "2024-06-06"
+            }
+          ]
+        },
+        {
+          "game": "er",
+          "role": "hitless-sage",
+          "challenges": [
+            {
+              "restrictions": "Any% RL1 +0",
+              "proof": "https://www.youtube.com/watch?v=6sqSI3k8oig",
+              "completedAt": "2024-10-14"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brokenangelza",
+      "name": "Eden",
+      "avatar": "assets/runners/brokenangelza.jpg",
+      "profile": "https://www.youtube.com/@BrokenAngelZA",
+      "addedAt": "2026-10-06",
+      "games": [
+        {
+          "game": "er",
+          "role": "legend",
+          "challenges": [
+            {
+              "title": "RL1 +0 Weapons No Auxiliary Effects",
+              "restrictions": "RL1 +0 No Aux",
+              "proof": "https://youtube.com/playlist?list=PLy3gcNyYEyLINLc9YucedvzdPhn4kDTKr&si=lDeLdxXt6P7itps2",
+              "completedAt": "2026-06-17"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
