@@ -27,6 +27,7 @@
   } = window.OneBros;
 
   // One badge for every role the person holds, in the order roles are listed in staff.json.
+  // The picture is always the curated staff.json avatar; a linked runner only supplies the page link.
   function staffCardHtml(person, rolesById, runners) {
     const external = safeUrl(person.profile);
     const runner = runnerForStaff(runners, person);

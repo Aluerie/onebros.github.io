@@ -639,6 +639,8 @@ code {
 
 /* Community description: the opening statement, a shade brighter than the lead that follows it. */
 .hero-intro .hero-about {
+  width: 100%;
+  max-width: 600px;
   color: var(--text);
 }
 
@@ -1275,6 +1277,19 @@ a.runner-avatar:hover {
   letter-spacing: 0.03em;
 }
 
+/* Role-only run with its own proof link (entry "proof"): underlined like a challenge link. */
+.runner-entry-tier a,
+.runner-entry-tier a:hover {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+  text-underline-offset: 3px;
+}
+
+.runner-entry-tier a:hover {
+  text-decoration-color: currentColor;
+}
+
 .sep {
   color: var(--text-faint);
 }
@@ -1374,8 +1389,12 @@ a.runner-avatar:hover {
   gap: 10px;
 }
 
-.rule-panel {
+/* Default panel colour; :where() keeps it below a .tier-* class (game-page challenge rules). */
+:where(.rule-panel) {
   --tier: var(--accent);
+}
+
+.rule-panel {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -1409,6 +1428,22 @@ a.runner-avatar:hover {
 
 .rule-panel summary:hover .rule-panel-title {
   color: var(--accent-strong);
+}
+
+/* Game-page challenge rules: the tier label sits above the title, which takes the tier colour. */
+.rule-panel-heading {
+  flex: 1;
+  display: grid;
+  gap: 4px;
+}
+
+.rule-panel.is-tier .rule-panel-title {
+  color: var(--tier);
+}
+
+.rule-panel .rule-card-body {
+  margin-top: 0;
+  padding-top: 18px;
 }
 
 .rule-panel-icon {

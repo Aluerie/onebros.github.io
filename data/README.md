@@ -7,6 +7,7 @@ All site content lives in these JSON files. The HTML pages only render them.
 | `games.json` | `submitRunUrl` (the Run Submissions Form opened by every "Submit a run" button), `discordUrl` (the community Discord invite behind every "Join the Discord" button; the buttons stay hidden while it is empty), role tracks and roles, and every game: id, title, year, per-game role names (`roleNames`), and whether its page is published (`"page": true`). `defaultRoles` and a game's `roles` list are reference data only (not displayed); a game page shows its roles through the tiers in `games/<id>.json`. |
 | `games/<id>.json` | Full rules for one game (e.g. `games/des.json`). Only needed when `"page": true`. |
 | `runners.json` | Verified runners and the roles/challenges they completed. |
+| `staff.json` | Staff page: roles, groups (sections, in display order; a group can hold several roles, e.g. Moderation = Admin + Moderator) and staff members. See [Staff](#staff). |
 | `rules.json` | General / Overarching Rules shown on the homepage. Each section has `content` and/or `subsections`. A content block is a paragraph (string), `{ "list": [...] }`, or `{ "note": "...", "text": "..." }`. A section with `"exception"` (No Hit) is shown apart from the regular rules, and is also shown on every game page's No Hit section. |
 
 ## Roles
@@ -59,6 +60,9 @@ Append an object to the **end** of the `runners` array in `runners.json`:
   The picture and name on runner cards open that runner page, not this URL.
 - `challenges`: may be `[]` when only the role is verified; the card then shows just "Game — Role".
   Never add placeholder titles or URLs.
+- `games[].proof` (optional): proof link for a role-only run with no challenge title (e.g. a
+  Champion run). The role name on the card ("Champion") becomes the link. Runs with challenges
+  keep their links on `challenges[].proof`.
 - `addedAt` (every new runner): date — or ISO date-time — the entry was **added to the Onebros
   site**. Used for the default display order on the homepage and in each game's Hall of Fame:
   newest added first. Runners with the same `addedAt` keep their order in this file, the one
@@ -73,10 +77,29 @@ Append an object to the **end** of the `runners` array in `runners.json`:
 - Neither date is shown on the cards yet.
 - `games[]`: one entry per role a runner holds in a game. A Onebros role and a No Hit role
   in the same game are two separate entries.
-- `games[].game`: a game `id` from `games.json` (`des`, `ds1`, `ds2`, `bb`, `ds3`, `sekiro`, `er`).
+- `games[].game`: a game `id` from `games.json` (`des`, `ds1`, `ds2`, `ds3`, `bb`, `sekiro`, `er`).
 - `games[].role`: a role id from the table above. Pages show the game's own name where it has one.
 - `challenges[].title`: shown as the link text. `proof` is the video URL it opens.
   An empty `proof` shows the title as plain text.
+
+## Staff
+
+A staff member who is also a runner is linked to their `runners.json` entry when their `id`,
+`username` or `name` matches the runner's `id` or `name` (no duplicate runner is needed). Their
+staff card then opens the runner page, and runner cards show the staff name and picture.
+
+Staff avatars are curated by hand and always win:
+
+- A staff `avatar` is never replaced by the runner's avatar or a YouTube picture. YouTube URLs
+  are links only.
+- Files in `assets/staff/` belong to `staff.json`. Some runner records reuse one as their
+  `avatar`; never overwrite a staff file to change a runner's picture. Give the runner its own
+  file in `assets/runners/` instead. The avatar scripts only write to `assets/runners/` and
+  `runners.json`.
+
+Group order in `groups` is the section order; within a group people follow the group's `roles`
+order (e.g. Admin before Moderator), then file order. Each person appears once, in the first
+group matching any of their roles, with a badge for every role they hold.
 
 ## Adding a game page
 

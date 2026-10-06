@@ -19,6 +19,7 @@
     bindAvatarFallback,
     initChrome,
     initGamesMenu,
+    initPanelToggle,
     loadErrorHtml,
     discordIcon,
   } = window.OneBros;
@@ -114,18 +115,7 @@
          ${exceptions.map((s) => rulePanelHtml(s, s.id === hash)).join("")}`
       : "";
 
-    const panels = () => [...document.querySelectorAll("#rules .rule-panel")];
-    const toggle = $("#rules-toggle-all");
-    const syncToggle = () => {
-      toggle.textContent = panels().every((p) => p.open) ? "Collapse all" : "Expand all";
-    };
-    toggle.addEventListener("click", () => {
-      const open = !panels().every((p) => p.open);
-      panels().forEach((p) => (p.open = open));
-      syncToggle();
-    });
-    panels().forEach((p) => p.addEventListener("toggle", syncToggle));
-    syncToggle();
+    initPanelToggle($("#rules-toggle-all"), () => [...document.querySelectorAll("#rules .rule-panel")]);
   }
 
   function populateFilters() {

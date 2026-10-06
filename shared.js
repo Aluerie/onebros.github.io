@@ -353,7 +353,13 @@
           : escapeHtml(gameTitle);
         // Cards name the OneBros tier itself (e.g. "Master"), not the game's own name for it ("Old One").
         const role = catalog.role(entry.role);
-        const roleLabel = escapeHtml(role ? role.name : entry.role);
+        const roleName = escapeHtml(role ? role.name : entry.role);
+        // A role-only run (e.g. a Champion run, which has no challenge title) can carry its own
+        // proof link on the entry; the role label is then that link.
+        const entryProof = safeUrl(entry.proof);
+        const roleLabel = entryProof
+          ? `<a href="${escapeHtml(entryProof)}" target="_blank" rel="noopener noreferrer">${roleName}</a>`
+          : roleName;
         // No Hit runs have no canonical challenge title: in short mode their proof link is named
         // after the role (e.g. "Hitless Sage") instead of listing the full restrictions.
         const shortFallback = role && role.track === "nohit" ? role.name : "";
@@ -406,6 +412,7 @@
 
     const toggle = $(".nav-toggle");
     const nav = $("#site-nav");
+    initHomeLink(nav);
     if (toggle && nav) {
       const close = () => {
         toggle.setAttribute("aria-expanded", "false");
@@ -450,6 +457,32 @@
       window.addEventListener("scroll", onScroll, { passive: true });
       onScroll();
     }
+  }
+
+  /* "Home" as the first site nav item on internal pages, linking where the header brand does.
+   * The homepage brand links to #top, so the homepage gets no Home item. */
+  function initHomeLink(nav) {
+    const brand = $(".site-header .brand");
+    const home = brand && brand.getAttribute("href");
+    const list = nav && $("ul", nav);
+    if (!list || !home || home.startsWith("#") || $(".nav-home", list)) return;
+    list.insertAdjacentHTML("afterbegin", `<li class="nav-home"><a href="${escapeHtml(home)}">Home</a></li>`);
+  }
+
+  /* "Expand all" / "Collapse all" button for a set of rule panels (<details>).
+   * panels: function returning the current panels. */
+  function initPanelToggle(toggle, panels) {
+    if (!toggle) return;
+    const sync = () => {
+      toggle.textContent = panels().every((p) => p.open) ? "Collapse all" : "Expand all";
+    };
+    toggle.addEventListener("click", () => {
+      const open = !panels().every((p) => p.open);
+      panels().forEach((p) => (p.open = open));
+      sync();
+    });
+    panels().forEach((p) => p.addEventListener("toggle", sync));
+    sync();
   }
 
   /* Games dropdown in the site nav. The "Games" link (.nav-games) becomes a "Games ▾" toggle for
@@ -529,6 +562,8 @@
   }
 
   // Staff who are also runners use the name and picture already on their staff card.
+  // Staff avatars are curated by hand: a staff avatar always wins over the runner's (YouTube)
+  // avatar, and nothing ever copies a runner avatar onto a staff card.
   function withStaffIdentity(runner, person) {
     if (!person) return runner;
     const avatar = String(person.avatar || "").trim();
@@ -578,6 +613,7 @@
     bindAvatarFallback,
     initChrome,
     initGamesMenu,
+    initPanelToggle,
     loadErrorHtml,
     discordIcon,
   };

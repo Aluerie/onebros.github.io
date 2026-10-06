@@ -948,13 +948,14 @@
     {
       "id": "eyadyeah",
       "name": "eyad.yeah",
-      "avatar": "",
-      "profile": null,
+      "avatar": "assets/runners/eyadyeah.jpg",
+      "profile": "https://www.youtube.com/@eyad.yeah.0",
       "addedAt": "2026-08-28",
       "games": [
         {
           "game": "bb",
           "role": "champion",
+          "proof": "https://www.youtube.com/watch?v=jgDd8sUBWfg",
           "challenges": []
         }
       ]
