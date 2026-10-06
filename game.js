@@ -18,12 +18,16 @@
     loadJson,
     loadCatalog,
     runnerCard,
+    staffForRunner,
+    withStaffIdentity,
     bindAvatarFallback,
     initChrome,
     initGamesMenu,
     loadErrorHtml,
     discordIcon,
   } = window.OneBros;
+
+  let staffPeople = [];
 
   function sectionHtml({ id, eyebrow, title, lead = "", body, alt }) {
     return `
@@ -77,7 +81,13 @@
           <span class="hof-count">${entries.length}</span>
         </h3>
         <div class="runners-grid">
-          ${entries.map(({ runner, entry }) => runnerCard(catalog, runner, [entry], { challengeMode: "full" })).join("")}
+          ${entries
+            .map(({ runner, entry }) =>
+              runnerCard(catalog, withStaffIdentity(runner, staffForRunner(staffPeople, runner)), [entry], {
+                challengeMode: "full",
+              })
+            )
+            .join("")}
         </div>
       </div>`;
   }
@@ -370,6 +380,7 @@
     let catalog;
     try {
       catalog = await loadCatalog();
+      staffPeople = ((await loadJson(PATHS.staff).catch(() => null)) || {}).staff || [];
     } catch (err) {
       console.error(err);
       $("#game-hero").innerHTML = loadErrorHtml();

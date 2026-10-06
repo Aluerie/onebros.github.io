@@ -13,7 +13,7 @@
     loadCatalog,
     runnerCard,
     staffForRunner,
-    withStaffAvatar,
+    withStaffIdentity,
     bindAvatarFallback,
     initChrome,
     initGamesMenu,
@@ -36,7 +36,13 @@
     }
 
     const runners = catalog.runners
-      .filter((runner) => !query || String(runner.name).toLowerCase().includes(query))
+      .filter((runner) => {
+        if (!query) return true;
+        const person = staffForRunner(staffPeople, runner);
+        const shown = withStaffIdentity(runner, person);
+        return [shown.name, runner.name, runner.id, person && person.username]
+          .some((value) => String(value || "").toLowerCase().includes(query));
+      })
       .sort(catalog.compareAdded);
 
     const word = total === 1 ? "runner" : "runners";
@@ -44,7 +50,7 @@
     grid.innerHTML = runners.length
       ? runners
           .map((runner) => {
-            const shown = withStaffAvatar(runner, staffForRunner(staffPeople, runner));
+            const shown = withStaffIdentity(runner, staffForRunner(staffPeople, runner));
             return runnerCard(catalog, shown, shown.games || [], { background: true });
           })
           .join("")

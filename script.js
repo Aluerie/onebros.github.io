@@ -14,6 +14,8 @@
     loadCatalog,
     rulePanelHtml,
     runnerCard,
+    staffForRunner,
+    withStaffIdentity,
     bindAvatarFallback,
     initChrome,
     initGamesMenu,
@@ -22,6 +24,7 @@
   } = window.OneBros;
 
   let catalog;
+  let staffPeople = [];
 
   const HOMEPAGE_RECENT_RUNS = 10;
 
@@ -162,7 +165,14 @@
     let pairs = catalog
       .entries()
       .filter(({ runner, entry }) => {
-        if (query && !String(runner.name).toLowerCase().includes(query)) return false;
+        if (query) {
+          const person = staffForRunner(staffPeople, runner);
+          const shown = withStaffIdentity(runner, person);
+          const matchesName = [shown.name, runner.name, runner.id, person && person.username].some((value) =>
+            String(value || "").toLowerCase().includes(query)
+          );
+          if (!matchesName) return false;
+        }
         return matchesEntry(entry);
       })
       .sort(catalog.compareVerifiedEntry);
@@ -190,7 +200,7 @@
 
     grid.innerHTML = pairs
       .map(({ runner, entry }) =>
-        runnerCard(catalog, runner, [entry], {
+        runnerCard(catalog, withStaffIdentity(runner, staffForRunner(staffPeople, runner)), [entry], {
           highlight: filtering ? matchesEntry : undefined,
           background: true,
         })
@@ -213,6 +223,7 @@
 
     try {
       catalog = await loadCatalog();
+      staffPeople = ((await loadJson(PATHS.staff).catch(() => null)) || {}).staff || [];
       initGamesMenu(catalog);
       renderStats();
       renderHeroLinks();

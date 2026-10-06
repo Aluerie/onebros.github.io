@@ -528,11 +528,15 @@
     return (runners || []).find((runner) => staffMatchesRunner(person, runner)) || null;
   }
 
-  // Staff who are also runners use the picture already on their staff card.
-  function withStaffAvatar(runner, person) {
-    const avatar = person && String(person.avatar || "").trim();
-    if (!avatar || runner.avatar === avatar) return runner;
-    return { ...runner, avatar };
+  // Staff who are also runners use the name and picture already on their staff card.
+  function withStaffIdentity(runner, person) {
+    if (!person) return runner;
+    const avatar = String(person.avatar || "").trim();
+    const name = String(person.name || "").trim();
+    const nextAvatar = avatar || runner.avatar;
+    const nextName = name || runner.name;
+    if (nextAvatar === runner.avatar && nextName === runner.name) return runner;
+    return { ...runner, avatar: nextAvatar, name: nextName };
   }
 
   function loadErrorHtml() {
@@ -570,7 +574,7 @@
     staffMatchesRunner,
     staffForRunner,
     runnerForStaff,
-    withStaffAvatar,
+    withStaffIdentity,
     bindAvatarFallback,
     initChrome,
     initGamesMenu,

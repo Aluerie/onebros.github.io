@@ -15,7 +15,7 @@
     runnerCard,
     avatarHtml,
     staffForRunner,
-    withStaffAvatar,
+    withStaffIdentity,
     bindAvatarFallback,
     initChrome,
     initGamesMenu,
@@ -134,7 +134,7 @@
 
   function renderHero(catalog, runner, staffData) {
     const person = staffForRunner(staffData && staffData.staff, runner);
-    runner = withStaffAvatar(runner, person);
+    runner = withStaffIdentity(runner, person);
     const external = safeUrl(runner.profile);
     const badges = staffBadgesHtml(staffData, person);
     const channel = knownChannel(runner, person);
