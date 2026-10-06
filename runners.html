@@ -3,19 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Onebros - Game Rules</title>
-  <meta name="description" content="Challenge rules, tiers and Hall of Fame for a Souls game on Onebros.">
+  <title>Onebros - Runners</title>
+  <meta name="description" content="Every verified Onebros runner, with their roles and verified runs.">
   <meta name="theme-color" content="#0c0b0a">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<!--
-  Shared template for every game page. The game is chosen with ?game=<id>
-  (e.g. game.html?game=des) and its content is loaded from data/games/<id>.json.
--->
-<body class="game-page">
+<body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header" id="top">
@@ -35,7 +31,7 @@
           <li class="nav-games"><a href="index.html#games">Games</a></li>
           <li><a href="index.html#rules">Rules</a></li>
           <li><a href="index.html#runners">Verified Runs</a></li>
-          <li><a href="runners.html">Runners</a></li>
+          <li><a href="runners.html" aria-current="page">Runners</a></li>
           <li><a href="staff.html">Staff</a></li>
         </ul>
       </nav>
@@ -43,22 +39,32 @@
   </header>
 
   <main id="main">
-    <section class="game-hero" id="overview" aria-labelledby="game-title">
+    <section class="game-hero" id="overview" aria-labelledby="runners-title">
       <div class="hero-glow" aria-hidden="true"></div>
-      <!-- Optional cinematic cover: "hero" artwork + optional "logo" from data/games.json -->
-      <div class="cover" id="game-cover" hidden></div>
-      <div class="container game-hero-inner" id="game-hero">
-        <p class="loading">Loading game…</p>
+      <div class="container game-hero-inner">
+        <p class="breadcrumb"><a href="index.html">Home</a> <span aria-hidden="true">/</span> Runners</p>
+        <p class="eyebrow">Verified runners</p>
+        <h1 id="runners-title" class="game-hero-title">Runners</h1>
+        <p class="hero-lead">Every verified Onebros runner. Open a runner to see all of their verified runs.</p>
       </div>
     </section>
 
-    <nav class="subnav" id="section-nav" aria-label="On this page" hidden>
+    <!-- Runners, rendered from data/runners.json -->
+    <section class="section" id="runner-list" aria-label="All runners">
       <div class="container">
-        <ul class="subnav-list" id="section-nav-list"></ul>
-      </div>
-    </nav>
+        <form class="filters runners-filters" id="runner-filters" role="search" onsubmit="return false;">
+          <label class="field">
+            <span class="field-label">Search</span>
+            <input type="search" id="filter-search" placeholder="Runner name…" autocomplete="off">
+          </label>
+        </form>
 
-    <div id="game-content"></div>
+        <p class="results-count" id="results-count" aria-live="polite"></p>
+        <div class="runners-grid" id="runners-grid">
+          <p class="loading">Loading runners…</p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -75,7 +81,7 @@
           <li><a href="index.html#games">Games</a></li>
           <li><a href="index.html#rules">Rules</a></li>
           <li><a href="index.html#runners">Verified Runs</a></li>
-          <li><a href="runners.html">Runners</a></li>
+          <li><a href="runners.html" aria-current="page">Runners</a></li>
           <li><a href="staff.html">Staff</a></li>
         </ul>
       </nav>
@@ -92,6 +98,6 @@
   </a>
 
   <script src="shared.js"></script>
-  <script src="game.js"></script>
+  <script src="runners.js"></script>
 </body>
 </html>

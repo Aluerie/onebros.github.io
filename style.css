@@ -727,10 +727,11 @@ code {
   border-bottom: 1px solid var(--border);
 }
 
-/* Game pages with "pageBackground" artwork (set by game.js): a fixed, viewport-sized layer behind
-   the whole page under a strong dark overlay. It relies on <html> having no background of its own,
-   so body's background fills the canvas beneath this layer. */
-body.game-page.has-page-bg::before {
+/* Pages with "pageBackground" artwork (set by game.js on game pages, and by runner.js with the game
+   of the runner's top entry): a fixed, viewport-sized layer behind the whole page under a strong
+   dark overlay. It relies on <html> having no background of its own, so body's background fills
+   the canvas beneath this layer. */
+body.has-page-bg::before {
   content: "";
   position: fixed;
   inset: 0;
@@ -745,7 +746,7 @@ body.game-page.has-page-bg::before {
 }
 
 /* The artwork continues through alternate sections: --bg-alt, semi-transparent. */
-body.game-page.has-page-bg .section-alt {
+body.has-page-bg .section-alt {
   background: rgba(18, 17, 16, 0.55);
 }
 
@@ -959,6 +960,11 @@ a.game-card {
   outline: none;
 }
 
+/* Runners page: name search only. */
+.filters.runners-filters {
+  grid-template-columns: minmax(0, 480px);
+}
+
 .results-count {
   font-size: 0.85rem;
   color: var(--text-faint);
@@ -1101,34 +1107,6 @@ a.runner-avatar:hover {
 /* Runner page: the picture and name sit in the hero; the runs list stays a readable width. */
 .profile-hero .runner-head {
   padding: 0;
-}
-
-.profile-hero.has-avatar-bg .hero-glow {
-  display: none;
-}
-
-.profile-hero-bg {
-  position: absolute;
-  z-index: 0;
-  inset: -48px;
-  width: calc(100% + 96px);
-  height: calc(100% + 96px);
-  object-fit: cover;
-  object-position: center;
-  filter: blur(22px);
-  transform: scale(1.06);
-  pointer-events: none;
-}
-
-.profile-hero.has-avatar-bg::after {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(90deg, rgba(12, 11, 10, 0.35), transparent 18%, transparent 82%, rgba(12, 11, 10, 0.35)),
-    linear-gradient(180deg, rgba(12, 11, 10, 0.55) 0%, rgba(12, 11, 10, 0.62) 48%, var(--bg) 100%);
 }
 
 .profile-hero .game-hero-inner {
