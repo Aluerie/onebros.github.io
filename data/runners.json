@@ -844,9 +844,44 @@
             {
               "title": "SL1 NG+5 PBWT No Rolling/Blocking/Parrying",
               "restrictions": "SL1 NG+5 PBWT No Sprint/Roll/Block/Parry/Rings/Buffs/Soul",
-              "proof": "https://www.youtube.com/playlist?list=PLlouJzco8-bRI5La20uWrcey7Ms9cod2S"
+              "proof": "https://www.youtube.com/playlist?list=PLlouJzco8-bR3yh25h5T5-8PkLT2RJc73"
             }
           ]
+        },
+        {
+          "game": "ds1",
+          "role": "master",
+          "addedAt": "2026-10-06",
+          "proof": "https://www.youtube.com/playlist?list=PLlouJzco8-bQG5V0bzr5JZan_Rlh7Jjcn",
+          "challenges": []
+        },
+        {
+          "game": "ds2",
+          "role": "master",
+          "addedAt": "2026-10-06",
+          "proof": "https://www.youtube.com/playlist?list=PLlouJzco8-bTsTSz1HBrTP6FAqbhT8geN",
+          "challenges": []
+        },
+        {
+          "game": "ds3",
+          "role": "master",
+          "addedAt": "2026-10-06",
+          "proof": "https://www.youtube.com/playlist?list=PLlouJzco8-bTUxZYSmkcnzpe6jU8FbZpa",
+          "challenges": []
+        },
+        {
+          "game": "bb",
+          "role": "master",
+          "addedAt": "2026-10-06",
+          "proof": "https://www.youtube.com/playlist?list=PLlouJzco8-bQH3iiVggd4B-m6Sq6aNhX7",
+          "challenges": []
+        },
+        {
+          "game": "sekiro",
+          "role": "master",
+          "addedAt": "2026-10-06",
+          "proof": "https://www.youtube.com/playlist?list=PLlouJzco8-bRjG5RQVTa4rN-tQVBXNkgd",
+          "challenges": []
         },
         {
           "game": "er",
