@@ -6,10 +6,22 @@
 (function () {
   "use strict";
 
-  const { $, loadCatalog, runnerCard, bindAvatarFallback, initChrome, initGamesMenu, loadErrorHtml } =
-    window.OneBros;
+  const {
+    PATHS,
+    $,
+    loadJson,
+    loadCatalog,
+    runnerCard,
+    staffForRunner,
+    withStaffAvatar,
+    bindAvatarFallback,
+    initChrome,
+    initGamesMenu,
+    loadErrorHtml,
+  } = window.OneBros;
 
   let catalog;
+  let staffPeople = [];
 
   function renderRunners() {
     const grid = $("#runners-grid");
@@ -30,7 +42,12 @@
     const word = total === 1 ? "runner" : "runners";
     countEl.textContent = query ? `${runners.length} of ${total} verified ${word}` : `${total} verified ${word}`;
     grid.innerHTML = runners.length
-      ? runners.map((runner) => runnerCard(catalog, runner, runner.games || [], { background: true })).join("")
+      ? runners
+          .map((runner) => {
+            const shown = withStaffAvatar(runner, staffForRunner(staffPeople, runner));
+            return runnerCard(catalog, shown, shown.games || [], { background: true });
+          })
+          .join("")
       : `<p class="empty">No runners match this search.</p>`;
   }
 
@@ -40,6 +57,7 @@
 
     try {
       catalog = await loadCatalog();
+      staffPeople = ((await loadJson(PATHS.staff).catch(() => null)) || {}).staff || [];
     } catch (err) {
       console.error(err);
       $("#runners-grid").innerHTML = loadErrorHtml();

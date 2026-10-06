@@ -19,6 +19,7 @@
     loadCatalog,
     avatarHtml,
     runnerPageUrl,
+    runnerForStaff,
     bindAvatarFallback,
     initChrome,
     initGamesMenu,
@@ -26,10 +27,10 @@
   } = window.OneBros;
 
   // One badge for every role the person holds, in the order roles are listed in staff.json.
-  function staffCardHtml(person, rolesById, runnerIds) {
+  function staffCardHtml(person, rolesById, runners) {
     const external = safeUrl(person.profile);
-    const runnerId = runnerIds.has(person.username) ? person.username : runnerIds.has(person.id) ? person.id : "";
-    const page = runnerId ? runnerPageUrl(runnerId) : "";
+    const runner = runnerForStaff(runners, person);
+    const page = runner ? runnerPageUrl(runner.id) : "";
     const href = page || external;
     const name = escapeHtml(person.name);
     const badges = [...rolesById.values()]
@@ -56,7 +57,7 @@
       </article>`;
   }
 
-  function renderStaff(data, runnerIds) {
+  function renderStaff(data, runners) {
     const rolesById = new Map((data.roles || []).map((r) => [r.id, r]));
     const placed = new Set();
 
@@ -90,7 +91,7 @@
           <section class="section${i % 2 ? " section-alt" : ""}" id="${id}" ${label}>
             <div class="container">
               ${head}
-              <div class="staff-grid">${members.map((p) => staffCardHtml(p, rolesById, runnerIds)).join("")}</div>
+              <div class="staff-grid">${members.map((p) => staffCardHtml(p, rolesById, runners)).join("")}</div>
             </div>
           </section>`;
       })
@@ -103,17 +104,17 @@
     initChrome();
     bindAvatarFallback($("#staff-content"));
 
-    let runnerIds = new Set();
+    let runners = [];
     try {
       const catalog = await loadCatalog();
       initGamesMenu(catalog);
-      runnerIds = new Set((catalog.runners || []).map((r) => r.id));
+      runners = catalog.runners || [];
     } catch (err) {
       console.error(err);
     }
 
     try {
-      renderStaff(await loadJson(PATHS.staff), runnerIds);
+      renderStaff(await loadJson(PATHS.staff), runners);
     } catch (err) {
       console.error(err);
       $("#staff-content").innerHTML = `<div class="container section">${loadErrorHtml()}</div>`;

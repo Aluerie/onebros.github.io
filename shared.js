@@ -325,7 +325,7 @@
    * @param runner   runner object from runners.json
    * @param entries  the runner's role entries to show (defaults to all)
    * @param opts     { highlight, background, challengeMode }
-   *                 background: use the cardBackground of the game of the top entry (catalog.topEntry)
+   *                 background: use the cardBackground of the game holding the highest tier
    *                 challengeMode: "short" (homepage — canonical titles) or "full" (game HoF)
    *
    * The picture and name open the runner's page. A role with no recorded challenges
@@ -339,7 +339,8 @@
     const name = escapeHtml(runner.name);
     const sorted = [...entries].sort(catalog.compareEntryTier);
     const topRole = sorted[0] ? catalog.role(sorted[0].role) : null;
-    const top = background ? catalog.topEntry(runner, entries) : null;
+    // Background artwork is the game of the first row, which is the highest tier.
+    const top = background ? sorted[0] || null : null;
     const bg = top ? cardBackgroundStyle(catalog.game(top.game)) : "";
 
     const entryHtml = sorted
@@ -505,6 +506,35 @@
     });
   }
 
+  function identityKey(value) {
+    return String(value || "").trim().toLowerCase();
+  }
+
+  // A staff member and a runner are the same person when an id, username, or display name matches.
+  function staffMatchesRunner(person, runner) {
+    if (!person || !runner) return false;
+    const runnerKeys = new Set([identityKey(runner.id), identityKey(runner.name)].filter(Boolean));
+    return [person.id, person.username, person.name].some((value) => {
+      const key = identityKey(value);
+      return key && runnerKeys.has(key);
+    });
+  }
+
+  function staffForRunner(staffList, runner) {
+    return (staffList || []).find((person) => staffMatchesRunner(person, runner)) || null;
+  }
+
+  function runnerForStaff(runners, person) {
+    return (runners || []).find((runner) => staffMatchesRunner(person, runner)) || null;
+  }
+
+  // Staff who are also runners use the picture already on their staff card.
+  function withStaffAvatar(runner, person) {
+    const avatar = person && String(person.avatar || "").trim();
+    if (!avatar || runner.avatar === avatar) return runner;
+    return { ...runner, avatar };
+  }
+
   function loadErrorHtml() {
     return `
       <p class="error">
@@ -537,6 +567,10 @@
     runnerCard,
     runnerPageUrl,
     avatarHtml,
+    staffMatchesRunner,
+    staffForRunner,
+    runnerForStaff,
+    withStaffAvatar,
     bindAvatarFallback,
     initChrome,
     initGamesMenu,

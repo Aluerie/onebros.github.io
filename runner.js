@@ -14,6 +14,8 @@
     loadCatalog,
     runnerCard,
     avatarHtml,
+    staffForRunner,
+    withStaffAvatar,
     bindAvatarFallback,
     initChrome,
     initGamesMenu,
@@ -111,11 +113,6 @@
     }
   }
 
-  function staffForRunner(staffData, runner) {
-    const people = (staffData && staffData.staff) || [];
-    return people.find((p) => p.username === runner.id || p.id === runner.id) || null;
-  }
-
   function staffBadgesHtml(staffData, person) {
     if (!person) return "";
     const rolesById = new Map(((staffData && staffData.roles) || []).map((r) => [r.id, r]));
@@ -136,8 +133,9 @@
   }
 
   function renderHero(catalog, runner, staffData) {
+    const person = staffForRunner(staffData && staffData.staff, runner);
+    runner = withStaffAvatar(runner, person);
     const external = safeUrl(runner.profile);
-    const person = staffForRunner(staffData, runner);
     const badges = staffBadgesHtml(staffData, person);
     const channel = knownChannel(runner, person);
     document.title = `Onebros - ${runner.name}`;
@@ -204,10 +202,10 @@
   }
 
   // Full-page artwork, as on game pages (body.has-page-bg): the pageBackground of the game holding
-  // the runner's top entry (catalog.topEntry; Hitless counts as Legend-level). Without artwork, or
-  // if it fails to load, the normal site background stays.
+  // the runner's highest tier. Without artwork, or if it fails to load, the normal site background stays.
   function renderPageBackground(catalog, runner) {
-    const top = catalog.topEntry(runner);
+    const entries = runner.games || [];
+    const top = entries.length ? [...entries].sort(catalog.compareEntryTier)[0] : null;
     const art = top ? gameArt(catalog.game(top.game), ["pageBackground", "cardBackground"]) : null;
     if (!art || !art.src) return;
     const body = document.body;
@@ -260,7 +258,14 @@
       byGame.get(entry.game).push(entry);
     }
     const order = new Map(catalog.games.map((g, i) => [g.id, i]));
-    const groups = [...byGame.entries()].sort((a, b) => (order.get(a[0]) ?? 99) - (order.get(b[0]) ?? 99));
+    const highest = (group) =>
+      group.reduce((top, entry) => (catalog.compareEntryTier(entry, top) < 0 ? entry : top));
+    // Highest tier first, so the leading section is the one behind the page background.
+    const groups = [...byGame.entries()].sort((a, b) => {
+      const byTier = catalog.compareEntryTier(highest(a[1]), highest(b[1]));
+      if (byTier) return byTier;
+      return (order.get(a[0]) ?? 99) - (order.get(b[0]) ?? 99);
+    });
     const body = groups.length
       ? groups
           .map(([gameId, group]) => {
