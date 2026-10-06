@@ -3,8 +3,8 @@
     {
       "id": "guardianshrine",
       "name": "Guardianshrine",
-      "avatar": "",
-      "profile": null,
+      "avatar": "assets/runners/guardianshrine.jpg",
+      "profile": "https://www.youtube.com/@Guardianshrine",
       "addedAt": "2026-04-14",
       "games": [
         {
@@ -129,7 +129,7 @@
     {
       "id": "recycle",
       "name": "Recycle",
-      "avatar": "assets/runners/recycle.jpg",
+      "avatar": "assets/staff/1recyclebin1.jpg",
       "profile": "https://www.teamhitless.com/project/recycle/",
       "addedAt": "2026-05-18",
       "games": [
@@ -205,7 +205,7 @@
     {
       "id": "johndank",
       "name": "johndank",
-      "avatar": "assets/runners/johndank.jpg",
+      "avatar": "assets/staff/johndank.jpg",
       "profile": "https://www.teamhitless.com/project/savio/",
       "addedAt": "2026-06-07",
       "games": [
@@ -357,25 +357,6 @@
       ]
     },
     {
-      "id": "metal-username-metal",
-      "name": "Metal , username: metal.__.",
-      "avatar": "",
-      "profile": null,
-      "addedAt": "2026-05-05",
-      "games": [
-        {
-          "game": "er",
-          "role": "champion",
-          "challenges": []
-        },
-        {
-          "game": "ds1",
-          "role": "champion",
-          "challenges": []
-        }
-      ]
-    },
-    {
       "id": "mmmmmhmhmhmmhm",
       "name": "mmmmmhmhmhmmhm",
       "avatar": "assets/runners/mmmmmhmhmhmmhm.jpg",
@@ -398,7 +379,7 @@
     {
       "id": "geori",
       "name": "_geori",
-      "avatar": "assets/runners/geori.jpg",
+      "avatar": "assets/staff/_geori.jpg",
       "profile": "https://www.youtube.com/@radman0489",
       "addedAt": "2026-05-17",
       "games": [
@@ -500,6 +481,7 @@
           "role": "legend",
           "challenges": [
             {
+              "title": "No Prosthetic/Items/Buffs",
               "restrictions": "Demon Bell/Charmless/No revive(base legend restrictions), No Prosthetic, No Buffs/Items",
               "proof": "https://youtube.com/playlist?list=PLPROAdvntAdFg1XeJpKMnAZTLYegJagWl&si=REsHKj12_JzT-WrA",
               "completedAt": "2026-05-15"
@@ -571,7 +553,7 @@
     {
       "id": "unholypancake",
       "name": "UnholyPancake",
-      "avatar": "assets/runners/unholypancake.jpg",
+      "avatar": "assets/staff/unholypancake.jpg",
       "profile": "https://www.youtube.com/@UnholyPancake",
       "addedAt": "2026-07-10",
       "games": [
@@ -722,6 +704,16 @@
       "addedAt": "2026-07-17",
       "games": [
         {
+          "game": "ds1",
+          "role": "champion",
+          "challenges": []
+        },
+        {
+          "game": "er",
+          "role": "champion",
+          "challenges": []
+        },
+        {
           "game": "er",
           "role": "master",
           "challenges": [
@@ -744,12 +736,24 @@
         {
           "game": "ds1",
           "role": "legend",
-          "challenges": []
+          "challenges": [
+            {
+              "title": "SL1 No Rolling/Blocking/Parrying",
+              "restrictions": "SL1 No Roll/Block/Parry",
+              "proof": "https://www.youtube.com/playlist?list=PLSOyl0djFew8T-tEJRoEpsZWVL3lK5wo-"
+            }
+          ]
         },
         {
           "game": "ds2",
           "role": "legend",
-          "challenges": []
+          "challenges": [
+            {
+              "title": "SL1 CoC No Rolling/Blocking/Parrying",
+              "restrictions": "SL1 CoC No Roll/Block/Parry",
+              "proof": "https://www.youtube.com/playlist?list=PLSOyl0djFew855ng25Q9oaqtDBZX6eHAy"
+            }
+          ]
         },
         {
           "game": "ds3",
@@ -789,7 +793,7 @@
     {
       "id": "av4ri",
       "name": "av4ri",
-      "avatar": "assets/runners/av4ri.jpg",
+      "avatar": "assets/staff/av4ri.jpg",
       "profile": "https://www.youtube.com/@avari1",
       "addedAt": "2026-07-31",
       "games": [
@@ -849,8 +853,8 @@
     {
       "id": "jonithfkennedy",
       "name": "Jade",
-      "avatar": "",
-      "profile": null,
+      "avatar": "assets/runners/jonithfkennedy.jpg",
+      "profile": "https://www.youtube.com/@pvpbot3955",
       "addedAt": "2026-10-05",
       "games": [
         {
