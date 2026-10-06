@@ -851,7 +851,7 @@
         {
           "game": "ds1",
           "role": "master",
-          "addedAt": "2026-10-06",
+          "addedAt": "2026-10-06T16:39:26Z",
           "challenges": [
             {
               "title": "SL1 NG+6 No Rolling/Blocking/Parrying",
@@ -862,7 +862,7 @@
         {
           "game": "ds2",
           "role": "master",
-          "addedAt": "2026-10-06",
+          "addedAt": "2026-10-06T16:39:26Z",
           "challenges": [
             {
               "title": "SL1 CoC NG+7 No Roll/Block/Parry",
@@ -873,14 +873,18 @@
         {
           "game": "ds3",
           "role": "master",
-          "addedAt": "2026-10-06",
-          "proof": "https://www.youtube.com/playlist?list=PLlouJzco8-bTUxZYSmkcnzpe6jU8FbZpa",
-          "challenges": []
+          "addedAt": "2026-10-06T16:39:26Z",
+          "challenges": [
+            {
+              "title": "SL1 NG+7 No Rolling/Blocking/Parrying",
+              "proof": "https://www.youtube.com/playlist?list=PLlouJzco8-bTUxZYSmkcnzpe6jU8FbZpa"
+            }
+          ]
         },
         {
           "game": "bb",
           "role": "master",
-          "addedAt": "2026-10-06",
+          "addedAt": "2026-10-06T16:39:26Z",
           "challenges": [
             {
               "title": "BL4 NG+6 No Rolling/Quickstepping",
@@ -891,7 +895,7 @@
         {
           "game": "sekiro",
           "role": "master",
-          "addedAt": "2026-10-06",
+          "addedAt": "2026-10-06T16:39:26Z",
           "challenges": [
             {
               "title": "Attack Power 1",

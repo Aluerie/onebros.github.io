@@ -32,7 +32,7 @@ Append an object to the **end** of the `runners` array in `runners.json`:
   "name": "DisplayName",
   "avatar": "https://link-to-profile-picture.jpg",
   "profile": "https://www.youtube.com/@channel",
-  "addedAt": "2026-09-28",
+  "addedAt": "2026-09-28T14:05:00Z",
   "games": [
     {
       "game": "des",
@@ -63,15 +63,21 @@ Append an object to the **end** of the `runners` array in `runners.json`:
 - `games[].proof` (optional): proof link for a role-only run with no challenge title (e.g. a
   Champion run). The role name on the card ("Champion") becomes the link. Runs with challenges
   keep their links on `challenges[].proof`.
-- `addedAt` (every new runner): date — or ISO date-time — the entry was **added to the Onebros
-  site**. Used for the default display order on the homepage and in each game's Hall of Fame:
-  newest added first. Runners with the same `addedAt` keep their order in this file, the one
-  further down (added later) first; runners without `addedAt` come after all dated ones.
+- `addedAt` (every new runner): when the entry was **added to the Onebros site**. Used for the
+  default display order on the homepage and in each game's Hall of Fame: newest added first.
+  Runners with the same `addedAt` keep their order in this file, the one further down (added
+  later) first; runners without `addedAt` come after all dated ones.
   It is about the site listing, not the achievement.
-- `games[].addedAt` (optional): date — or ISO date-time — this one game/role entry was added to the
-  site, when it was added later than the runner (e.g. a new role for an existing runner). The
-  homepage "Verified Runs" list (the ten most recent) orders entries by this, falling back to the
-  runner's `addedAt`, newest first. Do not change the runner's `addedAt` for a new entry.
+- `games[].addedAt` (optional): when this one game/role entry was added to the site, when it was
+  added later than the runner (e.g. a new role for an existing runner). The homepage "Verified
+  Runs" list (the ten most recent) orders entries by this, falling back to the runner's `addedAt`,
+  newest first. Do not change the runner's `addedAt` for a new entry.
+- **Format for both `addedAt` fields:** write new additions as a full UTC timestamp,
+  `YYYY-MM-DDTHH:MM:SSZ` (e.g. `2026-10-06T16:39:26Z`), so additions made on the same day still
+  sort in the order they were added. Always use UTC with `Z`, never a local offset like
+  `+03:00`: the values are compared as text. Older date-only values (`YYYY-MM-DD`) stay valid;
+  they sort before any timestamp of the same day, and only an exact tie falls back to the
+  position in this file.
 - `challenges[].completedAt` (optional): **when the achievement was completed**, `YYYY-MM-DD` —
   historical metadata only, never used for ordering. If the run was never dated explicitly,
   use the documented proxy: the publish date of the last required video of the proof (e.g. the
