@@ -852,15 +852,23 @@
           "game": "ds1",
           "role": "master",
           "addedAt": "2026-10-06",
-          "proof": "https://www.youtube.com/playlist?list=PLlouJzco8-bQG5V0bzr5JZan_Rlh7Jjcn",
-          "challenges": []
+          "challenges": [
+            {
+              "title": "SL1 NG+6 No Rolling/Blocking/Parrying",
+              "proof": "https://www.youtube.com/playlist?list=PLlouJzco8-bQG5V0bzr5JZan_Rlh7Jjcn"
+            }
+          ]
         },
         {
           "game": "ds2",
           "role": "master",
           "addedAt": "2026-10-06",
-          "proof": "https://www.youtube.com/playlist?list=PLlouJzco8-bTsTSz1HBrTP6FAqbhT8geN",
-          "challenges": []
+          "challenges": [
+            {
+              "title": "SL1 CoC NG+7 No Roll/Block/Parry",
+              "proof": "https://www.youtube.com/playlist?list=PLlouJzco8-bTsTSz1HBrTP6FAqbhT8geN"
+            }
+          ]
         },
         {
           "game": "ds3",
@@ -873,15 +881,23 @@
           "game": "bb",
           "role": "master",
           "addedAt": "2026-10-06",
-          "proof": "https://www.youtube.com/playlist?list=PLlouJzco8-bQH3iiVggd4B-m6Sq6aNhX7",
-          "challenges": []
+          "challenges": [
+            {
+              "title": "BL4 NG+6 No Rolling/Quickstepping",
+              "proof": "https://www.youtube.com/playlist?list=PLlouJzco8-bQH3iiVggd4B-m6Sq6aNhX7"
+            }
+          ]
         },
         {
           "game": "sekiro",
           "role": "master",
           "addedAt": "2026-10-06",
-          "proof": "https://www.youtube.com/playlist?list=PLlouJzco8-bRjG5RQVTa4rN-tQVBXNkgd",
-          "challenges": []
+          "challenges": [
+            {
+              "title": "Attack Power 1",
+              "proof": "https://www.youtube.com/playlist?list=PLlouJzco8-bRjG5RQVTa4rN-tQVBXNkgd"
+            }
+          ]
         },
         {
           "game": "er",
