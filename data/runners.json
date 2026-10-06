@@ -838,6 +838,17 @@
       "addedAt": "2026-09-28",
       "games": [
         {
+          "game": "des",
+          "role": "master",
+          "challenges": [
+            {
+              "title": "SL1 NG+5 PBWT No Rolling/Blocking/Parrying",
+              "restrictions": "SL1 NG+5 PBWT No Sprint/Roll/Block/Parry/Rings/Buffs/Soul",
+              "proof": "https://www.youtube.com/playlist?list=PLlouJzco8-bRI5La20uWrcey7Ms9cod2S"
+            }
+          ]
+        },
+        {
           "game": "er",
           "role": "master",
           "challenges": [
