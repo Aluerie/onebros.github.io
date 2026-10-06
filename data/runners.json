@@ -403,6 +403,28 @@
       "addedAt": "2026-05-17",
       "games": [
         {
+          "game": "des",
+          "role": "legend",
+          "challenges": [
+            {
+              "title": "SL1 No Rolling/Blocking/Parrying",
+              "restrictions": "SL1 No Roll/Block/Parry",
+              "proof": "https://www.youtube.com/playlist?list=PLwAbGrTTCaCsDa4Qzxlbes5p6tS4qrwMo"
+            }
+          ]
+        },
+        {
+          "game": "ds1",
+          "role": "master",
+          "challenges": [
+            {
+              "title": "SL1 NG+6 No Roll/Rings/Buffs",
+              "restrictions": "SL1 NG+6 No Roll/Rings/Buffs",
+              "proof": "https://www.youtube.com/playlist?list=PLwAbGrTTCaCsxca1XSXavoKnNis65Rh_h"
+            }
+          ]
+        },
+        {
           "game": "ds2",
           "role": "grandmaster",
           "challenges": [
@@ -411,6 +433,39 @@
               "restrictions": "SL1 NG+7 CoC +0 Weapons No Roll/Block/Parry/Infusions/Buffs",
               "proof": "https://www.youtube.com/playlist?list=PLwAbGrTTCaCtfsDshgZvlR6FT3HzXPp0D",
               "completedAt": "2026-05-17"
+            }
+          ]
+        },
+        {
+          "game": "ds3",
+          "role": "legend",
+          "challenges": [
+            {
+              "title": "SL1 No Rolling/Blocking/Parrying",
+              "restrictions": "SL1 No Roll/Block/Parry",
+              "proof": "https://www.youtube.com/playlist?list=PLwAbGrTTCaCult60A85WUEA5W47EML5i0"
+            }
+          ]
+        },
+        {
+          "game": "sekiro",
+          "role": "legend",
+          "challenges": [
+            {
+              "title": "No Prosthetic/Skills/Items",
+              "restrictions": "Demon Bell/Charmless/No revive(base legend restrictions), No Prosthetic, No Buffs/Items, No Skills/Combat Arts, Flawless",
+              "proof": "https://www.youtube.com/playlist?list=PLwAbGrTTCaCvaXE3SnxPSIwNXIjTYr_cI"
+            }
+          ]
+        },
+        {
+          "game": "er",
+          "role": "legend",
+          "challenges": [
+            {
+              "title": "RL1 No Rolling/Blocking/Parrying",
+              "restrictions": "RL1 No Roll/Block/Parry",
+              "proof": "https://www.youtube.com/playlist?list=PLwAbGrTTCaCsZSA2J-0bcUqvCEL5VuJsr"
             }
           ]
         }
@@ -749,6 +804,11 @@
               "completedAt": "2026-07-31"
             }
           ]
+        },
+        {
+          "game": "er",
+          "role": "master",
+          "challenges": []
         }
       ]
     },
@@ -974,6 +1034,65 @@
           "game": "sekiro",
           "role": "champion",
           "challenges": []
+        }
+      ]
+    },
+    {
+      "id": "notn01",
+      "name": "N01",
+      "avatar": "",
+      "profile": "https://www.youtube.com/channel/UCWIo9WuheZrutZf_C_o7Vmg",
+      "addedAt": "2026-10-06",
+      "games": [
+        {
+          "game": "ds1",
+          "role": "champion",
+          "challenges": []
+        },
+        {
+          "game": "ds1",
+          "role": "legend",
+          "challenges": [
+            {
+              "title": "SL1 No Rolling/Blocking/Parrying",
+              "restrictions": "SL1 No Roll/Block/Parry",
+              "proof": "https://www.youtube.com/playlist?list=PL1vpNQryKZhi0hK0ruNuGh7Zphp_-dvtl"
+            }
+          ]
+        },
+        {
+          "game": "ds2",
+          "role": "champion",
+          "challenges": []
+        },
+        {
+          "game": "sekiro",
+          "role": "champion",
+          "challenges": []
+        },
+        {
+          "game": "er",
+          "role": "champion",
+          "challenges": []
+        }
+      ]
+    },
+    {
+      "id": "face-man",
+      "name": "FACE MAN",
+      "avatar": "",
+      "profile": "https://www.youtube.com/@FACE-MAN",
+      "addedAt": "2026-10-06",
+      "games": [
+        {
+          "game": "des",
+          "role": "hitless-sage",
+          "challenges": [
+            {
+              "restrictions": "SL1 Hitless No Sprint Melee Only",
+              "proof": "https://www.youtube.com/watch?v=2psUYQB5w_E"
+            }
+          ]
         }
       ]
     }
