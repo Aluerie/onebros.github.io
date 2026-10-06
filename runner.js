@@ -144,28 +144,19 @@
     const desc = document.querySelector('meta[name="description"]');
     if (desc) desc.setAttribute("content", `Verified runs by ${runner.name} on Onebros.`);
 
-    const avatarSrc = safeUrl(runner.avatar);
-    const hero = $("#overview");
-    if (avatarSrc && hero) {
-      hero.classList.add("has-avatar-bg");
-      const bg = document.createElement("img");
-      bg.className = "profile-hero-bg";
-      bg.src = avatarSrc;
-      bg.alt = "";
-      bg.setAttribute("aria-hidden", "true");
-      bg.addEventListener("error", () => {
-        hero.classList.remove("has-avatar-bg");
-        bg.remove();
-      });
-      hero.insertBefore(bg, hero.firstChild);
-    }
+    renderPageBackground(catalog, runner);
+
+    // On their own page the picture and name open the runner's external profile, never this page
+    // again: a known YouTube channel first, else runner.profile (YouTube or e.g. Team Hitless, which
+    // also keeps its own button). Plain text without either.
+    const identityUrl = channel || external;
 
     $("#runner-hero").innerHTML = `
-      <p class="breadcrumb"><a href="index.html#runners">Runners</a> <span aria-hidden="true">/</span> ${escapeHtml(runner.name)}</p>
+      <p class="breadcrumb"><a href="runners.html">Runners</a> <span aria-hidden="true">/</span> ${escapeHtml(runner.name)}</p>
       <header class="runner-head profile-id">
-        ${avatarHtml(runner, external)}
+        ${avatarHtml(runner, identityUrl)}
         <div class="profile-id-text">
-          <h1 id="runner-title" class="runner-name">${escapeHtml(runner.name)}</h1>
+          <h1 id="runner-title" class="runner-name">${identityNameHtml(runner, identityUrl)}</h1>
           ${badges}
         </div>
       </header>
@@ -175,6 +166,8 @@
     if (!channel) {
       channelFromProofs(runner, person).then((found) => {
         if (!found) return;
+        // A channel found from the proofs takes over the picture and name unless they already open YouTube.
+        if (!identityUrl || !isYoutubeUrl(identityUrl)) setIdentityLink(runner, found);
         let box = $("#profile-links");
         if (box && box.querySelector('a[href*="youtube.com"], a[href*="youtu.be"]')) return;
         if (!box) {
@@ -188,12 +181,47 @@
     }
   }
 
-  function gameArt(game) {
-    const bg = game && (game.cardBackground || game.pageBackground);
+  // Game artwork from games.json; `keys` sets which background to prefer.
+  function gameArt(game, keys = ["cardBackground", "pageBackground"]) {
+    const bg = game && keys.map((key) => game[key]).find((b) => b && safeUrl(b.src));
     const src = bg && safeUrl(bg.src);
     if (!src) return { src: "", position: "" };
     const position = /^[\w\s.%-]+$/.test(bg.position || "") ? bg.position : "";
     return { src, position };
+  }
+
+  function identityNameHtml(runner, url) {
+    const name = escapeHtml(runner.name);
+    return url ? `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${name}</a>` : name;
+  }
+
+  // Point the hero picture and name at `url` (re-rendered, so a plain picture becomes a link).
+  function setIdentityLink(runner, url) {
+    const avatar = $("#runner-hero .profile-id .runner-avatar");
+    const title = $("#runner-title");
+    if (avatar) avatar.outerHTML = avatarHtml(runner, url);
+    if (title) title.innerHTML = identityNameHtml(runner, url);
+  }
+
+  // Full-page artwork, as on game pages (body.has-page-bg): the pageBackground of the game holding
+  // the runner's top entry (catalog.topEntry; Hitless counts as Legend-level). Without artwork, or
+  // if it fails to load, the normal site background stays.
+  function renderPageBackground(catalog, runner) {
+    const top = catalog.topEntry(runner);
+    const art = top ? gameArt(catalog.game(top.game), ["pageBackground", "cardBackground"]) : null;
+    if (!art || !art.src) return;
+    const body = document.body;
+    body.style.setProperty("--page-bg", `url("${art.src}")`);
+    if (art.position) body.style.setProperty("--page-bg-position", art.position);
+    body.classList.add("has-page-bg");
+    // A CSS background fails silently, so probe the image to fall back cleanly.
+    const probe = new Image();
+    probe.addEventListener("error", () => {
+      body.classList.remove("has-page-bg");
+      body.style.removeProperty("--page-bg");
+      body.style.removeProperty("--page-bg-position");
+    });
+    probe.src = art.src;
   }
 
   function gameLogoHtml(game) {
@@ -238,6 +266,7 @@
           .map(([gameId, group]) => {
             const card = runnerCard(catalog, runner, group, {
               challengeMode: "full",
+              background: true,
               head: false,
               showGame: false,
             });
@@ -253,7 +282,7 @@
       <section class="section" id="runs" aria-labelledby="runs-title">
         <div class="container">
           <header class="section-head">
-            <h2 id="runs-title" class="section-title">Verified runs</h2>
+            <h2 id="runs-title" class="section-title">Verified Runs</h2>
           </header>
           <div class="profile-runs">${body}</div>
         </div>
@@ -263,10 +292,10 @@
   function renderNotFound(message) {
     document.title = "Onebros - Runner not found";
     $("#runner-hero").innerHTML = `
-      <p class="breadcrumb"><a href="index.html#runners">Runners</a></p>
+      <p class="breadcrumb"><a href="runners.html">Runners</a></p>
       <h1 id="runner-title" class="game-hero-title">Runner not found</h1>
       <p class="hero-lead">${message}</p>
-      <div class="hero-actions"><a class="btn btn-primary" href="index.html#runners">Back to runners</a></div>`;
+      <div class="hero-actions"><a class="btn btn-primary" href="runners.html">Back to runners</a></div>`;
     $("#runner-content").innerHTML = "";
   }
 

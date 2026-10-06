@@ -1,5 +1,6 @@
 /* OneBros - shared helpers and components
- * Used by the homepage (script.js), game pages (game.js), and runner pages (runner.js).
+ * Used by the homepage (script.js), game pages (game.js), the runners list (runners.js)
+ * and runner pages (runner.js).
  * Exposes a single global: window.OneBros
  */
 (function () {
@@ -112,7 +113,9 @@
   // Roles come in two separate tracks:
   //   "onebros" — Champion, Legend, Master, Elite Master, Grand Master (OneBros rules)
   //   "nohit"   — Hitless Scholar, Hitless Sage (Team Hitless ruleset)
-  // Ranks only compare roles within the same track.
+  // Ranks only compare roles within the same track (except effectiveLevel, below).
+  const HITLESS_LEVEL_ROLE = "legend"; // No Hit roles count as this Onebros role's level
+
   function createCatalog(gameData, runnerData) {
     const tracks = gameData.tracks || [];
     const trackOrder = new Map(tracks.map((t, i) => [t.id, i]));
@@ -125,6 +128,7 @@
     const rolesById = new Map(roles.map((r) => [r.id, r]));
     const tracksById = new Map(tracks.map((t) => [t.id, t]));
     const runnerIndex = new Map(runners.map((r, i) => [r, i])); // position in runners.json
+    const gameIndex = new Map(games.map((g, i) => [g.id, i])); // position in games.json
 
     const catalog = {
       tracks,
@@ -152,6 +156,40 @@
         const role = rolesById.get(roleId);
         if (!role) return 0;
         return (tracks.length - (trackOrder.get(role.track) ?? tracks.length)) * 100 + role.rank;
+      },
+
+      // Highest role first (roleSortKey); equal roles follow games.json order, unknown games last.
+      compareEntryTier(a, b) {
+        return (
+          catalog.roleSortKey(b.role) - catalog.roleSortKey(a.role) ||
+          (gameIndex.get(a.game) ?? games.length) - (gameIndex.get(b.game) ?? games.length)
+        );
+      },
+
+      /* Effective Onebros level, used to pick a runner's top entry (runner page hero artwork).
+       * An SL1/BL4 Hitless role counts as Legend-level: above Champion, below Legend.
+       *   Champion < Hitless Scholar < Hitless Sage < Legend < Master < Elite Master < Grand Master
+       * Onebros roles are rank * 10; No Hit roles sit just under the Legend rank, ordered by their own rank. */
+      effectiveLevel(roleId) {
+        const role = rolesById.get(roleId);
+        if (!role) return 0;
+        if (role.track !== "nohit") return role.rank * 10;
+        const legend = rolesById.get(HITLESS_LEVEL_ROLE);
+        return (legend ? legend.rank : 2) * 10 - 5 + role.rank;
+      },
+
+      // Highest effectiveLevel first; equal levels follow games.json order, unknown games last.
+      compareEntryLevel(a, b) {
+        return (
+          catalog.effectiveLevel(b.role) - catalog.effectiveLevel(a.role) ||
+          (gameIndex.get(a.game) ?? games.length) - (gameIndex.get(b.game) ?? games.length)
+        );
+      },
+
+      // The highest of these entries by compareEntryLevel (default: all of a runner's), or null.
+      // Picks the artwork behind runner cards and the runner page hero.
+      topEntry(runner, entries = runner.games || []) {
+        return [...entries].sort(catalog.compareEntryLevel)[0] || null;
       },
 
       gamePageUrl(gameId) {
@@ -287,7 +325,7 @@
    * @param runner   runner object from runners.json
    * @param entries  the runner's role entries to show (defaults to all)
    * @param opts     { highlight, background, challengeMode }
-   *                 background: use the cardBackground of the game of the runner's top role
+   *                 background: use the cardBackground of the game of the top entry (catalog.topEntry)
    *                 challengeMode: "short" (homepage — canonical titles) or "full" (game HoF)
    *
    * The picture and name open the runner's page. A role with no recorded challenges
@@ -299,9 +337,10 @@
     const { highlight = () => false, background = false, challengeMode = "short", head = true, showGame = true } = opts;
     const pageUrl = catalog.runnerPageUrl(runner.id);
     const name = escapeHtml(runner.name);
-    const sorted = [...entries].sort((a, b) => catalog.roleSortKey(b.role) - catalog.roleSortKey(a.role));
+    const sorted = [...entries].sort(catalog.compareEntryTier);
     const topRole = sorted[0] ? catalog.role(sorted[0].role) : null;
-    const bg = background && sorted[0] ? cardBackgroundStyle(catalog.game(sorted[0].game)) : "";
+    const top = background ? catalog.topEntry(runner, entries) : null;
+    const bg = top ? cardBackgroundStyle(catalog.game(top.game)) : "";
 
     const entryHtml = sorted
       .map((entry) => {

@@ -96,8 +96,11 @@ Append an object to the **end** of the `runners` array in `runners.json`:
    - `"hero": { "src", "width", "height", "alt", "position" }` (optional) — background artwork
      behind the logo, cropped to fill.
    - `"cardBackground": { "src", "position" }` (optional) — artwork behind the game's card on
-     the homepage, and behind each homepage runner card whose top role is in this game,
-     cropped to fill under a dark overlay. `position` is a CSS
+     the homepage, behind each homepage / Runners page runner card whose top role is in this game,
+     and behind that game's run cards on a runner page, cropped to fill under a dark overlay.
+   - `"pageBackground": { "src", "position" }` (optional) — full-page artwork behind the game page,
+     and the hero background of every runner page whose highest-tier run is in this game
+     (falls back to `cardBackground`). `position` is a CSS
      `background-position` (default `center`). Aim for about 1600×900 WebP (as
      `des-background.webp`). Cards without it keep the plain background.
 

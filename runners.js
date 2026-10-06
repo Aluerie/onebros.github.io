@@ -1,0 +1,54 @@
+/* OneBros - runners page
+ * Lists every verified runner from data/runners.json through the shared catalog: one runner card
+ * each (picture, name and every role they hold). The picture and name open the runner page.
+ * Order is the catalog's default (newest added first). Depends on shared.js.
+ */
+(function () {
+  "use strict";
+
+  const { $, loadCatalog, runnerCard, bindAvatarFallback, initChrome, initGamesMenu, loadErrorHtml } =
+    window.OneBros;
+
+  let catalog;
+
+  function renderRunners() {
+    const grid = $("#runners-grid");
+    const countEl = $("#results-count");
+    const query = $("#filter-search").value.trim().toLowerCase();
+    const total = catalog.runners.length;
+
+    if (!total) {
+      countEl.textContent = "";
+      grid.innerHTML = `<p class="empty">No verified runners have been added yet.</p>`;
+      return;
+    }
+
+    const runners = catalog.runners
+      .filter((runner) => !query || String(runner.name).toLowerCase().includes(query))
+      .sort(catalog.compareAdded);
+
+    const word = total === 1 ? "runner" : "runners";
+    countEl.textContent = query ? `${runners.length} of ${total} verified ${word}` : `${total} verified ${word}`;
+    grid.innerHTML = runners.length
+      ? runners.map((runner) => runnerCard(catalog, runner, runner.games || [], { background: true })).join("")
+      : `<p class="empty">No runners match this search.</p>`;
+  }
+
+  async function init() {
+    initChrome();
+    bindAvatarFallback($("#runners-grid"));
+
+    try {
+      catalog = await loadCatalog();
+    } catch (err) {
+      console.error(err);
+      $("#runners-grid").innerHTML = loadErrorHtml();
+      return;
+    }
+    initGamesMenu(catalog);
+    renderRunners();
+    $("#filter-search").addEventListener("input", renderRunners);
+  }
+
+  document.addEventListener("DOMContentLoaded", init);
+})();
